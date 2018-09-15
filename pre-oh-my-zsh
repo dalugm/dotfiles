@@ -1,0 +1,4 @@
+export PATH=/usr/local/Cellar/macvim/8.0-133/MacVim.app/Contents/bin:$PATH
+
+# Separate path for .zcompdump files
+compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
