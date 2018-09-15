@@ -137,6 +137,8 @@ SPACESHIP_DIR_TRUNC=0
  alias lg='lazygit'
  alias vi='vim'
  alias sicp="mit-scheme"
+ alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+ alias gemacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
  eval $(thefuck --alias)
