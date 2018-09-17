@@ -71,7 +71,7 @@ values."
      version-control
      themes-megapack
      (colors :variables
-             colors-colorize-identifiers 'all
+             ;;colors-colorize-identifiers 'all
              colors-enable-nyan-cat-progress-bar t)
      ;; enable nyan cat only in a gui
      ;; when in terminal, nyan cat will be ascii animations
@@ -163,26 +163,25 @@ values."
    ;; ================================================================
    dotspacemacs-themes '(spacemacs-dark
                          sanityinc-tomorrow-bright
+                         cyberpunk
                          badwolf
+                         gruvbox-dark-medium
                          monokai
                          dracula
                          rebecca
-                         material
-                         gruvbox-dark-medium
                          zenburn
                          moe-dark
+                         material
                          solarized-dark
                          sanityinc-tomorrow-blue
-                         anti-zenburn
-                         ample-light
-                         gruvbox-light-hard
-                         moe-light
+                         light-blue
                          leuven
                          material-light
                          twilight-bright
                          sanityinc-tomorrow-day
                          spacemacs-light
                          solarized-light
+                         moe-light
                          gruvbox-light-soft
                          )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -358,12 +357,13 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;;==================================================================;;
-  ;; Uncomment this if inside LAN to get faster speed to update packages
+  ;; Uncomment this if want to use mirror websites
+  ;; to get faster speed to update packages
   ;;==================================================================;;
   ;;(setq configuration-layer--elpa-archives
-  ;;  '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-  ;;    ("org-cn"   . "http://elpa.emacs-china.org/org/")
-  ;;    ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  ;;      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+  ;;        ("org-cn"   . "http://elpa.emacs-china.org/org/")
+  ;;        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
   ;;==================================================================;;
   )
 
@@ -394,7 +394,11 @@ you should place your code here."
   ;;========================================================
   (setq-default indent-tabs-mode nil)
   (setq default-tab-width 4
-        c-basic-offset 4)
+        c-basic-offset 4
+        ;; Uncomment the next line is very unsafe
+        ;;python-indent-guess-indent-offset nil
+        )
+
   (setq c-default-style '((java-mode . "java")
                           (awk-mode  . "awk")
                           (other     . "linux")))
@@ -403,8 +407,6 @@ you should place your code here."
   ;;========================================================
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
-  ;; Set the display on mode-line
-  (spacemacs|diminish highlight-indent-guides-mode " ⓗ" " h")
   ;; Set the display characteristics
   (setq highlight-indent-guides-method 'character)
   (setq highlight-indent-guides-character ?\▏)
@@ -435,6 +437,13 @@ you should place your code here."
      ((t (:inherit company-tooltip :weight bold :underline nil))))
    '(company-tooltip-common
      ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+  ;;========================================================
+  ;;                    => Diminish <=                     =
+  ;;========================================================
+  ;; Set the display on mode-line
+  (spacemacs|diminish highlight-indent-guides-mode " ⓗ" " h")
+  (spacemacs|diminish view-mode " ⓥ" " v")
+  (spacemacs|diminish space-doc-mode " ⓢ" " s")
 
   ;;========================================================
   ;;                  => Single Quote <=                   =
