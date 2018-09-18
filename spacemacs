@@ -617,6 +617,9 @@ before packages are loaded."
   (spacemacs|diminish space-doc-mode " ⓢ" " s")
   (spacemacs|diminish helm-mode " Ⓗ" " H")
 
+  ;; Disable purpose segment on mode-line
+  (spaceline-toggle-purpose-off)
+
   ;; Set time display on mode line
   (setq display-time-day-and-date t)
   ;; Remove load average from time string displayed in mode-line
