@@ -146,3 +146,6 @@ SPACESHIP_DIR_TRUNC=0
  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
  eval $(thefuck --alias)
  export PATH="/usr/local/opt/curl/bin:$PATH"
+
+ # Config for zsh-completions
+ autoload -U compinit && compinit
