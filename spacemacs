@@ -267,7 +267,6 @@ It should only modify the values of Spacemacs settings."
      rebecca
      moe-dark
      zenburn
-     doom-vibrant
      material
      solarized-dark
      sanityinc-tomorrow-blue
