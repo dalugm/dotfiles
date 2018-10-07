@@ -150,3 +150,4 @@ SPACESHIP_DIR_TRUNC=0
  # Config for zsh-completions
  autoload -U compinit && compinit
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
