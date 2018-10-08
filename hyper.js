@@ -92,7 +92,7 @@ module.exports = {
 
             // [Optional] Set the rgba() app background opacity, useful when enableVibrance is true
             // OPTIONS: From 0.1 to 1
-            backgroundOpacity: '0.8',
+            backgroundOpacity: '0.1',
 
             // [Optional] Set the accent color for the current active tab
             accentColor: '#64FFDA',
@@ -131,7 +131,7 @@ module.exports = {
         scrollback: 1000,
 
         // set to `false` for no bell
-        bell: 'SOUND',
+        bell: 'false',
 
         // if `true` (without backticks and without quotes), selected text will automatically be copied to the clipboard
         copyOnSelect: true,
