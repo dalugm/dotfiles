@@ -207,7 +207,8 @@ module.exports = {
     //   `project#1.0.1`
     plugins: [
         'hypercwd',
-        'hyperline',
+        //'hyperline',
+        // hyperline doesn't support for hyper2.0 yet
         'hyperpower',
         'hyper-search',
         'hyper-tabs-enhanced',
