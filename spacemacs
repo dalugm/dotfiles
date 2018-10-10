@@ -256,7 +256,6 @@ It should only modify the values of Spacemacs settings."
    ;; ================================================================
    dotspacemacs-themes
    '(
-     spacemacs-dark
      sanityinc-tomorrow-bright
      tao-yin
      badwolf
