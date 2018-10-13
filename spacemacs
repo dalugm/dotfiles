@@ -259,15 +259,16 @@ It should only modify the values of Spacemacs settings."
      sanityinc-tomorrow-bright
      tao-yin
      badwolf
-     kaolin-aurora
      gruvbox-dark-medium
      monokai
+     spacemacs-dark
      doom-one
      dracula
      rebecca
      moe-dark
      zenburn
      material
+     kaolin-aurora
      solarized-dark
      sanityinc-tomorrow-blue
      light-blue
