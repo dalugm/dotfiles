@@ -124,6 +124,8 @@ var domains = [
 	"trionworlds.com",
 	"line.me",
   "steamcommunity.com",
+  "store.steampowered.com",
+  "steampowered.com",
 
 	//otaku
 	"e-hentai.org",
