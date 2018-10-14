@@ -54,6 +54,7 @@ var domains = [
     "hexo.io",
     "medium.com",
     "quora.com",
+    "reddit.com",
 
     //GeneralNews
     "rfi.my",
@@ -103,6 +104,8 @@ var domains = [
     "golang.org",
     "netspeak.org",
     "endreslab.com",
+    "gnu.org",
+    "melpa.org",
 
     //Universities
     "illinois.edu",
@@ -144,7 +147,6 @@ var domains = [
     "pornhub.com",
     "thumbzilla.com",
     "studiofow.com",
-
 
     //facebook
     "facebook.net",
