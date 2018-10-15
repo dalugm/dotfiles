@@ -10,17 +10,17 @@
                                             ("xcx" "gangzhan")
                                             ;; emacs regex
                                             ))
-
 ;;========================================================
 ;;                  => Indent Config <=                  =
 ;;========================================================
 (setq-default indent-tabs-mode nil)
-(setq default-tab-width 4
-      c-basic-offset 4
-      ;; Uncomment the next line is very unsafe
-      ;;python-indent-guess-indent-offset nil
-      )
-
+(setq-default default-tab-width 4
+              c-basic-offset 4
+              js2-basic-offset 4
+              js2-indent-level 4
+              ;; Uncomment the next line is very unsafe
+              ;;python-indent-guess-indent-offset nil
+              )
 (setq c-default-style '(
                         (java-mode . "java")
                         (awk-mode  . "awk")
@@ -30,22 +30,16 @@
 ;;                  => Indent Line <=                    =
 ;;========================================================
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-
 ;; Set the display characteristics
 (setq highlight-indent-guides-method 'character)
 (setq highlight-indent-guides-character ?\▏)
-
 ;; Change the indent line color
-
 ;; To tweak the subtlety of these colors
 ;; use the following (all values are percentages)
-
 (setq highlight-indent-guides-auto-odd-face-perc 15)
 (setq highlight-indent-guides-auto-even-face-perc 15)
 (setq highlight-indent-guides-auto-character-face-perc 50)
-
 ;; Or, to manually set the colors used for highlighting, use:
-
 ;;(setq highlight-indent-guides-auto-enabled nil)
 ;;
 ;;(set-face-background 'highlight-indent-guides-odd-face "darkgray")
@@ -82,7 +76,6 @@
         (alpha . 90)
         )
       )
-
 ;; Change frame title
 (setq my-hostname
       (replace-regexp-in-string
@@ -91,14 +84,12 @@
          (call-process "/bin/hostname" nil standard-output nil))))
 (setq my-username (getenv "USERNAME"))
 (setq frame-title-format '("%b - " my-username "@" my-hostname))
-
 ;; Frame bar
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 ;; Emacs font
 (set-default-font "source code pro")
 (set-face-attribute 'default nil :height 140)
-;; Dashboard
 ;;========================================================
 ;;                => Private Config <=                   =
 ;;========================================================

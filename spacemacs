@@ -40,14 +40,24 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      lua
-     html
-     javascript
      vimscript
      yaml
      games
      git
      markdown
      themes-megapack
+     prettier
+     (helm :variables
+           ;; Uncomment next line will adjust C-x C-f size automatically
+           ;; helm-enable-auto-resize t
+           )
+     (neotree :variables
+              neo-theme 'nerd
+              )
+     (spell-checking :variables
+                     ;; Toggle it by `SPC t S'
+                     spell-checking-enable-by-default nil
+                     )
      (version-control :variables
                       version-control-diff-tool 'diff-hl
                       version-control-diff-side 'right
@@ -56,23 +66,6 @@ This function should only modify configuration layer settings."
                       ;; Toggle it by `SPC t s'
                       syntax-checking-enable-by-default nil
                       )
-     (spell-checking :variables
-                     ;; Toggle it by `SPC t S'
-                     spell-checking-enable-by-default nil
-                     )
-     (neotree :variables
-              neo-theme 'nerd
-              )
-     (emacs-lisp :variables
-                 ;; Nameless hides package namespaces in emacs-lisp code,
-                 ;; and replaces it by leading `> It can be toggled with
-                 ;; `SPC m T n'
-                 ;; emacs-lisp-hide-namespace-prefix t
-                 )
-     (helm :variables
-           ;; Uncomment next line will adjust C-x C-f size automatically
-           ;; helm-enable-auto-resize t
-           )
      (auto-completion :variables
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-return-key-behavior 'complete
@@ -87,6 +80,19 @@ This function should only modify configuration layer settings."
                       better-defaults-move-to-end-of-code-first t
                       better-defaults-move-to-beginning-of-code-first t
                       )
+     (html :variables
+           web-fmt-tool 'prettier
+           )
+     (javascript :variables
+                 javascript-backend 'lsp
+                 javascript-fmt-tool 'prettier
+                 )
+     (emacs-lisp :variables
+                 ;; Nameless hides package namespaces in emacs-lisp code,
+                 ;; and replaces it by leading `> It can be toggled with
+                 ;; `SPC m T n'
+                 ;; emacs-lisp-hide-namespace-prefix t
+                 )
      (c-c++ :variables
             c-c++-enable-clang-support t
             c-c++-default-mode-for-headers 'c++-mode)
@@ -124,9 +130,6 @@ This function should only modify configuration layer settings."
    '(
      highlight-indent-guides
      yasnippet-snippets
-     ;;(cache-path-from-shell :location
-     ;;                       "~/.emacs.d/private/cache-path-from-shell/"
-     ;;                       )
      )
 
    ;; A list of packages that cannot be updated.
@@ -256,19 +259,17 @@ It should only modify the values of Spacemacs settings."
    ;; ================================================================
    dotspacemacs-themes
    '(
-     sanityinc-tomorrow-bright
-     tao-yin
-     kaolin-aurora
-     doom-one
      dracula
+     tao-yin
+     sanityinc-tomorrow-night
      moe-dark
      material
      solarized-dark
      sanityinc-tomorrow-blue
      tao-yang
      material-light
-     doom-one-light
      sanityinc-tomorrow-day
+     leuven
      spacemacs-light
      moe-light
      solarized-light
@@ -432,7 +433,14 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers `(:relative t
+                                         :disabled-for-modes
+                                         dired-mode
+                                         doc-view-mode
+                                         markdown-mode
+                                         org-mode
+                                         pdf-view-mode
+                                         )
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -561,17 +569,17 @@ before packages are loaded."
                                               ("xcx" "gangzhan")
                                               ;; emacs regex
                                               ))
-
   ;;========================================================
   ;;                  => Indent Config <=                  =
   ;;========================================================
   (setq-default indent-tabs-mode nil)
-  (setq default-tab-width 4
-        c-basic-offset 4
-        ;; Uncomment the next line is very unsafe
-        ;;python-indent-guess-indent-offset nil
-        )
-
+  (setq-default default-tab-width 4
+                c-basic-offset 4
+                js2-basic-offset 4
+                js2-indent-level 4
+                ;; Uncomment the next line is very unsafe
+                ;;python-indent-guess-indent-offset nil
+                )
   (setq c-default-style '((java-mode . "java")
                           (awk-mode  . "awk")
                           (other     . "linux")))
@@ -660,7 +668,6 @@ before packages are loaded."
   ;;========================================================
   ;;                => Private Config <=                   =
   ;;========================================================
-  ;;(require 'cache-path-from-shell)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -677,7 +684,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (highlight-numbers yasnippet zenburn-theme zen-and-art-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler winum white-sand-theme which-key web-mode web-beautify volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme typit twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit symon sunny-day-theme sudoku sublime-themes subatomic256-theme subatomic-theme string-inflection spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme restart-emacs rebecca-theme rainbow-mode rainbow-identifiers rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme pug-mode professional-theme prettier-js popwin planet-theme pippel pipenv pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el password-generator parent-mode paradox pacmacs ox-twbs ox-gfm overseer orgit organic-green-theme org-projectile org-present org-pomodoro org-mime org-journal org-download org-bullets org-brain open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme nameless mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-svn magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode live-py-mode link-hint light-soap-theme kaolin-themes json-navigator json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-indentation highlight-indent-guides heroku-theme hemisu-theme helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md gandalf-theme fuzzy font-lock+ flyspell-correct-helm flycheck-rtags flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu espresso-theme eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dracula-theme dotenv-mode doom-themes doom-modeline django-theme disaster diminish diff-hl define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme dactyl-mode cython-mode cyberpunk-theme counsel-projectile company-web company-tern company-statistics company-rtags company-lua company-c-headers company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized color-identifiers-mode clues-theme clean-aindent-mode clang-format cherry-blossom-theme centered-cursor-mode busybee-theme bubbleberry-theme browse-at-remote birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-window ace-link ace-jump-helm-line ac-ispell 2048-game))))
+    (zenburn-theme hl-todo org-plus-contrib zen-and-art-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler winum white-sand-theme which-key web-mode web-beautify volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme typit twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit symon sunny-day-theme sudoku sublime-themes subatomic256-theme subatomic-theme string-inflection spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme restart-emacs rebecca-theme rainbow-mode rainbow-identifiers rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme pug-mode professional-theme prettier-js popwin planet-theme pippel pipenv pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el password-generator paradox pacmacs ox-twbs ox-gfm overseer orgit organic-green-theme org-projectile org-present org-pomodoro org-mime org-journal org-download org-bullets org-brain open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme nameless mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-svn magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode live-py-mode link-hint light-soap-theme kaolin-themes json-navigator json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide importmagic impatient-mode hungry-delete highlight-parentheses highlight-numbers highlight-indentation highlight-indent-guides heroku-theme hemisu-theme helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md gandalf-theme fuzzy font-lock+ flyspell-correct-helm flycheck-rtags flycheck-pos-tip flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu espresso-theme eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dracula-theme dotenv-mode doom-themes doom-modeline django-theme disaster diminish diff-hl define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme dactyl-mode cython-mode cyberpunk-theme counsel-projectile company-web company-tern company-statistics company-rtags company-lua company-c-headers company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized color-identifiers-mode clues-theme clean-aindent-mode clang-format cherry-blossom-theme centered-cursor-mode busybee-theme bubbleberry-theme browse-at-remote birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-window ace-link ace-jump-helm-line ac-ispell 2048-game))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
