@@ -573,16 +573,25 @@ before packages are loaded."
   ;;                  => Indent Config <=                  =
   ;;========================================================
   (setq-default indent-tabs-mode nil)
-  (setq-default default-tab-width 4
-                c-basic-offset 4
-                js2-basic-offset 4
-                js2-indent-level 4
-                ;; Uncomment the next line is very unsafe
-                ;;python-indent-guess-indent-offset nil
-                )
+  (setq default-tab-width 4
+        c-basic-offset 4
+        js2-basic-offset 2
+        js2-indent-level 2
+        (web-mode-code-indent-offset . 2)
+        (web-mode-markup-indent-offset . 2)
+        (web-mode-css-indent-offset . 2)
+        (web-mode-attr-indent-offset . 2)
+        (web-mode-sql-indent-offset . 2)
+        (web-mode-style-padding . 2)
+        (web-mode-script-padding . 2)
+        (web-mode-block-padding . 2)
+        ;; Uncomment the next line is very unsafe
+        ;;python-indent-guess-indent-offset nil
+        )
   (setq c-default-style '((java-mode . "java")
                           (awk-mode  . "awk")
                           (other     . "linux")))
+  (setq scroll-margin 7)
   ;;========================================================
   ;;                  => Indent Line <=                    =
   ;;========================================================
