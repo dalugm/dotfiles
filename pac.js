@@ -75,6 +75,7 @@ var domains = [
     "wenxuecity.com",
     "epochtimes.com",
     "solidot.org",
+    "jishi.news",
 
     //TechNews
     "engadget.com",
