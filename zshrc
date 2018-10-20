@@ -42,7 +42,7 @@
  ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+ COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -97,7 +97,7 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Modify zsh's themes configuration
 ###########################################################
@@ -149,5 +149,5 @@ SPACESHIP_DIR_TRUNC=0
 
  # Config for zsh-completions
  autoload -U compinit && compinit
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
+ export PATH="/usr/local/opt/sqlite/bin:$PATH"
+ export PATH="/usr/local/opt/sqlite/bin:$PATH"
