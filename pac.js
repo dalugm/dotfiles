@@ -148,6 +148,7 @@ var domains = [
   "cfake.com",
   "pornhub.com",
   "studiofow.com",
+  "pinterest.com",
   "thumbzilla.com",
   "adultdeepfakes.com",
 
