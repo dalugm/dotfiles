@@ -127,6 +127,8 @@ var domains = [
   "formacx.com",
   "trionworlds.com",
   "line.me",
+  "apple.com",
+  "icloud.com",
   "steamcommunity.com",
   "store.steampowered.com",
   "steampowered.com",

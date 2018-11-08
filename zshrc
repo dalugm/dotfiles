@@ -137,7 +137,6 @@ SPACESHIP_DIR_TRUNC=0
 
  alias ll='ls -l'
  alias la='ls -a'
- alias lg='lazygit'
  alias vi='vim'
  alias sicp="mit-scheme"
  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
@@ -147,10 +146,14 @@ SPACESHIP_DIR_TRUNC=0
  eval $(thefuck --alias)
  export PATH="/usr/local/opt/curl/bin:$PATH"
 
- # Config for zsh-completions
+# Config for zsh-completions
  autoload -U compinit && compinit
  export PATH="/usr/local/opt/sqlite/bin:$PATH"
  export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+# Config for zsh-autosuggestions
+ bindkey ',' autosuggest-accept
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
