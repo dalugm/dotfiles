@@ -99,7 +99,8 @@ var domains = [
   //academy and develop
   "ieee.org",
   "mathoverflow.net",
-  "tex.stackexchange.com",
+  "stackexchange.com",
+  "stackoverflow.com",
   "academia.edu",
   "geogebra.org",
   "golang.org",
@@ -132,6 +133,7 @@ var domains = [
   "steamcommunity.com",
   "store.steampowered.com",
   "steampowered.com",
+  "forum.gamer.com.tw",
 
   //otaku
   "e-hentai.org",
@@ -148,10 +150,20 @@ var domains = [
   //nsfw
   "t66y.com",
   "cfake.com",
+  "nutaku.net",
+  "theync.com",
+  "thrixxx.com",
   "pornhub.com",
+  "detour.click",
+  "theydrunk.com",
   "studiofow.com",
+  "crazyshit.com",
   "pinterest.com",
+  "3dsexvilla.com",
   "thumbzilla.com",
+  "theporndude.com",
+  "lifeselector.com",
+  "dirty-doctor.com",
   "adultdeepfakes.com",
 
   //facebook
