@@ -152,7 +152,6 @@ SPACESHIP_DIR_TRUNC=0
  export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 # Config for zsh-autosuggestions
- bindkey ',' autosuggest-accept
 
 ###-begin-npm-completion-###
 #

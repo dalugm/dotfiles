@@ -55,6 +55,7 @@ var domains = [
   "medium.com",
   "quora.com",
   "reddit.com",
+  "ptt.cc",
 
   //GeneralNews
   "rfi.my",
@@ -150,6 +151,7 @@ var domains = [
   //nsfw
   "t66y.com",
   "cfake.com",
+  "91porn.com",
   "nutaku.net",
   "theync.com",
   "thrixxx.com",
