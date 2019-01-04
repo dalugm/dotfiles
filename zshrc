@@ -139,6 +139,7 @@ SPACESHIP_DIR_TRUNC=0
  alias la='ls -a'
  alias vi='vim'
  alias sicp="mit-scheme"
+ alias mvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
  alias gemacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
@@ -213,3 +214,4 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+export PATH="/usr/local/opt/curl/bin:$PATH"

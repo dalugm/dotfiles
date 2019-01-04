@@ -24,6 +24,12 @@ var domains = [
   "v2ray.com",
   "astrill.com",
 
+  //Server
+  "linode.com",
+  "amaonaws.com",
+  "aws.amazon.com",
+  "bandwagonhost.com",
+
   //Design
   "deviantart.com",
 
@@ -82,7 +88,6 @@ var domains = [
   "engadget.com",
 
   //Network
-  "amazonaws.com",
   "fastly.net",
   "akamaihd.net",
   "blogsmithmedia.com",
@@ -96,6 +101,7 @@ var domains = [
   "stacksocial.com",
   "feedly.com",
   "acgtea.com",
+  "popo.tw",
 
   //academy and develop
   "ieee.org",
@@ -109,6 +115,7 @@ var domains = [
   "endreslab.com",
   "gnu.org",
   "melpa.org",
+  "orgmode.org",
 
   //Universities
   "illinois.edu",
@@ -137,6 +144,8 @@ var domains = [
   "forum.gamer.com.tw",
 
   //otaku
+  "gamejolt.com",
+  "gamcore.com",
   "e-hentai.org",
   "nhentai.net",
   "nicovideo.jp",
@@ -147,23 +156,32 @@ var domains = [
   "nyaa.se",
   "share.dmhy.org",
   "loli.us",
+  "adultgamescollector.com",
 
   //nsfw
   "t66y.com",
   "cfake.com",
   "91porn.com",
+  "ikstar.com",
   "nutaku.net",
   "theync.com",
+  "xvideos.com",
   "thrixxx.com",
   "pornhub.com",
   "detour.click",
+  "imagebam.com",
+  "porngames.com",
   "theydrunk.com",
   "studiofow.com",
   "crazyshit.com",
   "pinterest.com",
   "3dsexvilla.com",
+  "pornplaybb.com",
   "thumbzilla.com",
+  "mrdeepfakes.com",
   "theporndude.com",
+  "defloration.com",
+  "adultoffline.com",
   "lifeselector.com",
   "dirty-doctor.com",
   "adultdeepfakes.com",
