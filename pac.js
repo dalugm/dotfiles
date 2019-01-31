@@ -17,6 +17,7 @@ var domains = [
   "goagentx.com",
   "github.com",
   "sourceforge.net",
+  "git.sonnix.tk",
   "torproject.org",
   "hideme.io",
   "mozilla.org",
@@ -28,6 +29,7 @@ var domains = [
   "linode.com",
   "amaonaws.com",
   "aws.amazon.com",
+  "s3.amazonaws.com",
   "bandwagonhost.com",
 
   //Design
@@ -47,6 +49,7 @@ var domains = [
   //blog
   "wp.com",
   "yam.com",
+  "ssr.tools",
   "ashchan.com",
   "zuckclub.com",
   "blogspot.com",
@@ -60,8 +63,11 @@ var domains = [
   "hexo.io",
   "medium.com",
   "quora.com",
+  "redd.it",
   "reddit.com",
+  "redditmedia.com",
   "ptt.cc",
+  "discuss.com.hk",
 
   //GeneralNews
   "rfi.my",
@@ -168,6 +174,7 @@ var domains = [
   "xvideos.com",
   "thrixxx.com",
   "pornhub.com",
+  "3dxmodz.com",
   "detour.click",
   "imagebam.com",
   "porngames.com",
@@ -181,9 +188,11 @@ var domains = [
   "mrdeepfakes.com",
   "theporndude.com",
   "defloration.com",
+  "sexgamedevil.com",
   "adultoffline.com",
   "lifeselector.com",
   "dirty-doctor.com",
+  "grandfuckauto.xxx",
   "adultdeepfakes.com",
 
   //facebook
