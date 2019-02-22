@@ -138,6 +138,7 @@ SPACESHIP_DIR_TRUNC=0
  alias ll='ls -l'
  alias la='ls -a'
  alias vi='vim'
+ alias pc='proxychains4'
  alias sicp="mit-scheme"
  alias mvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'

@@ -168,6 +168,7 @@ var domains = [
   //nsfw
   "t66y.com",
   "xng2.xyz",
+  "dybz8.pw",
   "lao67.com",
   "avgle.com",
   "cfake.com",
@@ -190,6 +191,8 @@ var domains = [
   "crazyshit.com",
   "pinterest.com",
   "cctv12306.com",
+  "chnbotany.net",
+  "yazhouse8.com",
   "3dsexvilla.com",
   "pornplaybb.com",
   "thumbzilla.com",
