@@ -562,6 +562,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
           )
         )
   ;;==================================================================;;
+  (setq user-full-name "mutong"
+        user-mail-address "moutong945@gmail.com"
+        )
   )
 
 (defun dotspacemacs/user-load ()
@@ -586,6 +589,57 @@ before packages are loaded."
                                               ("xcx" "gangzhan")
                                               ;; emacs regex
                                               ))
+  ;;========================================================
+  ;;                   => Auto Insert <=                   =
+  ;;========================================================
+  (use-package autoinsert
+  :ensure nil
+  :hook (prog-mode . auto-insert-mode)
+  :config
+  (defun gangzhan/insert-string(&optional prefix)
+    (replace-regexp-in-string
+     "^" (or prefix comment-start)
+     (concat
+      (make-string 80 ?*) "\n"
+      "Copyright © " (substring (current-time-string) -4) " " (user-full-name) "\n"
+      "File Name: " (file-name-nondirectory buffer-file-name) "\n"
+      "Author: " (user-full-name)"\n"
+      "Email: " user-mail-address "\n"
+      "Created: " (format-time-string "%Y-%m-%d %T (%Z)" (current-time)) "\n"
+      "Last Update: \n"
+      ;;"         By: \n"
+      ;;"Description: \n"
+      (make-string 80 ?*))))
+
+  (setq auto-insert-query nil
+        auto-insert-alist
+        '(((ruby-mode . "Ruby program") nil
+           "#!/usr/bin/env ruby\n"
+           "# -*- encoding: utf-8 -*-\n"
+           (gangzhan/insert-string) "\n")
+          ((python-mode . "Python program") nil
+           ;; "#!/usr/bin/env python\n"
+           "#!/usr/bin/env python3\n"
+           "# -*- coding: utf-8 -*-\n"
+           (gangzhan/insert-string) "\n")
+          ((c-mode . "C program") nil
+           "/*"
+           (string-trim-left (gangzhan/insert-string " ")) "*/\n"
+           "#include<stdio.h>\n"
+           "#include<string.h>\n")
+          ((sh-mode . "Shell script") nil
+           "#!/bin/bash\n"
+           (gangzhan/insert-string) "\n")
+          ((go-mode . "Go program") nil
+           "/*"
+           (string-trim-left (gangzhan/insert-string " ")) "*/\n"))))
+
+  (setq time-stamp-active t)
+  (setq time-stamp-line-limit 11)
+  (setq time-stamp-start "[lL]ast[ -][uU]pdate[ \t]*:?")
+  (setq time-stamp-end "\n")
+  (setq time-stamp-format " %#A %Y-%02m-%02d %02H:%02M:%02S (%Z)")
+  (add-hook 'before-save-hook 'time-stamp)
   ;;========================================================
   ;;                  => Indent Config <=                  =
   ;;========================================================
