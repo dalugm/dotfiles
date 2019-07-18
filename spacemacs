@@ -633,7 +633,6 @@ before packages are loaded."
           ((go-mode . "Go program") nil
            "/*"
            (string-trim-left (gangzhan/insert-string " ")) "*/\n"))))
-
   (setq time-stamp-active t)
   (setq time-stamp-line-limit 11)
   (setq time-stamp-start "[lL]ast[ -][uU]pdate[ \t]*:?")
@@ -790,6 +789,9 @@ before packages are loaded."
   ;;                => Private Config <=                   =
   ;;========================================================
   (spacemacs//set-monospaced-font   "Source Code Pro" "Hiragino Sans GB" 14 16)
+  (setq python-shell-interpreter "/usr/local/bin/python3")
+  ;; Get rid of repeat lines in shell
+  ;;(setq comint-process-echoes t)  ;; or nil
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
