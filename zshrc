@@ -144,6 +144,9 @@ SPACESHIP_DIR_TRUNC=0
  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
  alias gemacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
+ alias python="/usr/local/bin/python3"
+ alias python2="/usr/bin/python"
+
  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
  eval $(thefuck --alias)
  export PATH="/usr/local/opt/curl/bin:$PATH"
