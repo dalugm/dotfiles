@@ -707,6 +707,8 @@ before packages are loaded."
   (setq org-journal-time-format "")
   ;; Modeline support
   (setq spaceline-org-clock-p t)
+  ;; Truncate when edit org file
+  (add-hook 'org-mode-hook 'toggle-truncate-lines)
   ;; LaTeX
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (setenv "PATH"
