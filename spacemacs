@@ -33,7 +33,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(rust
+   '(
+     rust
      go
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -618,8 +619,7 @@ before packages are loaded."
            "# -*- encoding: utf-8 -*-\n"
            (gangzhan/insert-string) "\n")
           ((python-mode . "Python program") nil
-           ;; "#!/usr/bin/env python\n"
-           "#!/usr/bin/env python3\n"
+           "#!/usr/bin/env python\n"
            "# -*- coding: utf-8 -*-\n"
            (gangzhan/insert-string) "\n")
           ((c-mode . "C program") nil
@@ -791,7 +791,6 @@ before packages are loaded."
   ;;                => Private Config <=                   =
   ;;========================================================
   (spacemacs//set-monospaced-font   "Source Code Pro" "Hiragino Sans GB" 14 16)
-  (setq python-shell-interpreter "/usr/local/bin/python3")
   ;; Get rid of repeat lines in shell
   ;;(setq comint-process-echoes t)  ;; or nil
   )
