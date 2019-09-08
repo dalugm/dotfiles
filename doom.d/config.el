@@ -1,96 +1,57 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
-;;========================================================
-;;                  => Abbreviation <=                   =
-;;========================================================
+
+(setq user-full-name "Mu Tong"
+      user-mail-address "moutong945@gmail.com")
+(set-language-environment "UTF-8")
+
+(load! "lisp/init-ui")
+(load! "lisp/init-org")
+(load! "lisp/init-theme")
+(load! "lisp/init-func")
+(load! "lisp/init-auto-insert")
+(load! "lisp/init-keybindings")
+;;==========================================================
+;;                       => Evil <=                        =
+;;==========================================================
+;; Cursor
+(setq evil-emacs-state-cursor 'box)
+(setq evil-normal-state-cursor 'box)
+(setq evil-visual-state-cursor 'hollow)
+(setq evil-insert-state-cursor 'bar)
+(setq evil-replace-state-cursor 'hbar)
+(setq evil-operator-state-cursor 'hollow)
+;; Keybindings
+(define-key evil-insert-state-map (kbd "C-f") 'forward-char)
+(define-key evil-insert-state-map (kbd "C-b") 'backward-char)
+(define-key evil-insert-state-map (kbd "C-n") 'next-line)
+(define-key evil-insert-state-map (kbd "C-p") 'previous-line)
+;;===========================================================
+;;=                      => Scheme <=                       =
+;;===========================================================
+(setq scheme-program-name "mit-scheme")
+(setq geiser-mit-binary "/usr/local/bin/mit-scheme")
+(setq geiser-active-implementations '(mit chez))
+;; configurations for paredit
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+;;===========================================================
+;;=                      => Python <=                       =
+;;===========================================================
+(setq python-shell-interpreter "python3"
+      flycheck-python-pycompile-executable "python3")
+;;===========================================================
+;;=                   => Abbrev mode <=                     =
+;;===========================================================
 (setq-default abbrev-mode t)
 (define-abbrev-table 'global-abbrev-table '(
                                             ;; signature
-                                            ("xcx" "gangzhan")
+                                            ("mt" "dalu")
                                             ;; emacs regex
                                             ))
-;;========================================================
-;;                  => Indent Config <=                  =
-;;========================================================
-(setq-default indent-tabs-mode nil)
-(setq-default default-tab-width 4
-              c-basic-offset 4
-              js2-basic-offset 4
-              js2-indent-level 4
-              ;; Uncomment the next line is very unsafe
-              ;;python-indent-guess-indent-offset nil
-              )
-(setq c-default-style '(
-                        (java-mode . "java")
-                        (awk-mode  . "awk")
-                        (other     . "linux")
-                        ))
-;;========================================================
-;;                  => Indent Line <=                    =
-;;========================================================
-(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-;; Set the display characteristics
-(setq highlight-indent-guides-method 'character)
-(setq highlight-indent-guides-character ?\▏)
-;; Change the indent line color
-;; To tweak the subtlety of these colors
-;; use the following (all values are percentages)
-(setq highlight-indent-guides-auto-odd-face-perc 15)
-(setq highlight-indent-guides-auto-even-face-perc 15)
-(setq highlight-indent-guides-auto-character-face-perc 50)
-;; Or, to manually set the colors used for highlighting, use:
-;;(setq highlight-indent-guides-auto-enabled nil)
-;;
-;;(set-face-background 'highlight-indent-guides-odd-face "darkgray")
-;;(set-face-background 'highlight-indent-guides-even-face "dimgray")
-;;(set-face-foreground 'highlight-indent-guides-character-face "dimgray")
-;;========================================================
-;;                      => Org Mode <=                   =
-;;========================================================
-;; Store org journal files
-(setq org-journal-dir "~/org/journal/")
-;; Change the journal file name format
-(setq org-journal-format "%Y-%m-%d")
-(setq org-journal-date-prefix "")
-(setq org-journal-date-format "%A, %B %d %Y")
-;; Adjust the timestamp
-(setq org-journal-time-prefix "* ")
-(setq org-journal-time-format "")
-;;========================================================
-;;                    => Mode Line <=                    =
-;;========================================================
-(setq +doom-modeline-height 40)
-(setq +doom-modeline-bar-width 5)
-;;========================================================
-;;                      => Frame <=                      =
-;;========================================================
-;; Make frame use natural title bar and make it transparent
-(setq default-frame-alist
-      '(
-        (fullscreen . maximized)
-        (ns-transparent-titlebar . t)
-        ;; Solve the problem of ghosting title
-        ;; but have some problems when using light themes
-        (ns-appearance . dark)
-        (alpha . 90)
-        )
-      )
-;; Change frame title
-(setq my-hostname
-      (replace-regexp-in-string
-       "\\(^[[:space:]\n]*\\|[[:space:]\n]*$\\)" "" ;; like perl chomp()
-       (with-output-to-string
-         (call-process "/bin/hostname" nil standard-output nil))))
-(setq my-username (getenv "USERNAME"))
-(setq frame-title-format '("%b - " my-username "@" my-hostname))
-;; Frame bar
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-;; Emacs font
-(set-default-font "source code pro")
-(set-face-attribute 'default nil :height 140)
-;;========================================================
-;;                => Private Config <=                   =
-;;========================================================
-(require 'cache-path-from-shell)
