@@ -154,7 +154,6 @@ SPACESHIP_DIR_TRUNC=0
 # Config for zsh-completions
  autoload -U compinit && compinit
  export PATH="/usr/local/opt/sqlite/bin:$PATH"
- export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 # Config for zsh-autosuggestions
 
@@ -219,3 +218,5 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/Users/mou/.emacs.d/bin:$PATH"

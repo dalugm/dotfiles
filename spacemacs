@@ -587,9 +587,11 @@ before packages are loaded."
   (setq-default abbrev-mode t)
   (define-abbrev-table 'global-abbrev-table '(
                                               ;; signature
-                                              ("xcx" "gangzhan")
+                                              ;; example
+                                              ;;("xcx" "gangzhan")
                                               ;; emacs regex
-                                              ))
+                                              )
+    )
   ;;========================================================
   ;;                   => Auto Insert <=                   =
   ;;========================================================
@@ -639,6 +641,7 @@ before packages are loaded."
   (setq time-stamp-end "\n")
   (setq time-stamp-format " %#A %Y-%02m-%02d %02H:%02M:%02S (%Z)")
   (add-hook 'before-save-hook 'time-stamp)
+  )
   ;;========================================================
   ;;                  => Indent Config <=                  =
   ;;========================================================
