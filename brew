@@ -12,7 +12,7 @@ cellar:
     chezscheme
     cmake
     cmatrix
-    coreutils
+    coreutils                       # such as gls (GNU ls) and other gnu tools
     cowsay
     cscope
     ctags
