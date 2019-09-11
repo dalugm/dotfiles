@@ -37,6 +37,7 @@ cellar:
     glib
     gmp
     gnu-tar
+    gnupg
     gnutls
     gobject-introspection
     graphite2
@@ -165,6 +166,7 @@ caskroom:
     android-file-transfer
     aria2gui
     emacs
+    evernote
     firefox
     font-dejavu-sans
     font-dejavusansmono-nerd-font
@@ -194,6 +196,7 @@ caskroom:
     quicklook-json
     shadowsocksx-ng-r
     steam
+    the-unarchiver
     thunderbird
     transmission
     typora
