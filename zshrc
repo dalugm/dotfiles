@@ -52,7 +52,7 @@
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+ HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -75,14 +75,14 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-source $ZSH/oh-my-zsh.sh
+ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
  export MANPATH="/usr/local/share/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
+ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
@@ -99,6 +99,24 @@ export LANG=en_US.UTF-8
 # ssh
  export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# Config for zsh-completions
+ autoload -U compinit && compinit
+ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+ eval $(thefuck --alias)
+
+# Config for zsh-autosuggestions
+
+###########################################################
+#                     => export <=                        #
+###########################################################
+ export PATH="/usr/local/opt/curl/bin:$PATH"
+ export PATH="/usr/local/sbin:$PATH"
+ export PATH="/Users/mou/.emacs.d/bin:$PATH"
+ export PATH="/Users/mou/Library/Python/3.7/bin:$PATH"
+ export PATH="/usr/local/opt/curl/bin:$PATH"
+ export PATH="/usr/local/opt/sqlite/bin:$PATH"
+###########################################################
+
 # Modify zsh's themes configuration
 ###########################################################
 #                  => spaceship <=                        #
@@ -107,10 +125,11 @@ export LANG=en_US.UTF-8
 # Directory (dir)
 
 # Number of folders of cwd to show in prompt, 0 to show all
-SPACESHIP_DIR_TRUNC=0
+ SPACESHIP_DIR_TRUNC=0
+###########################################################
 
 ###########################################################
-#               => Personal Config <=                     #
+#                  => personal config <=                  #
 ###########################################################
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -146,17 +165,12 @@ SPACESHIP_DIR_TRUNC=0
 
  alias python="/usr/local/bin/python3"
  alias python2="/usr/bin/python"
+###########################################################
 
- test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
- eval $(thefuck --alias)
- export PATH="/usr/local/opt/curl/bin:$PATH"
 
-# Config for zsh-completions
- autoload -U compinit && compinit
- export PATH="/usr/local/opt/sqlite/bin:$PATH"
-
-# Config for zsh-autosuggestions
-
+###########################################################
+#                   => npm-completion <=                  #
+###########################################################
 ###-begin-npm-completion-###
 #
 # npm command completion script
@@ -217,6 +231,4 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/Users/mou/.emacs.d/bin:$PATH"
+###########################################################
