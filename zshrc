@@ -141,7 +141,6 @@ plugins=(
  alias zshconfig="vim ~/.zshrc"
  alias tmuxconfig="vim ~/.tmux.conf.local"
  alias ohmyzsh="vim ~/.oh-my-zsh"
- alias emacsconfig="vim ~/.spacemacs"
 
  alias -s c=vim    # 在命令行直接输入 c 文件，会用 vim 中打开，以下类似
  alias -s h=vim
