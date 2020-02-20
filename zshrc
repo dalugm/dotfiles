@@ -2,7 +2,7 @@
 # export PATH=/usr/local/bin:$HOME/bin:$PATH
 
 # Path to your oh-my-zsh installation.
- export ZSH=/Users/mou/.oh-my-zsh
+ export ZSH=/Users/mou/.config/ohmyzsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -62,23 +62,35 @@
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  z
-  osx
-  git
-  emacs
-  extract
-  autojump
-  web-search
-  zsh-completions
-  last-working-dir
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+    autojump
+    colored-man-pages
+    colorize
+    command-not-found
+    copydir
+    copyfile
+    cp
+    emacs
+    extract
+    fzf
+    git
+    history
+    last-working-dir
+    osx
+    screen
+    tmux
+    web-search
+    z
+    zsh_reload
+    zsh-autosuggestions
+    zsh-completions
+    zsh-interactive-cd
+    zsh-syntax-highlighting
 )
 
  source $ZSH/oh-my-zsh.sh
 
-# User configuration
 
+# User configuration
  export MANPATH="/usr/local/share/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -88,10 +100,8 @@ plugins=(
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
-   export EDITOR='emacs'
+   export EDITOR='vim'
  fi
-
- [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -106,6 +116,21 @@ plugins=(
 
 # Config for zsh-autosuggestions
 
+# Config for autojump
+ [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# Config for fzf
+# Set fzf installation directory path
+export FZF_BASE=/usr/local/opt/fzf/install
+
+# Uncomment the following line to disable fuzzy completion
+# export DISABLE_FZF_AUTO_COMPLETION="true"
+
+# Uncomment the following line to disable key bindings (CTRL-T, CTRL-R, ALT-C)
+# export DISABLE_FZF_KEY_BINDINGS="true"
+
+# Config for term color
+export TERM=xterm-256color
 ###########################################################
 #                     => export <=                        #
 ###########################################################
@@ -115,6 +140,9 @@ plugins=(
  export PATH="/Users/mou/Library/Python/3.7/bin:$PATH"
  export PATH="/usr/local/opt/curl/bin:$PATH"
  export PATH="/usr/local/opt/sqlite/bin:$PATH"
+ export PATH="/usr/local/opt/qt/bin:$PATH"
+
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 ###########################################################
 
 # Modify zsh's themes configuration
@@ -142,10 +170,9 @@ plugins=(
  alias tmuxconfig="vim ~/.tmux.conf.local"
  alias ohmyzsh="vim ~/.oh-my-zsh"
 
- alias -s c=vim    # 在命令行直接输入 c 文件，会用 vim 中打开，以下类似
+ alias -s c=vim    # 在命令行直接输入 ./*.c 文件，会用 vim 中打开，以下类似
  alias -s h=vim
  alias -s cs=vim
- alias -s sh=vim
  alias -s py=vim
  alias -s el=vim
  alias -s js=vim
@@ -158,11 +185,14 @@ plugins=(
  alias vi='vim'
  alias pc='proxychains4'
  alias sicp="mit-scheme"
- alias mvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
  alias gemacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+ alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
+ alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
  alias python="/usr/local/bin/python3"
+ alias screen="/usr/local/bin/screen"
+ alias dscreen="/usr/bin/screen"
  alias python2="/usr/bin/python"
 ###########################################################
 

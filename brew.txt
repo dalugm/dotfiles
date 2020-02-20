@@ -26,6 +26,7 @@ fortune
 freetype
 frei0r
 fribidi
+fzf
 gcc
 gdb
 gdbm
@@ -35,10 +36,12 @@ ghostscript
 giflib
 git
 glib
+global
 gmp
 gnu-tar
 gnupg
 gnutls
+go
 gobject-introspection
 graphite2
 grep
@@ -122,6 +125,7 @@ perl
 pinentry
 pixman
 pkg-config
+poppler
 proxychains-ng
 pyenv
 python
@@ -135,6 +139,8 @@ rtmpdump
 rubberband
 ruby
 sbcl
+screen
+screenfetch
 screenresolution
 sdl
 sdl2
@@ -148,6 +154,7 @@ snappy
 speex
 sphinx-doc
 sqlite
+squirrel
 swig
 tesseract
 texi2html
@@ -155,6 +162,7 @@ the_silver_searcher
 thefuck
 theora
 tmux
+tree
 unbound
 unibilium
 vim
