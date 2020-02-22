@@ -2,22 +2,26 @@
 # export PATH=/usr/local/bin:$HOME/bin:$PATH
 
 # Path to your oh-my-zsh installation.
- export ZSH=/Users/mou/.config/ohmyzsh
+ export ZSH=/Users/mou/.config/zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
- ZSH_THEME="spaceship"
+ ZSH_THEME="random"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=(
-#                                "ys"
-#                                "spaceship"
-#)
+# For custom theme use `ln' to add it to candidate
+# ln -s "$ZSH_CUSTOM/themes/[custom-theme]/[theme].zsh-theme" "$ZSH/themes/[theme].zsh-theme"
+ZSH_THEME_RANDOM_CANDIDATES=(
+                               "agnoster"
+                               "robbyrussell"
+                               "spaceship"
+                               "ys"
+)
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -57,8 +61,8 @@
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load? (plugins can be found in `~/.config/zsh/plugins/*')
+# Custom plugins may be added to ~/.config/zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
@@ -163,7 +167,6 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bott
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
 # Example aliases
  alias vimconfig="vim ~/.vimrc"
  alias zshconfig="vim ~/.zshrc"
@@ -196,6 +199,10 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bott
  alias python2="/usr/bin/python"
 ###########################################################
 
+# 用 vim 编辑命令行 `C-o'
+autoload -U       edit-command-line
+zle -N            edit-command-line
+bindkey '^o'      edit-command-line
 
 ###########################################################
 #                   => npm-completion <=                  #
