@@ -87,7 +87,6 @@ plugins=(
     zsh_reload
     zsh-autosuggestions
     zsh-completions
-    zsh-interactive-cd
     zsh-syntax-highlighting
 )
 
@@ -113,6 +112,10 @@ plugins=(
 # ssh
  export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+############################################################
+#                      => plugins <=                       #
+############################################################
+
 # Config for zsh-completions
  autoload -U compinit && compinit
  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -135,78 +138,97 @@ export FZF_BASE=/usr/local/opt/fzf/install
 
 # Config for term color
 export TERM=xterm-256color
-###########################################################
-#                     => export <=                        #
-###########################################################
- export PATH="/usr/local/opt/curl/bin:$PATH"
- export PATH="/usr/local/sbin:$PATH"
- export PATH="/Users/mou/.emacs.d/bin:$PATH"
- export PATH="/Users/mou/Library/Python/3.7/bin:$PATH"
- export PATH="/usr/local/opt/curl/bin:$PATH"
- export PATH="/usr/local/opt/sqlite/bin:$PATH"
- export PATH="/usr/local/opt/qt/bin:$PATH"
 
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
-###########################################################
+
+############################################################
+#                      => export <=                        #
+############################################################
+
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+
+# GO env
+export GOPATH=$HOME/go
+
+# Add Python packages to PATH
+export PATH="/Users/mou/Library/Python/3.7/bin:$PATH"
+
+export PATH="/Users/mou/.emacs.d/bin:$PATH"
+export PATH="/Applications/Racket v7.6/bin:$PATH"
+
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+# For compilers to find software
+export LDFLAGS="-L/usr/local/opt/imagemagick@6/lib"
+export CPPFLAGS="-I/usr/local/opt/imagemagick@6/include"
+
+export LDFLAGS="-L/usr/local/opt/curl/lib"
+export CPPFLAGS="-I/usr/local/opt/curl/include"
+
+# For pkg-config to find software
+export PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig"
+export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig"
+
 
 # Modify zsh's themes configuration
-###########################################################
-#                  => spaceship <=                        #
-###########################################################
+############################################################
+#                  => spaceship <=                         #
+############################################################
 
 # Directory (dir)
 
 # Number of folders of cwd to show in prompt, 0 to show all
  SPACESHIP_DIR_TRUNC=0
-###########################################################
 
-###########################################################
-#                  => personal config <=                  #
-###########################################################
+
+############################################################
+#                  => personal config <=                   #
+############################################################
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 # Example aliases
- alias vimconfig="vim ~/.vimrc"
- alias zshconfig="vim ~/.zshrc"
- alias tmuxconfig="vim ~/.tmux.conf.local"
- alias ohmyzsh="vim ~/.oh-my-zsh"
+alias vimconfig="vim ~/.vimrc"
+alias zshconfig="vim ~/.zshrc"
+alias tmuxconfig="vim ~/.tmux.conf.local"
+alias ytdlconfig="vim ~/.config/youtube-dl/config"
 
- alias -s c=vim    # 在命令行直接输入 ./*.c 文件，会用 vim 中打开，以下类似
- alias -s h=vim
- alias -s cs=vim
- alias -s py=vim
- alias -s el=vim
- alias -s js=vim
- alias -s cpp=vim
- alias -s vim=vim
- alias -s java=vim
+alias -s c=vim    # 在命令行直接输入 ./*.c 文件，会用 vim 中打开，以下类似
+alias -s h=vim
+alias -s cs=vim
+alias -s py=vim
+alias -s el=vim
+alias -s js=vim
+alias -s cpp=vim
+alias -s vim=vim
+alias -s java=vim
 
- alias ll='ls -l'
- alias la='ls -a'
- alias vi='vim'
- alias pc='proxychains4'
- alias sicp="mit-scheme"
- alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
- alias gemacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
- alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
- alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias vi='vim'
+alias pc='proxychains4'
+alias sicp="mit-scheme"
+alias gemacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
- alias python="/usr/local/bin/python3"
- alias screen="/usr/local/bin/screen"
- alias dscreen="/usr/bin/screen"
- alias python2="/usr/bin/python"
-###########################################################
+alias screen="/usr/local/bin/screen"
+alias dscreen="/usr/bin/screen"
 
 # 用 vim 编辑命令行 `C-o'
 autoload -U       edit-command-line
 zle -N            edit-command-line
 bindkey '^o'      edit-command-line
 
-###########################################################
-#                   => npm-completion <=                  #
-###########################################################
+
+############################################################
+#                   => npm-completion <=                   #
+############################################################
+
 ###-begin-npm-completion-###
 #
 # npm command completion script

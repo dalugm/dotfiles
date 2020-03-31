@@ -1,8 +1,9 @@
 aerial
 android-file-transfer
 baidunetdisk
-emacs
+docker
 firefox
+font-gnu-unifont
 iina
 iterm2
 java
@@ -14,13 +15,13 @@ qbittorrent
 qq
 qqmusic
 razer-synapse
-shadowsocksx-ng
 squirrel
 steam
+texmacs
 transmission
 typora
 v2rayx
+visual-studio-code
 vmware-fusion
 wechat
-wpsoffice
 yinxiangbiji
