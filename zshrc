@@ -17,7 +17,6 @@
 # For custom theme use `ln' to add it to candidate
 # ln -s "$ZSH_CUSTOM/themes/[custom-theme]/[theme].zsh-theme" "$ZSH/themes/[theme].zsh-theme"
 ZSH_THEME_RANDOM_CANDIDATES=(
-                               "agnoster"
                                "robbyrussell"
                                "spaceship"
                                "ys"
@@ -145,14 +144,17 @@ export TERM=xterm-256color
 ############################################################
 
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 # GO env
 export GOPATH=$HOME/go
+export PATH="$GOPATH/bin:$PATH"
 
 # Add Python packages to PATH
 export PATH="/Users/mou/Library/Python/3.7/bin:$PATH"
@@ -169,10 +171,17 @@ export CPPFLAGS="-I/usr/local/opt/imagemagick@6/include"
 export LDFLAGS="-L/usr/local/opt/curl/lib"
 export CPPFLAGS="-I/usr/local/opt/curl/include"
 
+export LDFLAGS="-L/usr/local/opt/ruby/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby/include"
+
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+
 # For pkg-config to find software
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 export PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig"
 export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig"
-
+export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
 
 # Modify zsh's themes configuration
 ############################################################
@@ -182,7 +191,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig"
 # Directory (dir)
 
 # Number of folders of cwd to show in prompt, 0 to show all
- SPACESHIP_DIR_TRUNC=0
+SPACESHIP_DIR_TRUNC=0
 
 
 ############################################################

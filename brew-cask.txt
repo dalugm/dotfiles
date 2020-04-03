@@ -1,3 +1,4 @@
+115browser
 aerial
 android-file-transfer
 baidunetdisk
@@ -10,18 +11,14 @@ java
 keepassxc
 keka
 mactex
-nutstore
 qbittorrent
 qq
 qqmusic
 razer-synapse
 squirrel
-steam
 texmacs
 transmission
 typora
-v2rayx
 visual-studio-code
-vmware-fusion
 wechat
 yinxiangbiji
