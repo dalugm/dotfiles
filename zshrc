@@ -162,7 +162,7 @@ export PATH="/Users/mou/Library/Python/3.7/bin:$PATH"
 export PATH="/Users/mou/.emacs.d/bin:$PATH"
 export PATH="/Applications/Racket v7.6/bin:$PATH"
 
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 
 # For compilers to find software
 export LDFLAGS="-L/usr/local/opt/imagemagick@6/lib"

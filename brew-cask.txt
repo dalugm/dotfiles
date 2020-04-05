@@ -3,7 +3,6 @@ aerial
 android-file-transfer
 baidunetdisk
 docker
-firefox
 font-gnu-unifont
 iina
 iterm2
@@ -12,13 +11,10 @@ keepassxc
 keka
 mactex
 qbittorrent
-qq
-qqmusic
 razer-synapse
 squirrel
 texmacs
 transmission
 typora
 visual-studio-code
-wechat
 yinxiangbiji

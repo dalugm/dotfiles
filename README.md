@@ -4,6 +4,7 @@ backup for my dotfiles
 
 ``` sh
 brew list > brew.txt; brew cask list > brew-cask.txt
+pip3 freeze > pip3.txt
 ```
 
 ## Install by `brew` and `brew-cask` files
