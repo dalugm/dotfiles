@@ -2,7 +2,7 @@
 # export PATH=/usr/local/bin:$HOME/bin:$PATH
 
 # Path to your oh-my-zsh installation.
- export ZSH=/Users/mou/.config/zsh
+ export ZSH=$HOME/.config/zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -157,9 +157,9 @@ export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 
 # Add Python packages to PATH
-export PATH="/Users/mou/Library/Python/3.7/bin:$PATH"
+export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 
-export PATH="/Users/mou/.emacs.d/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="/Applications/Racket v7.6/bin:$PATH"
 
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
@@ -203,7 +203,6 @@ SPACESHIP_DIR_TRUNC=0
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 # Example aliases
-alias vimconfig="vim ~/.vimrc"
 alias zshconfig="vim ~/.zshrc"
 alias tmuxconfig="vim ~/.tmux.conf.local"
 alias ytdlconfig="vim ~/.config/youtube-dl/config"
