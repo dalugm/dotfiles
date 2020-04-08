@@ -1,9 +1,9 @@
-115browser
 aerial
 android-file-transfer
 baidunetdisk
 docker
 font-gnu-unifont
+font-sarasa-gothic
 iina
 iterm2
 java
