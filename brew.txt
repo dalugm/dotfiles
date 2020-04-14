@@ -22,7 +22,6 @@ ctags
 curl
 docbook
 docbook-xsl
-emacs-plus
 fd
 ffmpeg
 flac
@@ -44,6 +43,7 @@ glib
 global
 glslang
 gmp
+gnu-sed
 gnu-tar
 gnupg
 gnutls
@@ -168,6 +168,7 @@ squirrel
 swig
 tesseract
 texi2html
+texinfo
 the_silver_searcher
 thefuck
 theora

@@ -72,7 +72,6 @@ plugins=(
     copydir
     copyfile
     cp
-    emacs
     extract
     fzf
     git
@@ -151,6 +150,7 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH="/usr/local/opt/texinfo/bin:$PATH"
 
 # GO env
 export GOPATH=$HOME/go
@@ -162,6 +162,9 @@ export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="/Applications/Racket v7.6/bin:$PATH"
 
+# HOMEBREW
+# 关闭 homebrew 自动更新
+export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 
 # For compilers to find software
@@ -208,19 +211,18 @@ alias tmuxconfig="vim ~/.tmux.conf.local"
 alias ytdlconfig="vim ~/.config/youtube-dl/config"
 
 alias -s c=vim    # 在命令行直接输入 ./*.c 文件，会用 vim 中打开，以下类似
+alias -s cc=vim
+alias -s cpp=vim
 alias -s h=vim
-alias -s cs=vim
 alias -s py=vim
 alias -s el=vim
 alias -s js=vim
-alias -s cpp=vim
 alias -s vim=vim
 alias -s java=vim
 
 alias vi='vim'
 alias pc='proxychains4'
 alias sicp="mit-scheme"
-alias gemacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
