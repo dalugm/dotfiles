@@ -142,7 +142,6 @@ export TERM=xterm-256color
 #                      => export <=                        #
 ############################################################
 
-export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
@@ -151,6 +150,11 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+# GNU utils
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin/yes:$PATH"
+
 
 # GO env
 export GOPATH=$HOME/go
@@ -168,9 +172,6 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 
 # For compilers to find software
-export LDFLAGS="-L/usr/local/opt/imagemagick@6/lib"
-export CPPFLAGS="-I/usr/local/opt/imagemagick@6/include"
-
 export LDFLAGS="-L/usr/local/opt/curl/lib"
 export CPPFLAGS="-I/usr/local/opt/curl/include"
 
@@ -180,22 +181,18 @@ export CPPFLAGS="-I/usr/local/opt/ruby/include"
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 
+export LDFLAGS="-L/usr/local/opt/gettext/lib"
+export CPPFLAGS="-I/usr/local/opt/gettext/include"
+
+export LDFLAGS="-L/usr/local/opt/libffi/lib"
+export CPPFLAGS="-I/usr/local/opt/libffi/include"
+
 # For pkg-config to find software
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 export PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig"
 export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig"
 export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
-
-# Modify zsh's themes configuration
-############################################################
-#                  => spaceship <=                         #
-############################################################
-
-# Directory (dir)
-
-# Number of folders of cwd to show in prompt, 0 to show all
-SPACESHIP_DIR_TRUNC=0
-
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 
 ############################################################
 #                  => personal config <=                   #

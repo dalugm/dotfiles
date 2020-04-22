@@ -10,7 +10,6 @@ java
 keepassxc
 keka
 mactex
-qbittorrent
 razer-synapse
 squirrel
 texmacs
