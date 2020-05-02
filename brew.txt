@@ -24,6 +24,7 @@ ctags
 curl
 docbook
 docbook-xsl
+emacs-plus
 fd
 ffmpeg
 findutils
@@ -36,6 +37,7 @@ fribidi
 fzf
 gawk
 gcc
+gd
 gdbm
 gdk-pixbuf
 gettext
@@ -50,6 +52,7 @@ gmp
 gnu-sed
 gnu-tar
 gnupg
+gnuplot
 gnutls
 go
 go-md2man
@@ -62,6 +65,7 @@ httpie
 icu4c
 ilmbase
 imagemagick
+imagemagick@6
 isl
 jemalloc
 jpeg
@@ -72,6 +76,7 @@ libass
 libassuan
 libbluray
 libcbor
+libcerf
 libcroco
 libde265
 libevent
@@ -107,6 +112,7 @@ libvterm
 libyaml
 libzip
 little-cms2
+llvm
 lua
 luajit
 lzo
@@ -119,6 +125,7 @@ msgpack
 nasm
 ncurses
 neofetch
+neovim
 nettle
 ninja
 node
@@ -173,9 +180,9 @@ sl
 snappy
 source-highlight
 speex
-sphinx-doc
 sqlite
 squirrel
+srt
 swig
 tesseract
 texi2html

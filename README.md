@@ -14,8 +14,16 @@ brew install $(cat brew.txt)
 brew cask install $(cat brew-cask.txt)
 ```
 
-## Install python lib
+## Install python packages
 
 ```sh
 pip3 install -r pip3.txt
 ```
+
+## Usage
+
+### fzf
+
+use `j/<C-n>` and `k/<C-p>` to `down` and `up`.
+
+use `<C-j>` and `<C-k>` to make preview `down` and `up`.

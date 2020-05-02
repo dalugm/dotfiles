@@ -72,6 +72,7 @@ plugins=(
     copydir
     copyfile
     cp
+    emacs
     extract
     fzf
     git
@@ -88,7 +89,7 @@ plugins=(
     zsh-syntax-highlighting
 )
 
- source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 
 # User configuration
@@ -98,35 +99,41 @@ plugins=(
  export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='vim'
- fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
- export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 ############################################################
 #                      => plugins <=                       #
 ############################################################
 
 # Config for zsh-completions
- autoload -U compinit && compinit
- test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
- eval $(thefuck --alias)
+autoload -U compinit && compinit
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+eval $(thefuck --alias)
 
 # Config for zsh-autosuggestions
 
 # Config for autojump
- [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # Config for fzf
 # Set fzf installation directory path
 export FZF_BASE=/usr/local/opt/fzf/install
+# Set fzf interactive interface
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse \
+    --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500' \
+    --bind 'j:down,k:up,ctrl-j:preview-down,ctrl-k:preview-up'"
+# Set default omitted dirs
+export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
 
 # Uncomment the following line to disable fuzzy completion
 # export DISABLE_FZF_AUTO_COMPLETION="true"
@@ -135,13 +142,14 @@ export FZF_BASE=/usr/local/opt/fzf/install
 # export DISABLE_FZF_KEY_BINDINGS="true"
 
 # Config for term color
-export TERM=xterm-256color
+export TERM=screen-256color
 
 
 ############################################################
 #                      => export <=                        #
 ############################################################
 
+export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
@@ -151,25 +159,36 @@ export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
-# GNU utils
-export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin/yes:$PATH"
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="/usr/local/opt/qt/bin:$PATH"
 
-
-# GO env
+# GO
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 
-# Add Python packages to PATH
+# Python
 export PATH="$HOME/Library/Python/3.7/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+# Add personal path
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="/Applications/Racket v7.6/bin:$PATH"
 
 # HOMEBREW
 # 关闭 homebrew 自动更新
 export HOMEBREW_NO_AUTO_UPDATE=true
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+
 
 # For compilers to find software
 export LDFLAGS="-L/usr/local/opt/curl/lib"
@@ -187,12 +206,28 @@ export CPPFLAGS="-I/usr/local/opt/gettext/include"
 export LDFLAGS="-L/usr/local/opt/libffi/lib"
 export CPPFLAGS="-I/usr/local/opt/libffi/include"
 
+export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+export CPPFLAGS="-I/usr/local/opt/icu4c/include"
+
+export LDFLAGS="-L/usr/local/opt/imagemagick@6/lib"
+export CPPFLAGS="-I/usr/local/opt/imagemagick@6/include"
+
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
+export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+
+export LDFLAGS="-L/usr/local/opt/qt/lib"
+export CPPFLAGS="-I/usr/local/opt/qt/include"
+
 # For pkg-config to find software
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 export PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig"
 export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig"
 export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+export PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig"
+export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
 
 ############################################################
 #                  => personal config <=                   #
@@ -207,19 +242,11 @@ alias zshconfig="vim ~/.zshrc"
 alias tmuxconfig="vim ~/.tmux.conf.local"
 alias ytdlconfig="vim ~/.config/youtube-dl/config"
 
-alias -s c=vim    # 在命令行直接输入 ./*.c 文件，会用 vim 中打开，以下类似
-alias -s cc=vim
-alias -s cpp=vim
-alias -s h=vim
-alias -s py=vim
-alias -s el=vim
-alias -s js=vim
-alias -s vim=vim
-alias -s java=vim
-
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 alias pc='proxychains4'
 alias sicp="mit-scheme"
+alias markdown='/Applications/Typora.app/Contents/MacOS/Typora'
 alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
