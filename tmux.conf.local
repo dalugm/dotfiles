@@ -275,8 +275,18 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
+# NOTE shell config export TERM=xterm-256color
+# But will cause error in neovim when running :checkhealth
+# Uncomment this line you can delete &t_8f &t_8b in vim config
+# set -g default-terminal "xterm-256color"
+
 # Enable true color for neovim
-set-option -sa terminal-overrides ', screen-256color:RGB'
+# And avoid color break in vim when using termguicolors
+set-option -ga terminal-overrides ',*256col*:Tc'
+
+# Enable Neovim cursor shapes in tmux.
+# https://github.com/neovim/neovim/wiki/FAQ#cursor-shape-doesnt-change-in-tmux
+set -as terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[2 q'
 
 # increase history size
 #set -g history-limit 10000
@@ -297,7 +307,7 @@ set -g prefix C-a
 bind C-a send-prefix
 
 # window navigation
-# move current window to first window
+# switch current window with first window
 bind -r M-a swap-window -d -s . -t 1
 
 # move status line to top
