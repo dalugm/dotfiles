@@ -19,6 +19,7 @@ cmake
 cmatrix
 coreutils
 cowsay
+cpanminus
 cscope
 ctags
 curl
@@ -49,6 +50,7 @@ glib
 global
 glslang
 gmp
+gnu-getopt
 gnu-sed
 gnu-tar
 gnupg
@@ -114,7 +116,9 @@ libzip
 little-cms2
 llvm
 lua
+lua@5.1
 luajit
+luarocks
 lzo
 makedepend
 markdown
@@ -201,6 +205,7 @@ webp
 wget
 x264
 x265
+xmlto
 xvid
 xz
 yarn

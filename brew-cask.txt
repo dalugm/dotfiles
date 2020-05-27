@@ -16,4 +16,3 @@ texmacs
 transmission
 typora
 visual-studio-code
-yinxiangbiji

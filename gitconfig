@@ -1,0 +1,23 @@
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	name = dalu98
+	email = moutong945@outlook.com
+[color]
+	ui = true
+[core]
+	excludesfile = ~/.gitignore_global
+[push]
+	default = matching
+[http]
+	sslverify = false
+[alias]
+    # the acronym stands for "subtree add"
+    sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
+    # the acronym stands for "subtree update"
+    sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+    # good-looking git log
+    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=short

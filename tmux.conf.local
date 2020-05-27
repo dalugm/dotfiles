@@ -313,4 +313,4 @@ bind -r M-a swap-window -d -s . -t 1
 # move status line to top
 # set -g status-position top
 
-set -sg repeat-time 1000                   # increase repeat timeout
+set -sg repeat-time 600                   # increase repeat timeout
