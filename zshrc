@@ -18,7 +18,8 @@ ZSH_THEME="random"
 # ln -s "$ZSH_CUSTOM/themes/[custom-theme]/[theme].zsh-theme" "$ZSH/themes/[theme].zsh-theme"
 
 ZSH_THEME_RANDOM_CANDIDATES=(
-    amuse
+    evan
+    minimal
     robbyrussell
     ys
 )
@@ -40,7 +41,7 @@ HYPHEN_INSENSITIVE="true"
 export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -74,7 +75,7 @@ COMPLETION_WAITING_DOTS="true"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# Add wisely, as too many plugins slow down  startup.
 plugins=(
     autojump
     colored-man-pages
@@ -89,13 +90,14 @@ plugins=(
     history
     last-working-dir
     osx
+    sudo
     tmux
     web-search
     z
-    zsh_reload
     zsh-autosuggestions
     zsh-completions
     zsh-syntax-highlighting
+    zsh_reload
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -132,7 +134,7 @@ fi
 
 # Config for zsh-completions
 autoload -U compinit && compinit
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+test -e "${HOME}/.iterm2__integration.zsh" && source "${HOME}/.iterm2__integration.zsh"
 eval $(thefuck --alias)
 
 # Config for zsh-autosuggestions
@@ -146,10 +148,16 @@ export FZF_BASE=/usr/local/opt/fzf/install
 # Set fzf interactive interface
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse \
     --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500' \
-    --bind 'j:down,k:up,ctrl-j:preview-down,ctrl-k:preview-up'"
+    --bind 'ctrl-n:down,ctrl-p:up,ctrl-j:preview-down,ctrl-k:preview-up'"
 
-# Set default omitted dirs
-export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
+# Set default fzf command style
+# Use fd instead of ripgrep
+# @ https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/
+export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --hidden --type file"
+# Search files cwd
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# Search directory from HOME
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 # Uncomment the following line to disable fuzzy completion
 # export DISABLE_FZF_AUTO_COMPLETION="true"
@@ -242,8 +250,12 @@ alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias screen="/usr/local/bin/screen"
 alias dscreen="/usr/bin/screen"
 
+# proxy
+alias socks5proxy="export all_proxy='socks5://127.0.0.1:1080'; export http_proxy='socks5://127.0.0.1:1080'; export https_proxy='socks5://127.0.0.1:1080'"
+alias httpproxy="export all_proxy='http://127.0.0.1:1087'; export http_proxy='127.0.0.1:1087'; export https_proxy='127.0.0.1:1087'"
+alias cleanproxy="export all_proxy=; export http_proxy=; export https_proxy="
+
 # 用 vim 编辑命令行 `C-o'
 autoload -U       edit-command-line
 zle -N            edit-command-line
 bindkey '^o'      edit-command-line
-
