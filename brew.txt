@@ -10,6 +10,7 @@ autojump
 automake
 axel
 bash
+bat
 bdw-gc
 boost
 cairo
@@ -23,6 +24,7 @@ cpanminus
 cscope
 ctags
 curl
+dav1d
 docbook
 docbook-xsl
 emacs-plus
@@ -48,7 +50,6 @@ git
 git-lfs
 glib
 global
-glslang
 gmp
 gnu-getopt
 gnu-sed
@@ -58,7 +59,6 @@ gnuplot
 gnutls
 go
 go-md2man
-gobject-introspection
 graphite2
 grep
 harfbuzz
@@ -191,11 +191,11 @@ swig
 tesseract
 texi2html
 texinfo
-the_silver_searcher
 thefuck
 theora
 tmux
 tree
+typescript
 unbound
 unibilium
 utf8proc
