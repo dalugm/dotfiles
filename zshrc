@@ -91,7 +91,6 @@ plugins=(
     last-working-dir
     osx
     sudo
-    tmux
     web-search
     z
     zsh-autosuggestions
@@ -197,7 +196,6 @@ export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 
 # Python
-export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1

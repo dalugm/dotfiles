@@ -20,4 +20,4 @@
     # the acronym stands for "subtree update"
     sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
     # good-looking git log
-    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=short
+    hist = log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %C(green)(%cr)%Creset' --abbrev-commit --date=short

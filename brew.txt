@@ -47,9 +47,9 @@ gettext
 ghostscript
 giflib
 git
-git-lfs
 glib
 global
+glslang
 gmp
 gnu-getopt
 gnu-sed
@@ -89,6 +89,7 @@ libgpg-error
 libheif
 libidn2
 libksba
+liblqr
 libmikmod
 libmpc
 libogg
@@ -121,11 +122,11 @@ luajit
 luarocks
 lzo
 makedepend
-markdown
 meson
 mit-scheme
 mpfr
 msgpack
+nano
 nasm
 ncurses
 neofetch
