@@ -1,1 +1,0 @@
-/Users/mou/.tmux

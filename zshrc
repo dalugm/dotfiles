@@ -164,9 +164,6 @@ export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 # Uncomment the following line to disable key bindings (CTRL-T, CTRL-R, ALT-C)
 # export DISABLE_FZF_KEY_BINDINGS="true"
 
-# Config for term color
-export TERM=screen-256color
-
 ############################################################
 #                      => export <=                        #
 ############################################################
@@ -190,6 +187,7 @@ export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 # Personal PATH
 export PATH="${HOME}/.emacs.d/bin:$PATH"
+export PATH="$HOME/tools/build:$PATH"
 
 # GO
 export GOPATH=$HOME/go
@@ -203,6 +201,15 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
+fi
+
+# Ruby
+export RBENV_ROOT="$HOME/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+if command -v rbenv 1>/dev/null 2>&1; then
+    eval "$(rbenv init -)"
 fi
 
 # HOMEBREW
@@ -234,13 +241,14 @@ export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig:$PKG_CONFIG_PATH"
 # For a full list of active aliases, run `alias`.
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
-alias tmuxconfig="nvim ~/.tmux.conf.local"
+alias tmuxconfig="nvim ~/.tmux.conf"
 alias ytdlconfig="nvim ~/.config/youtube-dl/config"
 
 alias vi='vim'
 alias nvi='nvim'
+alias gvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
 alias pc='proxychains4'
-alias sicp="mit-scheme"
+alias sicp='mit-scheme'
 alias markdown='/Applications/Typora.app/Contents/MacOS/Typora'
 alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
@@ -249,11 +257,21 @@ alias screen="/usr/local/bin/screen"
 alias dscreen="/usr/bin/screen"
 
 # proxy
-alias socks5proxy="export all_proxy='socks5://127.0.0.1:1080'; export http_proxy='socks5://127.0.0.1:1080'; export https_proxy='socks5://127.0.0.1:1080'"
-alias httpproxy="export all_proxy='http://127.0.0.1:1087'; export http_proxy='127.0.0.1:1087'; export https_proxy='127.0.0.1:1087'"
-alias cleanproxy="export all_proxy=; export http_proxy=; export https_proxy="
+alias socks5_proxy="export all_proxy='socks5://127.0.0.1:1080'; export http_proxy='socks5://127.0.0.1:1080'; export https_proxy='socks5://127.0.0.1:1080'"
+alias http_proxy="export all_proxy='http://127.0.0.1:1087'; export http_proxy='127.0.0.1:1087'; export https_proxy='127.0.0.1:1087'"
+alias clean_proxy="export all_proxy=; export http_proxy=; export https_proxy="
 
-# 用 vim 编辑命令行 `C-o'
-autoload -U       edit-command-line
-zle -N            edit-command-line
-bindkey '^o'      edit-command-line
+# eXecute Editor
+autoload -U   edit-command-line
+zle      -N   edit-command-line
+bindkey  '^o' edit-command-line
+
+# neovim
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    export PS1="> "
+    if [ -x "$(command -v nvr)" ]; then
+        alias nvim=nvr
+    else
+        alias nvim='echo "No nesting!"'
+    fi
+fi
