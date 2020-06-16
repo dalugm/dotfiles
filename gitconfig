@@ -21,3 +21,7 @@
     sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
     # good-looking git log
     hist = log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %C(green)(%cr)%Creset' --abbrev-commit --date=short
+[merge]
+	tool = vimdiff
+    conflictstyle = diff3
+    prompt = false

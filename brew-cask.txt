@@ -9,6 +9,7 @@ iterm2
 java
 keepassxc
 keka
+kindle-comic-creator
 mactex
 monitorcontrol
 razer-synapse

@@ -153,6 +153,7 @@ pcre
 pcre2
 perl
 pinentry
+pipenv
 pixman
 pkg-config
 poppler
@@ -212,4 +213,5 @@ xz
 yarn
 you-get
 youtube-dl
+zlib
 zsh
