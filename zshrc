@@ -242,6 +242,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig:$PKG_CONFIG_PATH"
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias tmuxconfig="nvim ~/.tmux.conf"
+alias alaconfig="nvim ~/.alacritty.yml"
 alias ytdlconfig="nvim ~/.config/youtube-dl/config"
 alias chainizi="python ~/src/misc/zhenghuo/chainizi.py"
 
