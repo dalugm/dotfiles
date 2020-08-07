@@ -27,7 +27,7 @@ curl
 dav1d
 docbook
 docbook-xsl
-emacs-plus
+emacs
 fd
 ffmpeg
 findutils
@@ -59,6 +59,7 @@ gnuplot
 gnutls
 go
 go-md2man
+gobject-introspection
 graphite2
 grep
 harfbuzz
@@ -66,8 +67,6 @@ highlight
 httpie
 icu4c
 ilmbase
-imagemagick
-imagemagick@6
 isl
 jemalloc
 jpeg
@@ -129,7 +128,6 @@ msgpack
 nano
 nasm
 ncurses
-neofetch
 neovim
 nettle
 ninja
@@ -142,7 +140,6 @@ opencore-amr
 openexr
 openjpeg
 openssh
-openssl
 openssl@1.1
 opus
 p11-kit
@@ -156,14 +153,13 @@ pinentry
 pipenv
 pixman
 pkg-config
-poppler
 protobuf
 proxychains-ng
-pyenv
 python
 python3
 python@3.8
 qt
+rav1e
 readline
 reattach-to-user-namespace
 ripgrep
@@ -193,6 +189,7 @@ swig
 tesseract
 texi2html
 texinfo
+the_silver_searcher
 thefuck
 theora
 tmux

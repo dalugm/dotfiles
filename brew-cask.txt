@@ -1,9 +1,12 @@
 aerial
+alacritty
 android-file-transfer
 baidunetdisk
+cool-retro-term
 docker
 font-gnu-unifont
 font-sarasa-gothic
+goldendict
 iina
 iterm2
 java
@@ -14,7 +17,6 @@ mactex
 monitorcontrol
 razer-synapse
 squirrel
-texmacs
 transmission
 typora
 visual-studio-code
