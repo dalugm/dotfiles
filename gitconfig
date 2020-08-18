@@ -1,27 +1,29 @@
 [filter "lfs"]
-    process = git-lfs filter-process
-    required = true
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 [user]
-    name = dalu98
-    email = moutong945@outlook.com
+	name = dalu98
+	email = moutong945@outlook.com
 [color]
-    ui = true
+	ui = true
 [core]
-    excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [push]
-    default = matching
+	default = matching
 [http]
-    sslverify = false
+	sslverify = false
 [alias]
-    # the acronym stands for "subtree add"
-    sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
-    # the acronym stands for "subtree update"
-    sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
-    # good-looking git log
-    hist = log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %C(green)(%cr)%Creset' --abbrev-commit --date=short
+	# the acronym stands for "subtree add"
+	sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
+	# the acronym stands for "subtree update"
+	sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+	# good-looking git log
+	hist = log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %C(green)(%cr)%Creset' --abbrev-commit --date=short
+	# useful command
+	st = status
 [merge]
-    tool = vimdiff
-    conflictstyle = diff3
-    prompt = false
+	tool = vimdiff
+	conflictstyle = diff3
+	prompt = false
