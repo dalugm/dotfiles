@@ -1,2 +1,11 @@
+########
+# FILE #
+########
 */.DS_Store
 .DS_Store
+/histfile
+
+##########
+# FOLDER #
+##########
+/zsh/plugins

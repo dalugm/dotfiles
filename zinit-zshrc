@@ -14,16 +14,8 @@ fi
 
 source "${ZINIT[BIN_DIR]}/zinit.zsh"
 
-# load plugins with a single command. 
-# For more information see:
-# https://zdharma.org/zinit/wiki/For-Syntax/
-zinit light-mode for \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node \
-    zdharma/history-search-multi-word \
-    pick"async.zsh" src"pure.zsh" \
-        sindresorhus/pure
+zinit ice pick'async.zsh' src'pure.zsh'
+zinit load sindresorhus/pure
 
 # 快速目录跳转
 zinit ice lucid wait='1'
@@ -54,23 +46,29 @@ zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
 ############################################################
-#                      => plugins <=                       #
+#                       => binary <=                       #
 ############################################################
 
-# Config for zsh-completions
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
 # Config for fzf
+
 # Set fzf installation directory path
 export FZF_BASE=/usr/local/opt/fzf/install
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Set fzf interactive interface
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse \
     --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500' \
-    --bind 'j:down,k:up,ctrl-j:preview-down,ctrl-k:preview-up'"
+    --bind 'ctrl-n:down,ctrl-p:up,ctrl-j:preview-down,ctrl-k:preview-up'"
 
-# Set default omitted dirs
-export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --type f"
+# Set default fzf command style
+# Use fd instead of ripgrep
+# @see https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/
+export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --hidden --type file"
+# Search files cwd
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# Search directory from HOME
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 ############################################################
 #                  => personal config <=                   #
@@ -131,17 +129,13 @@ export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
-export PATH="/usr/local/opt/qt/bin:$PATH"
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 # GO
 export GOPATH=$HOME/go
@@ -158,21 +152,16 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+# Ruby
+export RBENV_ROOT="$HOME/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+if command -v rbenv 1>/dev/null 2>&1; then
+    eval "$(rbenv init -)"
+fi
+
 # HOMEBREW
 # 关闭 homebrew 自动更新
 export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
-
-# For compilers to find software
-export LDFLAGS="-L/usr/local/lib"
-export CPPFLAGS="-I/usr/local/include"
-
-# For pkg-config to find software
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig:$PKG_CONFIG_PATH"
