@@ -23,6 +23,7 @@
 	hist = log --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %C(green)(%cr)%Creset' --abbrev-commit --date=short
 	# useful command
 	st = status
+	co = checkout
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3

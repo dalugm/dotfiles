@@ -23,6 +23,9 @@ ZSH_THEME_RANDOM_CANDIDATES=(
     ys
     mh
     lambda
+    example
+    tjkirch
+    crcandy
 )
 
 # Uncomment the following line to use case-sensitive completion.
@@ -179,6 +182,7 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/usr/local/opt/qt/bin:$PATH"
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+export PATH="$HOME/src/ccls/Release:$PATH"
 
 # Personal PATH
 export PATH="${HOME}/.emacs.d/bin:$PATH"
@@ -276,7 +280,7 @@ bindkey  '^o' edit-command-line
 
 # neovim
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-    export PS1="» "
+    export PS1="-> "
     if [ -x "$(command -v nvr)" ]; then
         alias nvim=nvr
     else

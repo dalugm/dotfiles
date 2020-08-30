@@ -19,4 +19,3 @@ razer-synapse
 squirrel
 transmission
 typora
-visual-studio-code
