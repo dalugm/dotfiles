@@ -185,7 +185,6 @@ export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 export PATH="$HOME/src/ccls/Release:$PATH"
 
 # Personal PATH
-export PATH="${HOME}/.emacs.d/bin:$PATH"
 export PATH="$HOME/tools/build:$PATH"
 
 # GO
@@ -250,6 +249,7 @@ alias ytdlconfig="nvim ~/.config/youtube-dl/config"
 alias chainizi="python ~/src/misc/zhenghuo/chainizi.py"
 
 alias g='git'
+alias ec='emacsclient'
 alias vi='vim'
 alias nvi='nvim'
 alias gvim='/Applications/MacVim.app/Contents/MacOS/MacVim'

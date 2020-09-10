@@ -26,6 +26,7 @@ cscope
 ctags
 curl
 dav1d
+dbus
 docbook
 docbook-xsl
 emacs
@@ -157,6 +158,7 @@ pinentry
 pipenv
 pixman
 pkg-config
+poppler
 protobuf
 proxychains-ng
 python
@@ -164,6 +166,7 @@ python3
 python@3.8
 qt
 rav1e
+re2c
 readline
 reattach-to-user-namespace
 ripgrep
@@ -186,6 +189,7 @@ sl
 snappy
 source-highlight
 speex
+sphinx-doc
 sqlite
 squirrel
 srt
