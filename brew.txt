@@ -71,6 +71,7 @@ httpie
 icu4c
 ilmbase
 isl
+jansson
 jemalloc
 jpeg
 jq

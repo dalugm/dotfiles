@@ -24,6 +24,11 @@
 	# useful command
 	st = status
 	co = checkout
+	cb = checkout -b
+	cp = cherry-pick
+	ci = commit
+	# Look up
+	author = !git log --pretty=format:'%an <%ae>' | sort -u
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
