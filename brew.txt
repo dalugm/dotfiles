@@ -5,7 +5,6 @@ asciidoc
 aspell
 astyle
 autoconf
-autoconf-archive
 autojump
 automake
 axel
@@ -181,9 +180,6 @@ screenfetch
 screenresolution
 sdl
 sdl2
-sdl_image
-sdl_mixer
-sdl_ttf
 shared-mime-info
 shellcheck
 sl
@@ -192,7 +188,6 @@ source-highlight
 speex
 sphinx-doc
 sqlite
-squirrel
 srt
 swig
 tesseract

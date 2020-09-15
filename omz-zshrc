@@ -212,6 +212,7 @@ fi
 # 关闭 homebrew 自动更新
 export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 
 ############################################################
 #                  => personal config <=                   #
