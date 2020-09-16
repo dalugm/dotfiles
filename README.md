@@ -1,40 +1,76 @@
+# TOC
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [TOC](#toc)
+- [Backup](#backup)
+    - [SHELL](#shell)
+        - [BASH](#bash)
+            - [My personal bash](#my-personal-bash)
+        - [ZSH](#zsh)
+            - [My personal zsh](#my-personal-zsh)
+            - [oh-my-zsh](#oh-my-zsh)
+            - [zinit](#zinit)
+    - [HOMEBREW](#homebrew)
+    - [GIT](#git)
+    - [TERMINAL](#terminal)
+    - [misc](#misc)
+    - [Acknowledgments](#acknowledgments)
+
+<!-- markdown-toc end -->
+
 # Backup
+## SHELL
+### BASH
 
-Backup for my dotfiles
+#### My personal bash
 
-    brew list > brew.txt
-    brew list --cask > brew-cask.txt
+[bash](bash/README.md)
 
-    # don't record dependency
-    brew leaves > brew.txt
+### ZSH
+#### My personal zsh
 
-    brew cask list > brew-cask.txt # DEPRECATED since HOMEBREW v2.50
+[zsh](zsh/README.md)
 
-## Install
+#### oh-my-zsh
 
-1. First way
+    ln -s ~/dotfiles/omz-zshrc ~/.zshrc
+    
+#### zinit
 
-``` shell
-brew install $(cat brew.txt)
-brew install --cask $(cat brew-cask.txt)
+    ln -s ~/dotfiles/zinit-zshrc ~/.zshrc
 
-brew cask install $(cat brew-cask.txt) # DEPRECATED since HOMEBREW v2.50
-```
-Or use `for` function in shell (which is unnecessary since `cat` has already done this):
+## HOMEBREW
 
-``` shell
-for i in $(cat brew.txt); do;
-    brew install "$1";
-done
+[homebrew](homebrew/README.md)
 
-for i in $(cat brew-cask.txt); do;
-    brew cask install "$1";
-done
-```
+## GIT
 
-2. Second way
+    ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
+
+## TERMINAL
+
+`iTerm2` and `alacritty`
 
 ``` shell
-xargs brew install < brew.txt
-xargs brew cask install < brew-cask.txt
+# alacritty terminal
+ln -s ~/dotfiles/alacritty.yml ~/.alacritty.yml
 ```
+
+## misc
+
+[misc](misc/README.md)
+
+## Acknowledgments
+
+Inspiration and code were taken from many sources, including:
+
+- [necolas](https://github.com/necolas/dotfiles)
+- [alrra](https://github.com/alrra/dotfiles)
+- [isaacs](https://github.com/isaacs/dotfiles)
+- [eed3si9n](https://github.com/eed3si9n/dotfiles)
+- [b4b4r07](https://github.com/b4b4r07/dotfiles)
+- [.tmux](https://github.com/gpakosz/.tmux)
+- [ghacks-user.js](https://github.com/ghacksuserjs/ghacks-user.js)
+- [The Ultimate Bashrc File GNOME-Look.org](https://gnome-look.org/content/show.php/Ultimate+Bashrc+File?content=129746)
+- [Font configuration - ArchWiki](https://wiki.archlinux.org/index.php/font_configuration)

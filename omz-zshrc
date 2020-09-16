@@ -228,10 +228,10 @@ export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias zshconfig="nvim ~/.zshrc"
+alias bashconf="nvim ~/.bashrc"
 alias tmuxconfig="nvim ~/.tmux.conf"
 alias alaconfig="nvim ~/.alacritty.yml"
 alias ytdlconfig="nvim ~/.config/youtube-dl/config"
-alias chainizi="python ~/src/misc/zhenghuo/chainizi.py"
 
 alias g='git'
 alias ec='emacsclient'

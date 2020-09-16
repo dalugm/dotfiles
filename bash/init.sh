@@ -156,6 +156,8 @@ fi
 # Enable programmable completion features.
 if [[ -f /usr/share/bash-completion/bash_completion ]]; then
     source /usr/share/bash-completion/bash_completion
+elif [[ -f /usr/local/etc/bash_completion.d ]]; then
+    source /usr/local/etc/bash_completion.d
 elif [[ -f /etc/bash_completion ]]; then
     source /etc/bash_completion
 fi
