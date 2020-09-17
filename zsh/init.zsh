@@ -1,3 +1,13 @@
+#!/usr/bin/env zsh
+
+# ${HOME}/.zshrc: executed by zsh(1) for non-login shells.
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# Path to zsh installation.
+# Distribute zshrc into smaller, more specific files
+export ZSH=$HOME/.config/zsh
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -13,23 +23,57 @@ compinit
 # End of lines added by compinstall
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.config/zsh/histfile
-HISTSIZE=1000
-SAVEHIST=1000
+export HISTFILE=~/.zsh_history
+
+# The maximum number of lines to remember in the command history.
+export HISTSIZE=1000
+
+# The maximum number of lines to save in the history file.
+export HISTFILESIZE=1000
+
+# The maximum number of history events to save in the history file.
+export SAVEHIST=1000
+
+# Disable saving lines that begin with a space or match the last history line to
+# the history list.
+export HISTCONTROL='ignoreboth'
+
+# Disable saving the following commands to the history list.
+export HISTIGNORE='&:bg:fg'
+
+# Enable time stamp for `history` builtin.
+export HISTTIMEFORMAT='%F %T '
 # End of lines configured by zsh-newuser-install
 
-# Useful configurations
-source ~/.config/zsh/lib/git.zsh
-source ~/.config/zsh/lib/completion.zsh
-source ~/.config/zsh/lib/key-bindings.zsh
-source ~/.config/zsh/lib/theme-and-appearance.zsh
+##########
+# export #
+##########
 
-# Plugins
-source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# Set the default language
+export LANG=en_US.UTF-8
 
-# Theme
-source ~/.config/zsh/themes/ys.zsh-theme
+# Set the default collation order as in C.
+export LC_COLLATE='C'
+
+# Set TERM value
+# export TERM=xterm-24bits
+# export TERM=xterm-256color
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='nvim'
+else
+    export EDITOR='nvim'
+fi
+
+###########
+# ENHANCE #
+###########
+
+source $ZSH/lib/git.zsh
+source $ZSH/lib/completion.zsh
+source $ZSH/lib/key-bindings.zsh
+source $ZSH/lib/theme-and-appearance.zsh
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -38,52 +82,100 @@ source ~/.config/zsh/themes/ys.zsh-theme
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
-############################################################
-#                  => personal config <=                   #
-############################################################
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-# Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias tmuxconfig="nvim ~/.tmux.conf"
-alias alaconfig="nvim ~/.alacritty.yml"
-alias ytdlconfig="nvim ~/.config/youtube-dl/config"
-alias chainizi="python ~/src/misc/zhenghuo/chainizi.py"
-
-alias g='git'
-alias vi='vim'
-alias nvi='nvim'
-alias gvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
-alias pc='proxychains4'
-alias sicp='mit-scheme'
-alias markdown='/Applications/Typora.app/Contents/MacOS/Typora'
-alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-
-alias screen="/usr/local/bin/screen"
-alias dscreen="/usr/bin/screen"
-
-# proxy
-alias socks5_proxy="export all_proxy=socks5://127.0.0.1:1080; export http_proxy=socks5://127.0.0.1:1080; export https_proxy=socks5://127.0.0.1:1080"
-alias http_proxy="export all_proxy=http://127.0.0.1:1087; export http_proxy=http://127.0.0.1:1087; export https_proxy=http://127.0.0.1:1087"
-alias clean_proxy="export all_proxy=; export http_proxy=; export https_proxy="
-
-# @see http://stackoverflow.com/questions/3746/whats-in-your-bashrc
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-
 # eXecute Editor
 autoload -U   edit-command-line
 zle      -N   edit-command-line
 bindkey  '^o' edit-command-line
 
+########
+# PATH #
+########
+
+#
+# Tests whether a directory can be added to `PATH`.
+#
+test_path() {
+    [[ -d "${1}" && ":${PATH}:" != *":${1}:"* ]]
+}
+
+#
+# Sets the `PATH` environment variable.
+#
+set_path() {
+    # Define the directories to be prepended to `PATH`.
+    local -a prepend_dirs=(
+        /usr/local/bin
+    )
+
+    # Define the directories to be appended to `PATH`.
+    local -a append_dirs=(
+        /usr/bin
+        "${HOME}/bin"
+        "${HOME}/.local/bin"
+    )
+
+    # # Prepend directories to `PATH`.
+    # for index in ${!prepend_dirs[*]}; do
+    #     if test_path "${prepend_dirs[$index]}"; then
+    #         PATH="${prepend_dirs[$index]}:${PATH}"
+    #     fi
+    #     echo "HERE"
+    # done
+
+    # # Append directories to `PATH`.
+    # for index in ${!append_dirs[*]}; do
+    #     if test_path "${append_dirs[$index]}"; then
+    #         PATH="${PATH}:${append_dirs[$index]}"
+    #     fi
+    # done
+
+    export PATH
+}
+
+set_path
+unset -f test_path
+unset -f set_path
+
+# add the manpath
+export MANPATH="/usr/local/share/man:${MANPATH}"
+
+##########
+# PROMPT #
+##########
+
+source ~/.config/zsh/prompt.zsh
+
+# Make new shells get the history list from all previous shells.
+if [[ ! "${PROMPT_COMMAND}" =~ 'history -a;' ]]; then
+    export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
+fi
+
+#########
+# ALIAS #
+#########
+
+# Enable color support.
+if [[ -x /usr/bin/dircolors ]]; then
+    if [[ -r "${HOME}/.dircolors" ]]; then
+        eval "$(dircolors -b "${HOME}/.dircolors")"
+    else
+        eval "$(dircolors -b)"
+    fi
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Load `alias.zsh` if it exists.
+if [[ -f "$ZSH/alias.sh" ]]; then
+    source "$ZSH/alias.sh"
+fi
+
 ############################################################
 #                      => export <=                        #
 ############################################################
+
 # Personal PATH
 export PATH="$HOME/tools/build:$PATH"
 
@@ -114,3 +206,44 @@ fi
 # 关闭 homebrew 自动更新
 export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
+
+# ----------------------------------------------------------
+# Functions
+# ----------------------------------------------------------
+
+# Load `function.sh` if it exists.
+if [[ -f $ZSH/function.sh ]]; then
+    source $ZSH/function.sh
+fi
+
+# ----------------------------------------------------------
+# Completion
+# ----------------------------------------------------------
+
+# Enable programmable completion features.
+if [[ -f /usr/share/zsh-completion/zsh_completion ]]; then
+    source /usr/share/zsh-completion/zsh_completion
+elif [[ -f /usr/local/etc/zsh_completion.d ]]; then
+    source /usr/local/etc/zsh_completion.d
+elif [[ -f /etc/zsh_completion ]]; then
+    source /etc/zsh_completion
+fi
+
+# ----------------------------------------------------------
+# Local Configuration
+# ----------------------------------------------------------
+
+# Load `.zshrc.local` if it exists.
+if [[ -f "${HOME}/.zshrc.local" ]]; then
+    source "${HOME}/.zshrc.local"
+fi
+
+###########
+# PLUGINS #
+###########
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

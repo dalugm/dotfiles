@@ -18,6 +18,9 @@ export LANG=en_US.UTF-8
 # Set the default collation order as in C.
 export LC_COLLATE='C'
 
+# cmd history save file
+export HISTFILE=~/.bash_history
+
 # Set the maximum number of lines to save in the history file.
 export HISTFILESIZE=1000
 
@@ -44,12 +47,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
     export EDITOR='nvim'
 fi
-
-###########
-# PLUGINS #
-###########
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 ########
 # Path #
@@ -100,7 +97,7 @@ unset -f test_path
 unset -f set_path
 
 # add the manpath
-export MANPATH="/usr/local/share/man:$MANPATH"
+export MANPATH="/usr/local/share/man:${MANPATH}"
 
 # ----------------------------------------------------------
 # Prompt
@@ -135,7 +132,7 @@ if [[ -x /usr/bin/dircolors ]]; then
     alias egrep='egrep --color=auto'
 fi
 
-# Load `.bash_aliases` if it exists.
+# Load `alias.sh` if it exists.
 if [[ -f "$BASH/alias.sh" ]]; then
     source "$BASH/alias.sh"
 fi
@@ -170,3 +167,9 @@ fi
 if [[ -f "${HOME}/.bashrc.local" ]]; then
     source "${HOME}/.bashrc.local"
 fi
+
+###########
+# PLUGINS #
+###########
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
