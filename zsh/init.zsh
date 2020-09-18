@@ -112,6 +112,7 @@ set_path() {
         /usr/bin
         "${HOME}/bin"
         "${HOME}/.local/bin"
+        "${HOME}/tools/build"
     )
 
     # # Prepend directories to `PATH`.
