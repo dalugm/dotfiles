@@ -1,17 +1,11 @@
 .tmux
 =====
 
-Self-contained, pretty and versatile `.tmux.conf` configuration file.
-
-Based on [gpakosz's](https://github.com/gpakosz/.tmux) config.
-
 Installation
 ------------
 
 Requirements:
 
-  - tmux **`>= 2.1`** (soon `>= 2.4`) running inside Linux, Mac, OpenBSD, Cygwin
-    or WSL
   - awk, perl and sed
   - outside of tmux, `$TERM` must be set to `xterm-256color`
 
@@ -19,8 +13,6 @@ Requirements:
 ```
 $ ln -sf $HOME/.tmux/tmux.conf ~/.tmux.conf
 ```
-
-[customize]: #enabling-the-powerline-look
 
 If you're a Vim user, setting the `$EDITOR` environment variable to `vim` will
 enable and further customize the vi-style key bindings (see tmux manual).
@@ -52,34 +44,10 @@ Troubleshooting
    characters for which width changed in between Unicode 8.0 and 9.0 standards,
    as well as Emojis.
 
- - **I installed Powerline and/or (patched) fonts but can't see Powerline
-   symbols.**
-
-   First, you don't need to install Powerline. You only need fonts patched with
-   Powerline symbols or the standalone `PowerlineSymbols.otf` font. Then make
-   sure your `~/.tmux.conf.local` copy uses the right code points for
-   `tmux_conf_theme_left_separator_XXX` values.
-
- - **I'm using Bash On Windows (WSL), colors and Powerline look are broken.**
-
-   There is currently a [bug][1681] in the new console powering Bash On Windows
-   preventing text attributes (bold, underscore, ...) to combine properly with
-   colors. The workaround is to search your `~/.tmux.conf.local` copy and
-   replace attributes with `'none'`.
-
-   Also, until Window's console replaces its GDI based render with a DirectWrite
-   one, Powerline symbols will be broken.
-
-   The alternative is to use the [Mintty terminal for WSL][wsltty].
-
-[1681]: https://github.com/Microsoft/BashOnWindows/issues/1681
-[wsltty]: https://github.com/mintty/wsltty
-
 Features
 --------
 
- - `C-a` acts as secondary prefix, while keeping default `C-b` prefix
- - visual theme inspired by [Powerline][]
+ - `C-a` acts as prefix, while rebounding default `C-b` prefix
  - [maximize any pane to a new window with `<prefix> +`][maximize-pane]
  - SSH/Mosh aware username and hostname status line information
  - mouse mode toggle with `<prefix> m`
@@ -93,14 +61,9 @@ Features
  - copy to OS clipboard (needs [`reattach-to-user-namespace`][reattach-to-user-namespace]
    on macOS, `xsel` or `xclip` on Linux)
  - support for 4-digit hexadecimal Unicode characters (requires `perl` or Bash >= 4.1.2)
- - [Facebook PathPicker][] integration if available
- - [Urlview][] integration if available
 
-[Powerline]: https://github.com/Lokaltog/powerline
 [maximize-pane]: http://pempek.net/articles/2013/04/14/maximizing-tmux-pane-new-window/
 [reattach-to-user-namespace]: https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-[Facebook PathPicker]: https://facebook.github.io/PathPicker/
-[Urlview]: https://packages.debian.org/stable/misc/urlview
 
 The "maximize any pane to a new window with `<prefix> +`" feature is different
 from builtin `resize-pane -Z` as it allows you to further split a maximized
@@ -151,9 +114,6 @@ This configuration uses the following bindings:
 
  - `<prefix> m` toggles mouse mode on or off
 
- - `<prefix> U` launches Urlview (if available)
- - `<prefix> F` launches Facebook PathPicker (if available)
-
  - `<prefix> Enter` enters copy-mode
  - `<prefix> b` lists the paste-buffers
  - `<prefix> p` pastes from the top paste-buffer
@@ -164,83 +124,6 @@ Configuration
 
 While this configuration tries to bring sane default settings, you may want to
 customize it further to your needs.
-
-### Enabling the Powerline look
-
-Powerline originated as a status-line plugin for Vim. Its popular eye-catching
-look is based on the use of special symbols: <img width="80" alt="Powerline Symbols" style="vertical-align: middle;" src="https://cloud.githubusercontent.com/assets/553208/10687156/1b76dda6-796b-11e5-83a1-1634337c4571.png" />
-
-To make use of these symbols, there are several options:
-
-- use a font that already bundles those: this is e.g. the case of the
-  [2.030R-ro/1.050R-it version][source code pro] of the Source Code Pro font
-- use a [pre-patched font][powerline patched fonts]
-- use your preferred font along with the [Powerline font][powerline font] (that
-  only contains the Powerline symbols): [this highly depends on your operating
-  system and your terminal emulator][terminal support], for instance here's a
-  screenshot of iTerm2 configured to use `PowerlineSymbols.otf`
-  ![iTerm2 + Powerline font](https://user-images.githubusercontent.com/553208/62243890-8232f500-b3de-11e9-9b8c-51a5d38bdaa8.png)
-
-[source code pro]: https://github.com/adobe-fonts/source-code-pro
-[powerline patched fonts]: https://github.com/powerline/fonts
-[powerline font]: https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-[terminal support]: http://powerline.readthedocs.io/en/master/usage.html#usage-terminal-emulators
-[Powerline manual]: http://powerline.readthedocs.org/en/latest/installation.html#fonts-installation
-
-Please see the [Powerline manual] for further details.
-
-Adjust the following variables:
-
-```
-tmux_conf_theme_left_separator_main='\uE0B0'
-tmux_conf_theme_left_separator_sub='\uE0B1'
-tmux_conf_theme_right_separator_main='\uE0B2'
-tmux_conf_theme_right_separator_sub='\uE0B3'
-```
-### Configuring the status line
-
-Contrary to the first iterations of this configuration, by now you have total
-control on the content and order of `status-left` and `status-right`.
-
-Edit the `~/.tmux.conf.local` file (`<prefix> e`) and adjust the
-`tmux_conf_theme_status_left` and `tmux_conf_theme_status_right` variables to
-your own preferences.
-
-This configuration supports the following builtin variables:
-
- - `#{battery_bar}`: horizontal battery charge bar
- - `#{battery_percentage}`: battery percentage
- - `#{battery_status}`: is battery charging or discharging?
- - `#{battery_vbar}`: vertical battery charge bar
- - `#{circled_session_name}`: circled session number, up to 20
- - `#{hostname}`: SSH/Mosh aware hostname information
- - `#{hostname_ssh}`: SSH/Mosh aware hostname information, blank when not
-   connected to a remote server through SSH/Mosh
- - `#{loadavg}`: load average
- - `#{pairing}`: is session attached to more than one client?
- - `#{prefix}`: is prefix being depressed?
- - `#{root}`: is current user root?
- - `#{synchronized}`: are the panes synchronized?
- - `#{uptime_y}`: uptime years
- - `#{uptime_d}`: uptime days, modulo 365 when `#{uptime_y}` is used
- - `#{uptime_h}`: uptime hours
- - `#{uptime_m}`: uptime minutes
- - `#{uptime_s}`: uptime seconds
- - `#{username}`: SSH/Mosh aware username information
- - `#{username_ssh}`: SSH aware username information, blank when not connected
-   to a remote server through SSH/Mosh
-
-Beside custom variables mentioned above, the `tmux_conf_theme_status_left` and
-`tmux_conf_theme_status_right` variables support usual tmux syntax, e.g. using
-`#()` to call an external command that inserts weather information provided by
-[wttr.in]:
-```
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #(curl wttr.in?format=3) , %R , %d %b | #{username}#{root} | #{hostname} '
-```
-
-![Weather information from wttr.in](https://user-images.githubusercontent.com/553208/52175490-07797c00-27a5-11e9-9fb6-42eec4fe4188.png)
-
-[wttr.in]: https://github.com/chubin/wttr.in#one-line-output
 
 ### Accessing the macOS clipboard from within tmux sessions
 
