@@ -73,6 +73,7 @@ set_path() {
         /usr/bin
         "${HOME}/bin"
         "${HOME}/.local/bin"
+        "${HOME}/tools/build"
     )
 
     # Prepend directories to `PATH`.
@@ -99,13 +100,19 @@ unset -f set_path
 # add the manpath
 export MANPATH="/usr/local/share/man:${MANPATH}"
 
-# ----------------------------------------------------------
-# Prompt
-# ----------------------------------------------------------
+##########
+# PROMPT #
+##########
 
-if [[ -f $BASH/prompt.sh ]]; then
-    source "$BASH/prompt.sh"
+if [[ -f $BASH/themes/random.bash-theme ]]; then
+    source "$BASH/themes/random.bash-theme"
 fi
+
+BASH_THEME_RANDOM_CANDIDATES=(
+    minimal
+    ys
+    lambda
+)
 
 # Set the number of trailing directory components to retain in prompt.
 export PROMPT_DIRTRIM=3
@@ -115,9 +122,9 @@ if [[ ! "${PROMPT_COMMAND}" =~ 'history -a;' ]]; then
     export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
 fi
 
-# ----------------------------------------------------------
-# Alias
-# ----------------------------------------------------------
+#########
+# ALIAS #
+#########
 
 # Enable color support.
 if [[ -x /usr/bin/dircolors ]]; then
@@ -137,18 +144,18 @@ if [[ -f "$BASH/alias.sh" ]]; then
     source "$BASH/alias.sh"
 fi
 
-# ----------------------------------------------------------
-# Functions
-# ----------------------------------------------------------
+#############
+# FUNCTIONS #
+#############
 
 # Load `function.sh` if it exists.
 if [[ -f $BASH/function.sh ]]; then
     source $BASH/function.sh
 fi
 
-# ----------------------------------------------------------
-# Completion
-# ----------------------------------------------------------
+##############
+# COMPLETION #
+##############
 
 # Enable programmable completion features.
 if [[ -f /usr/share/bash-completion/bash_completion ]]; then
@@ -159,9 +166,9 @@ elif [[ -f /etc/bash_completion ]]; then
     source /etc/bash_completion
 fi
 
-# ----------------------------------------------------------
-# Local Configuration
-# ----------------------------------------------------------
+#######################
+# Local Configuration #
+#######################
 
 # Load `.bashrc.local` if it exists.
 if [[ -f "${HOME}/.bashrc.local" ]]; then

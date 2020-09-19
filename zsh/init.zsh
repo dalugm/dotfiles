@@ -46,7 +46,7 @@ export HISTTIMEFORMAT='%F %T '
 # End of lines configured by zsh-newuser-install
 
 ##########
-# export #
+# EXPORT #
 ##########
 
 # Set the default language
@@ -70,7 +70,7 @@ fi
 # ENHANCE #
 ###########
 
-source $ZSH/lib/git.zsh
+source $ZSH/lib/vc.zsh
 source $ZSH/lib/completion.zsh
 source $ZSH/lib/key-bindings.zsh
 source $ZSH/lib/theme-and-appearance.zsh
@@ -144,7 +144,16 @@ export MANPATH="/usr/local/share/man:${MANPATH}"
 # PROMPT #
 ##########
 
-source ~/.config/zsh/prompt.zsh
+if [[ -f $ZSH/themes/random.zsh-theme ]]; then
+    source $ZSH/themes/random.zsh-theme
+fi
+
+ZSH_THEME_RANDOM_CANDIDATES=(
+    minimal
+    mh
+    ys
+    lambda
+)
 
 # Make new shells get the history list from all previous shells.
 if [[ ! "${PROMPT_COMMAND}" =~ 'history -a;' ]]; then
@@ -169,13 +178,45 @@ if [[ -x /usr/bin/dircolors ]]; then
 fi
 
 # Load `alias.zsh` if it exists.
-if [[ -f "$ZSH/alias.sh" ]]; then
-    source "$ZSH/alias.sh"
+if [[ -f "$ZSH/alias.zsh" ]]; then
+    source "$ZSH/alias.zsh"
 fi
 
-############################################################
-#                      => export <=                        #
-############################################################
+
+#############
+# FUNCTIONS #
+#############
+
+# Load `function.sh` if it exists.
+if [[ -f $ZSH/functions.zsh ]]; then
+    source $ZSH/functions.zsh
+fi
+
+##############
+# COMPLETION #
+##############
+
+# Enable programmable completion features.
+if [[ -f /usr/share/zsh-completion/zsh_completion ]]; then
+    source /usr/share/zsh-completion/zsh_completion
+elif [[ -f /usr/local/etc/zsh_completion.d ]]; then
+    source /usr/local/etc/zsh_completion.d
+elif [[ -f /etc/zsh_completion ]]; then
+    source /etc/zsh_completion
+fi
+
+#######################
+# Local Configuration #
+#######################
+
+# Load `.zshrc.local` if it exists.
+if [[ -f "${HOME}/.zshrc.local" ]]; then
+    source "${HOME}/.zshrc.local"
+fi
+
+######################
+# User Configuration #
+######################
 
 # Personal PATH
 export PATH="$HOME/tools/build:$PATH"
@@ -209,42 +250,13 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 
-# ----------------------------------------------------------
-# Functions
-# ----------------------------------------------------------
-
-# Load `function.sh` if it exists.
-if [[ -f $ZSH/function.sh ]]; then
-    source $ZSH/function.sh
-fi
-
-# ----------------------------------------------------------
-# Completion
-# ----------------------------------------------------------
-
-# Enable programmable completion features.
-if [[ -f /usr/share/zsh-completion/zsh_completion ]]; then
-    source /usr/share/zsh-completion/zsh_completion
-elif [[ -f /usr/local/etc/zsh_completion.d ]]; then
-    source /usr/local/etc/zsh_completion.d
-elif [[ -f /etc/zsh_completion ]]; then
-    source /etc/zsh_completion
-fi
-
-# ----------------------------------------------------------
-# Local Configuration
-# ----------------------------------------------------------
-
-# Load `.zshrc.local` if it exists.
-if [[ -f "${HOME}/.zshrc.local" ]]; then
-    source "${HOME}/.zshrc.local"
-fi
-
 ###########
 # PLUGINS #
 ###########
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+source $ZSH/plugins/zsh-completions/zsh-completions.plugin.zsh
 source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
