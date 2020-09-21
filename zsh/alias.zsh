@@ -37,7 +37,11 @@ alias s24_term="export TERM=screen-24bits"
 # List directory contents
 alias l="ls -ahlG"
 
-# @see http://stackoverflow.com/questions/3746/whats-in-your-bashrc
+# @see https://stackoverflow.com/questions/3746/whats-in-your-bashrc
+alias ~="cd ~"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
+# @see https://www.atlassian.com/git/tutorials/dotfiles
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

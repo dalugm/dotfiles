@@ -9,7 +9,7 @@
 export BASH=$HOME/.config/bash
 
 ##########
-# export #
+# EXPORT #
 ##########
 
 # Set the default language
@@ -17,6 +17,10 @@ export LANG=en_US.UTF-8
 
 # Set the default collation order as in C.
 export LC_COLLATE='C'
+
+#
+## History
+#
 
 # cmd history save file
 export HISTFILE=~/.bash_history
@@ -48,19 +52,35 @@ else
     export EDITOR='nvim'
 fi
 
+# Colors!
+export reset='\033[0m'
+export gray='\033[30m'
+export red='\033[31m'
+export bold_red='\033[1;31m'
+export green='\033[32m'
+export bold_green='\033[1;32m'
+export yellow='\033[33m'
+export bold_yellow='\033[1;33m'
+export blue='\033[34m'
+export bold_blue='\033[1;34m'
+export purple='\033[35m'
+export cyan='\033[36m'
+export white='\033[37m'
+
+
 ########
-# Path #
+# PATH #
 ########
 
 #
-# Tests whether a directory can be added to `PATH`.
+## Tests whether a directory can be added to `PATH`.
 #
 test_path() {
     [[ -d "${1}" && ":${PATH}:" != *":${1}:"* ]]
 }
 
 #
-# Sets the `PATH` environment variable.
+## Sets the `PATH` environment variable.
 #
 set_path() {
     # Define the directories to be prepended to `PATH`.
@@ -97,30 +117,32 @@ set_path
 unset -f test_path
 unset -f set_path
 
+# 整理 PATH，删除重复路径
+if [ -n "$PATH" ]; then
+    old_PATH=$PATH:; PATH=
+    while [ -n "$old_PATH" ]; do
+        x=${old_PATH%%:*}
+        case $PATH: in
+            *:"$x":*) ;;
+            *) PATH=$PATH:$x;;
+        esac
+        old_PATH=${old_PATH#*:}
+    done
+    PATH=${PATH#:}
+    unset old_PATH x
+fi
+
+export PATH
+
 # add the manpath
 export MANPATH="/usr/local/share/man:${MANPATH}"
 
-##########
-# PROMPT #
-##########
+############
+# FUNCTION #
+############
 
-if [[ -f $BASH/themes/random.bash-theme ]]; then
-    source "$BASH/themes/random.bash-theme"
-fi
-
-BASH_THEME_RANDOM_CANDIDATES=(
-    minimal
-    ys
-    lambda
-)
-
-# Set the number of trailing directory components to retain in prompt.
-export PROMPT_DIRTRIM=3
-
-# Make new shells get the history list from all previous shells.
-if [[ ! "${PROMPT_COMMAND}" =~ 'history -a;' ]]; then
-    export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
-fi
+# Load `function.sh` if it exists.
+[[ -f $BASH/function.sh ]] && source $BASH/function.sh
 
 #########
 # ALIAS #
@@ -140,39 +162,38 @@ if [[ -x /usr/bin/dircolors ]]; then
 fi
 
 # Load `alias.sh` if it exists.
-if [[ -f "$BASH/alias.sh" ]]; then
-    source "$BASH/alias.sh"
-fi
-
-#############
-# FUNCTIONS #
-#############
-
-# Load `function.sh` if it exists.
-if [[ -f $BASH/function.sh ]]; then
-    source $BASH/function.sh
-fi
+[[ -f "$BASH/alias.sh" ]] && source "$BASH/alias.sh"
 
 ##############
 # COMPLETION #
 ##############
-
-# Enable programmable completion features.
-if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-    source /usr/share/bash-completion/bash_completion
-elif [[ -f /usr/local/etc/bash_completion.d ]]; then
-    source /usr/local/etc/bash_completion.d
-elif [[ -f /etc/bash_completion ]]; then
-    source /etc/bash_completion
-fi
 
 #######################
 # Local Configuration #
 #######################
 
 # Load `.bashrc.local` if it exists.
-if [[ -f "${HOME}/.bashrc.local" ]]; then
-    source "${HOME}/.bashrc.local"
+[[ -f "${HOME}/.bashrc.local" ]] && source "${HOME}/.bashrc.local"
+
+##########
+# PROMPT #
+##########
+
+[[ -f $BASH/random-theme.sh ]] && source "$BASH/random-theme.sh"
+# source $BASH/themes/minimal.bash-theme
+
+PROMPT_RANDOM_CANDIDATES=(
+    lambda
+    minimal
+    ys
+)
+
+# Set the number of trailing directory components to retain in prompt.
+export PROMPT_DIRTRIM=3
+
+# Make new shells get the history list from all previous shells.
+if [[ ! "${PROMPT_COMMAND}" =~ 'history -a;' ]]; then
+    export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
 fi
 
 ###########

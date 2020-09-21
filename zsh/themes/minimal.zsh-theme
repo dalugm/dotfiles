@@ -1,24 +1,31 @@
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[white]%}["
-ZSH_THEME_GIT_PROMPT_SUFFIX=""
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}●%{$fg[white]%}]%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_CLEAN="]%{$reset_color%} "
-ZSH_THEME_SVN_PROMPT_PREFIX=$ZSH_THEME_GIT_PROMPT_PREFIX
-ZSH_THEME_SVN_PROMPT_SUFFIX=$ZSH_THEME_GIT_PROMPT_SUFFIX
-ZSH_THEME_SVN_PROMPT_DIRTY=$ZSH_THEME_GIT_PROMPT_DIRTY
-ZSH_THEME_SVN_PROMPT_CLEAN=$ZSH_THEME_GIT_PROMPT_CLEAN
-ZSH_THEME_HG_PROMPT_PREFIX=$ZSH_THEME_GIT_PROMPT_PREFIX
-ZSH_THEME_HG_PROMPT_SUFFIX=$ZSH_THEME_GIT_PROMPT_SUFFIX
-ZSH_THEME_HG_PROMPT_DIRTY=$ZSH_THEME_GIT_PROMPT_DIRTY
-ZSH_THEME_HG_PROMPT_CLEAN=$ZSH_THEME_GIT_PROMPT_CLEAN
+#!/usr/env/bin bash
 
-vcs_status() {
-    if [[ $(whence in_svn) != "" ]] && in_svn; then
-        svn_prompt_info
-    elif [[ $(whence in_hg) != "" ]] && in_hg; then
-        hg_prompt_info
-    else
-        git_prompt_info
-    fi
+exit_code="%(?,,C:%{%F{red}%}%?%{$reset_color%})"
+
+#
+# Sets the prompt statement variables.
+#
+set_prompts() {
+
+    # Overwrite the default PS1
+    #   user@hostname ~ %
+    PS1="%{%F{green}%}%n@%m %{%F{cyan}%}%~ %{$reset_color%}"
+
+    # Set the default interactive prompt.
+    #   user@hostname ~ [master +!?$]
+    #   $ ...
+    PS1+="%{%F{white}%}[%*] $exit_code%{%F{reset}%}"
+    PS1+="$(git_prompt_info)"
+    PS1+=$'\n'
+    PS1+="%{%F{black}%}\$%{%F{reset}%} "
+
+    # Set the continuation interactive prompt.
+    # > ...
+    PS2="%{%F{purple}}> %{$reset%}"
+
+    export PS1
+    export PS2
 }
 
-PROMPT='%2~ $(vcs_status)»%b '
+set_prompts
+unset -f set_prompts

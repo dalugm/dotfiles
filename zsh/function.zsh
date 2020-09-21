@@ -42,8 +42,12 @@ lf2crlf() {
   cat "$@" <&0 | sed -e 's/$/\r/g'
 }
 
+#######
+# GIT #
+#######
+
 #
-# Execute `git pull` on every directory within the current directory.
+## Execute `git pull` on every directory within the current directory.
 #
 git-update-all() {
   find . \
@@ -58,8 +62,8 @@ git-update-all() {
 ## Prints Git branch name and working tree status for prompt.
 #
 git_prompt_info() {
-    local branch=''
-    local status=''
+    local branch
+    local status
 
     # Do nothing if the current directory is not a Git repository.
     if [[ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" != 'true' ]]; then
@@ -73,22 +77,22 @@ git_prompt_info() {
 
     # Check for uncommitted changes.
     if ! git diff --quiet --ignore-submodules --cached; then
-        status="${status}+"
+        status=${status}+
     fi
 
     # Check for unstaged changes.
     if ! git diff-files --quiet --ignore-submodules --; then
-        status="${status}x"
+        status=${status}x
     fi
 
     # Check for untracked files.
     if [[ -n "$(git ls-files --others --exclude-standard)" ]]; then
-        status="${status}?"
+        status=${status}?
     fi
 
     # Check for stashed files.
     if git rev-parse --verify refs/stash &> /dev/null; then
-        status="${status}$"
+        status=${status}$
     fi
 
     if [[ -n "${status}" ]]; then
@@ -102,3 +106,49 @@ git_prompt_info() {
 
     printf '%s' "${1}${branch}${status}${2}"
 }
+
+#############
+# LAZY LOAD #
+#############
+
+#
+## Setup a mock function for lazyload
+## Usage:
+## 1. Define function "_dalu_lazyload_command_[command name]" that will init the command
+## 2. dalu_lazyload_add_command [command name]
+#
+
+dalu_lazyload_add_command() {
+    eval "$1() { \
+            unfunction $1 \
+            _dalu_lazyload__command_$1 \
+            $1 \$@ \
+        }"
+}
+
+#
+## Setup autocompletion for lazyload
+## Usage:
+## 1. Define function "_dalu_lazyload_completion_[command name]" that will init the autocompletion
+## 2. dalu_lazyload_add_comp [command name]
+#
+
+dalu_lazyload_add_completion() {
+    local comp_name="_dalu_lazyload__compfunc_$1"
+    eval "${comp_name}() { \
+        compdef -d $1; \
+        _dalu_lazyload_completion_$1; \
+    }"
+    compdef $comp_name $1
+}
+
+# 在命令前插入 sudo
+sudo-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
+    # 光标移动到行末
+    zle end-of-line
+}
+
+zle -N sudo-command-line
+bindkey '\<ESC>\<ESC>' sudo-command-line
