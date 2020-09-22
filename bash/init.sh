@@ -180,10 +180,11 @@ fi
 ##########
 
 [[ -f $BASH/random-theme.sh ]] && source "$BASH/random-theme.sh"
-# source $BASH/themes/minimal.bash-theme
 
 PROMPT_RANDOM_CANDIDATES=(
+    default
     lambda
+    mh
     minimal
     ys
 )

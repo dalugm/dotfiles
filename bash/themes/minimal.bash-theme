@@ -23,9 +23,8 @@ set_prompts() {
     PS1+="${reset}"
 
     # Set the continuation interactive prompt.
-    # -> ...
-    PS2="${gray}-> "
-    PS2+="${reset}"
+    # > ...
+    PS2="${gray}> ${reset}"
 
     export PS1
     export PS2

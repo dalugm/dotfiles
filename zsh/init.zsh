@@ -12,7 +12,6 @@ if [[ "${DALU_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
 
     zmodload zsh/datetime
 
-    setopt PROMPT_SUBST
     PS4='+$EPOCHREALTIME %N:%i> '
     rm -rf zsh_profile*
     __dalu_zsh_profiling_logfile=$(mktemp zsh_profile.XXXXXX)
@@ -268,6 +267,17 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 #     eval "$(pyenv virtualenv-init -)"
 # fi
 
+_dalu_lazyload__command_pyenv() {
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+}
+_dalu_lazyload__completion_pyenv() {
+    source "${PYENV_ROOT}/completions/pyenv.zsh"
+}
+# 添加 pyenv 的 lazyload
+dalu_lazyload_add_command pyenv
+dalu_lazyload_add_completion pyenv
+
 # Ruby
 export RBENV_ROOT="$HOME/.rbenv"
 export PATH="$RBENV_ROOT/bin:$PATH"
@@ -275,6 +285,16 @@ export PATH="$RBENV_ROOT/bin:$PATH"
 # if command -v rbenv 1>/dev/null 2>&1; then
 #     eval "$(rbenv init -)"
 # fi
+
+# _dalu_lazyload__command_pyenv() {
+#     eval "$(rbenv init -)"
+# }
+# _dalu_lazyload__completion_pyenv() {
+#     source "${RBENV_ROOT}/completions/rbenv.zsh"
+# }
+# # 添加 pyenv 的 lazyload
+# dalu_lazyload_add_command rbenv
+# dalu_lazyload_add_completion rbenv
 
 # HOMEBREW
 # 关闭 homebrew 自动更新
@@ -286,14 +306,24 @@ export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 # PROMPT #
 ##########
 
-# [[ -f $ZSH/random-theme.zsh ]] && source $ZSH/random-theme.zsh
-source $ZSH/themes/minimal.zsh-theme
+setopt PROMPT_SUBST
+
+autoload -Uz promptinit
+promptinit
+
+# # You can also use builtin vcs_info instead of themes
+# # @see https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+# # @see https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
+# autoload -Uz vcs_info
+
+[[ -f $ZSH/random-theme.zsh ]] && source $ZSH/random-theme.zsh
 
 PROMPT_RANDOM_CANDIDATES=(
-    minimal
-    mh
-    ys
+    default
     lambda
+    mh
+    minimal
+    ys
 )
 
 # Make new shells get the history list from all previous shells.
@@ -304,6 +334,14 @@ fi
 ###########
 # PLUGINS #
 ###########
+
+[ -f $ZSH/plugins/colorman.sh ] && source $ZSH/plugins/colorman.sh
+
+_dalu_lazyload__command_fuck() {
+    eval $(thefuck --alias)
+}
+# 添加 fuck 的 lazyload
+dalu_lazyload_add_command fuck
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

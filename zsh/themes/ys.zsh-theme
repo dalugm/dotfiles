@@ -18,13 +18,15 @@ exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 # % ys @ ys-mbp in ~ on git:master x [21:47:42] C:0
 # $
 PROMPT="
-%{$terminfo[bold]$fg[blue]%}#%{$reset_color%} \
+%{%B%F{blue}%}#%f%b \
 %(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \
-%{$fg[white]%}@ \
-%{$fg[green]%}%m \
-%{$fg[white]%}in \
-%{$terminfo[bold]$fg[yellow]%}%~%{$reset_color%}\
-$(git_prompt_info)\
- \
-%{$fg[white]%}[%*] $exit_code
-%{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
+%{%F{white}%}@ \
+%{%F{green}%}%m \
+%{%F{white}%}in \
+%{%B%F{yellow}%}%~%f%b \
+%{$fg[white]%}[%*] $exit_code"
+
+PROMPT+='%{%F{magenta}%}$(git_prompt_info)%f'
+
+PROMPT+=$'\n'
+PROMPT+="%{%B%F{red}%}$ %b%f"

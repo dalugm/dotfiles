@@ -1,4 +1,9 @@
-PROMPT="λ %~/ $(git_prompt_info)%{$reset_color%}"
+# lambda theme
 
-GIT_PROMPT_PREFIX="%{$fg[green]%}"
-GIT_PROMPT_SUFFIX="%{$reset_color%} "
+# features:
+# path is auto shortened to ~30 characters
+# displays git status (if applicable in current folder)
+
+PROMPT='λ %30<...<%~%<< '
+
+RPROMPT='%{%F{magenta}%}$(git_prompt_info)%f'

@@ -1,24 +1,40 @@
-###############################
-#      A Brief Intro          #
-# %{%F{cyan}%}                #
-# %{%F{reset}%}               #
-# :                           #
-# %{$fg[green]%}              #
-# %{$reset_color%}            #
-# :                           #
-# %{$terminfo[bold]%}         #
-# %{$terminfo[bold]%F{cyan}%} #
-# :                           #
-# $(function)                 #
-# :                           #
-# %n          -- username     #
-# %m          -- host         #
-# %M          -- hostname     #
-# %(?..[%?]:) -- error code   #
-# %~          -- dir          #
-# %1~         -- current dir  #
-# $'\n'       -- new line     #
-# %%          -- %            #
+################################
+#      A Brief Intro           #
+################################
+# %B 加粗 %b 取消加粗          #
+# %F{} 前景色 %f 取消前景色    #
+# %F{n} enable ANSI color `n`  #
+# %K{} 背景色 %k 取消背景色    #
+# %U 下滑线 %u 取消下滑线      #
+# %S 反色 %s 取消反色          #
+# :                            #
+# black or 0  red     or 1     #
+# green or 2  yellow  or 3     #
+# blue  or 4  magenta or 5     #
+# cyan  or 6  white   or 7     #
+# :                            #
+# %{%F{cyan}%}                 #
+# %{%F{reset}%}                #
+# %f                           #
+# :                            #
+# %{$fg[green]%}               #
+# %{$reset_color%}             #
+# :                            #
+# %{$terminfo[bold]%}          #
+# %{$terminfo[bold]%F{cyan}%}  #
+# %{%BF{cyan}%}                #
+# %{$fg_bold[green]%}          #
+# :                            #
+# $(function)                  #
+# :                            #
+# %n          -- username      #
+# %m          -- host          #
+# %M          -- hostname      #
+# %(?..[%?]:) -- error code    #
+# %~          -- dir           #
+# %1~         -- current dir   #
+# $'\n'       -- new line      #
+# %%          -- %             #
 ###############################
 
 # Make themes a unique array
