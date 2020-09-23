@@ -128,30 +128,35 @@ vcs_info_wrapper() {
 # 2. lazyload to init function
 # 3. continue executing function
 ## Usage:
-# 1. Define function "_dalu_lazyload__command_[command name]" that will init the command
-# 2. dalu_lazyload_add_command [command name]
-dalu_lazyload_add_command() {
-    eval "$1() { \
-            unfunction $1 \
-            _dalu_lazyload__command_$1 \
-            $1 $@ \
+# 1. Define function "_my_lazyload__command_[command name]" that will init the command
+# 2. my_lazyload_add_command [command name]
+my_lazyload_add_command() {
+    local command_name=$1
+    eval "${command_name}() { \
+            unfunction ${command_name}; \
+            _my_lazyload_command_${command_name}; \
+            return ${command_name} \"\$@\"; \
         }"
 }
+            # $1 $@ \
 
-## Setup autocompletion for lazyload
+## Setup auto completion for lazyload
 ## Principle
 # 1. remove original function's comp
+# 2. remove occupancy function
 # 2. lazyload function's comp
 ## Usage:
-# 1. Define function "_dalu_lazyload_completion_[command name]" that will init the autocompletion
-# 2. dalu_lazyload_add_completion [command name]
-dalu_lazyload_add_completion() {
-    local comp_name="_dalu_lazyload__completion_$1"
+# 1. Define function "_my_lazyload_completion_[command name]" that will init the auto completion
+# 2. my_lazyload_add_completion [command name]
+my_lazyload_add_completion() {
+    local command_name=$1
+    local completion_name="_my_lazyload_completion_${command_name}"
     eval "${comp_name}() { \
-        compdef -d $1; \
-        _dalu_lazyload__completion_$1; \
+        compdef -d ${command_name}; \
+        unfunction ${command_name}; \
+        _my_lazyload_completion_${command_name}; \
     }"
-    compdef $comp_name $1
+    compdef $completion_name $command_name
 }
 
 # 在命令前插入 sudo

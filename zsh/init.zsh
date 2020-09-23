@@ -5,13 +5,13 @@
 [ -z "$PS1" ] && return
 
 # For Performance Debug purpose
-export DALU_ENABLE_PERFORMANCE_PROFILING="false"
+export DALU_ENABLE_PERFORMANCE_PROFILING="true"
 
 if [[ "${DALU_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
     zmodload zsh/zprof
 
     zmodload zsh/datetime
-
+    setopt PROMPT_SUBST
     PS4='+$EPOCHREALTIME %N:%i> '
     rm -rf zsh_profile*
     __dalu_zsh_profiling_logfile=$(mktemp zsh_profile.XXXXXX)
@@ -132,7 +132,8 @@ bindkey -e
 # eXecute Editor
 autoload -U         edit-command-line
 zle      -N         edit-command-line
-bindkey  '\C-x\C-e' edit-command-line
+bindkey  '\C-o'     edit-command-line # VIM style
+bindkey  '\C-x\C-e' edit-command-line # EMACS style
 
 # [Ctrl-r] - Search backward incrementally for a specified string.
 # The string may begin with ^ to anchor the search to the beginning of the line.
@@ -188,7 +189,7 @@ set_path
 unset -f test_path
 unset -f set_path
 
-# 整理 PATH，删除重复路径
+# remove Duplicate $PATH
 if [ -n "$PATH" ]; then
     old_PATH=$PATH:; PATH=
     while [ -n "$old_PATH" ]; do
@@ -262,39 +263,30 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-# if command -v pyenv 1>/dev/null 2>&1; then
-#     eval "$(pyenv init -)"
-#     eval "$(pyenv virtualenv-init -)"
-# fi
-
-_dalu_lazyload__command_pyenv() {
+_my_lazyload_command_pyenv() {
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 }
-_dalu_lazyload__completion_pyenv() {
+_my_lazyload_completion_pyenv() {
     source "${PYENV_ROOT}/completions/pyenv.zsh"
 }
 # 添加 pyenv 的 lazyload
-dalu_lazyload_add_command pyenv
-dalu_lazyload_add_completion pyenv
+my_lazyload_add_command pyenv
+my_lazyload_add_completion pyenv
 
 # Ruby
 export RBENV_ROOT="$HOME/.rbenv"
 export PATH="$RBENV_ROOT/bin:$PATH"
 
-# if command -v rbenv 1>/dev/null 2>&1; then
-#     eval "$(rbenv init -)"
-# fi
-
-# _dalu_lazyload__command_pyenv() {
-#     eval "$(rbenv init -)"
-# }
-# _dalu_lazyload__completion_pyenv() {
-#     source "${RBENV_ROOT}/completions/rbenv.zsh"
-# }
-# # 添加 pyenv 的 lazyload
-# dalu_lazyload_add_command rbenv
-# dalu_lazyload_add_completion rbenv
+_my_lazyload_command_rbenv() {
+    eval "$(rbenv init -)"
+}
+_my_lazyload_completion_rbenv() {
+    source "${RBENV_ROOT}/completions/rbenv.zsh"
+}
+# 添加 rbenv 的 lazyload
+my_lazyload_add_command rbenv
+my_lazyload_add_completion rbenv
 
 # HOMEBREW
 # 关闭 homebrew 自动更新
@@ -337,11 +329,11 @@ fi
 
 [ -f $ZSH/plugins/colorman.sh ] && source $ZSH/plugins/colorman.sh
 
-_dalu_lazyload__command_fuck() {
+_my_lazyload_command_fuck() {
     eval $(thefuck --alias)
 }
 # 添加 fuck 的 lazyload
-dalu_lazyload_add_command fuck
+my_lazyload_add_command fuck
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
