@@ -7,23 +7,15 @@
 #
 # Sets the prompt statement variables.
 #
-set_prompts() {
 
-    # Overwrite the default PS1
-    #   user@hostname ~ %
-    PS1="%{$fg[green]%}%n@%m %{$fg[blue]%}%30<...<%~%<< %{$fg[grey]%}%# "
+# Overwrite the default PS1
+#   user@hostname ~ %
+PS1="%{%F{green}%}%n%f@%{%F{blue}%}%m %f"
+PS1+="%{%F{yellow}%}%30<...<%~ %<<%f"
+PS1+="%# "
 
-    RPROMPT=$'%{%F{magenta}%}$(git_prompt_info)%{%F{reset_color}%}'
+RPROMPT='%{%F{magenta}%}$(git_prompt_info)%f'
 
-    # Set the continuation interactive prompt.
-    # > ...
-    PS2="%{$fg[purple]%}> %{$reset_color%}"
-
-    RPROMPT=''
-
-    export PS1
-    export PS2
-}
-
-set_prompts
-unset -f set_prompts
+# Set the continuation interactive prompt.
+# > ...
+PS2="%{$fg[purple]%}> %{$reset_color%}"

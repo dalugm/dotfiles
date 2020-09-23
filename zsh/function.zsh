@@ -119,6 +119,7 @@ vcs_info_wrapper() {
 # LAZY LOAD #
 #############
 
+## @see https://best33.com/283.moe
 ## 基本原理：
 # 声明一个占位函数，当执行这个函数时完成对真实命令的初始化、并移除命令占位。
 
@@ -133,31 +134,31 @@ vcs_info_wrapper() {
 my_lazyload_add_command() {
     local command_name=$1
     eval "${command_name}() { \
-            unfunction ${command_name}; \
-            _my_lazyload_command_${command_name}; \
-            return ${command_name} \"\$@\"; \
+        unfunction ${command_name}; \
+        _my_lazyload_command_${command_name}; \
+        return ${command_name} \"\$@\"; \
         }"
 }
-            # $1 $@ \
 
 ## Setup auto completion for lazyload
 ## Principle
 # 1. remove original function's comp
-# 2. remove occupancy function
 # 2. lazyload function's comp
 ## Usage:
-# 1. Define function "_my_lazyload_completion_[command name]" that will init the auto completion
+# 1. Define function "_my_lazyload_completion_[command name]" that will init the completion
 # 2. my_lazyload_add_completion [command name]
 my_lazyload_add_completion() {
-    local command_name=$1
-    local completion_name="_my_lazyload_completion_${command_name}"
-    eval "${comp_name}() { \
-        compdef -d ${command_name}; \
-        unfunction ${command_name}; \
-        _my_lazyload_completion_${command_name}; \
+    local completion_name="_my_lazyload_completion_$1"
+    eval "${completion_name}() { \
+        compdef -d $1; \
+        _my_lazyload_completion_$1; \
     }"
-    compdef $completion_name $command_name
+    compdef $completion_name $1
 }
+
+########
+# MISC #
+########
 
 # 在命令前插入 sudo
 sudo-command-line() {

@@ -5,7 +5,7 @@
 [ -z "$PS1" ] && return
 
 # For Performance Debug purpose
-export DALU_ENABLE_PERFORMANCE_PROFILING="true"
+export DALU_ENABLE_PERFORMANCE_PROFILING="false"
 
 if [[ "${DALU_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
     zmodload zsh/zprof
@@ -189,14 +189,15 @@ set_path
 unset -f test_path
 unset -f set_path
 
-# remove Duplicate $PATH
+# remove duplicate PATH
+# @see https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
 if [ -n "$PATH" ]; then
     old_PATH=$PATH:; PATH=
     while [ -n "$old_PATH" ]; do
-        x=${old_PATH%%:*}      
+        x=${old_PATH%%:*}
         case $PATH: in
-            *:"$x":*) ;;         
-            *) PATH=$PATH:$x;;  
+            *:"$x":*) ;;
+            *) PATH=$PATH:$x;;
         esac
         old_PATH=${old_PATH#*:}
     done
@@ -254,41 +255,54 @@ fi
 # Personal PATH
 export PATH="$HOME/tools/build:$PATH"
 
-# GO
+## GO
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 
-# Python
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+## Python
+export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
+export PATH="${PYENV_ROOT}/bin:${PATH}"
 
-_my_lazyload_command_pyenv() {
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-}
-_my_lazyload_completion_pyenv() {
-    source "${PYENV_ROOT}/completions/pyenv.zsh"
-}
-# 添加 pyenv 的 lazyload
-my_lazyload_add_command pyenv
-my_lazyload_add_completion pyenv
+# Lazyload pyenv
+if (( $+commands[pyenv] )) &>/dev/null; then
+    export PATH="${PYENV_ROOT}/shims:${PATH}"
 
-# Ruby
-export RBENV_ROOT="$HOME/.rbenv"
-export PATH="$RBENV_ROOT/bin:$PATH"
+    _my_lazyload_command_pyenv() {
+        eval "$(command pyenv init -)"
+        if [[ -n "${ZSH_PYENV_LAZY_VIRTUALENV}" ]]; then
+            eval "$(command pyenv virtualenv-init -)"
+        fi
+    }
 
-_my_lazyload_command_rbenv() {
-    eval "$(rbenv init -)"
-}
-_my_lazyload_completion_rbenv() {
-    source "${RBENV_ROOT}/completions/rbenv.zsh"
-}
-# 添加 rbenv 的 lazyload
-my_lazyload_add_command rbenv
-my_lazyload_add_completion rbenv
+    _my_lazyload_completion_pyenv() {
+        source "${PYENV_ROOT}/completions/pyenv.zsh"
+    }
 
-# HOMEBREW
+    my_lazyload_add_command pyenv
+    my_lazyload_add_completion pyenv
+fi
+
+## Ruby
+export RBENV_ROOT="${RBENV_ROOT:=${HOME}/.rbenv}"
+export PATH="${RBENV_ROOT}/bin:${PATH}"
+
+# Lazyload rbenv
+if (( $+commands[rbenv] )) &>/dev/null; then
+    export PATH="${RBENV_ROOT}/shims:${PATH}"
+
+    _my_lazyload_command_rbenv() {
+        eval "$(rbenv init -)"
+    }
+
+    _my_lazyload_completion_rbenv() {
+        source "${RBENV_ROOT}/completions/rbenv.zsh"
+    }
+
+    my_lazyload_add_command rbenv
+    my_lazyload_add_completion rbenv
+fi
+
+## HOMEBREW
 # 关闭 homebrew 自动更新
 export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
@@ -329,11 +343,14 @@ fi
 
 [ -f $ZSH/plugins/colorman.sh ] && source $ZSH/plugins/colorman.sh
 
-_my_lazyload_command_fuck() {
-    eval $(thefuck --alias)
-}
-# 添加 fuck 的 lazyload
-my_lazyload_add_command fuck
+# Lazyload thefuck
+if (( $+commands[thefuck] )) &>/dev/null; then
+    _my_lazyload_command_fuck() {
+        eval $(thefuck --alias)
+    }
+
+    my_lazyload_add_command fuck
+fi
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

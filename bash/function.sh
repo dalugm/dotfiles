@@ -102,3 +102,28 @@ git_prompt_info() {
 
     printf "%s" "${1}${git_branch}${git_status}${2}"
 }
+
+#############
+# LAZY LOAD #
+#############
+
+## @see https://best33.com/283.moe
+## 基本原理：
+# 声明一个占位函数，当执行这个函数时完成对真实命令的初始化、并移除命令占位。
+
+## Setup a mock function for lazyload
+## Principle
+# 1. remove original function
+# 2. lazyload to init function
+# 3. continue executing function
+## Usage:
+# 1. Define function "_my_lazyload__command_[command name]" that will init the command
+# 2. my_lazyload_add_command [command name]
+my_lazyload_add_command() {
+    local command_name=$1
+    eval "${command_name}() { \
+        unset -f ${command_name}; \
+        _my_lazyload_command_${command_name}; \
+        return ${command_name} \"\$@\"; \
+        }"
+}

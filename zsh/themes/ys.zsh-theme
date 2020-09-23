@@ -24,9 +24,11 @@ PROMPT="
 %{%F{green}%}%m \
 %{%F{white}%}in \
 %{%B%F{yellow}%}%~%f%b \
-%{$fg[white]%}[%*] $exit_code"
+%{$fg[white]%}[%*] $exit_code "
 
 PROMPT+='%{%F{magenta}%}$(git_prompt_info)%f'
 
 PROMPT+=$'\n'
 PROMPT+="%{%B%F{red}%}$ %b%f"
+
+RPROMPT=''

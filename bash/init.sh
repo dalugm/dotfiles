@@ -117,7 +117,8 @@ set_path
 unset -f test_path
 unset -f set_path
 
-# 整理 PATH，删除重复路径
+# remove duplicate PATH
+# @see https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
 if [ -n "$PATH" ]; then
     old_PATH=$PATH:; PATH=
     while [ -n "$old_PATH" ]; do
@@ -201,4 +202,15 @@ fi
 # PLUGINS #
 ###########
 
+[ -f $BASH/plugins/colorman.sh ] && source $BASH/plugins/colorman.sh
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Lazyload thefuck
+if (( $+commands[thefuck] )) &>/dev/null; then
+    _my_lazyload_command_fuck() {
+        eval $(thefuck --alias)
+    }
+
+    my_lazyload_add_command fuck
+fi
