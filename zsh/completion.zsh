@@ -5,11 +5,11 @@
 setopt complete_in_word
 
 # 以下字符视为单词的一部分
-WORDCHARS='_-'
+WORDCHARS='*?[]~=/&;!#$%^(){}<>'
 
 setopt AUTO_LIST
 
-# do NOT auto select the firsrt completion entry
+# do NOT auto select the first completion entry
 unsetopt MENU_COMPLETE
 
 # show completion menu on successive tab press
