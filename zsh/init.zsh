@@ -355,6 +355,9 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# z.lua
+[ -d $ZSH/plugins/z.lua ] && eval "$(lua $ZSH/plugins/z.lua/z.lua --init zsh)"
+
 # zsh-completions
 [ -d $ZSH/plugins/zsh-completions ] && source $ZSH/plugins/zsh-completions/zsh-completions.plugin.zsh
 

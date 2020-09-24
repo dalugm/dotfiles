@@ -204,7 +204,11 @@ fi
 
 [ -f $BASH/plugins/colorman.sh ] && source $BASH/plugins/colorman.sh
 
+# fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# z.lua
+[ -d $BASH/plugins/z.lua ] && eval "$(lua $BASH/plugins/z.lua/z.lua --init bash)"
 
 # Lazyload thefuck
 if (( $+commands[thefuck] )) &>/dev/null; then

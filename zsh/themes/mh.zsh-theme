@@ -3,7 +3,7 @@
 
 # features:
 # path is autoshortened to ~30 characters
-# displays git status (if applicable in current folder)
+# displays git status on right margin (if applicable in current folder)
 
 # prompt
 PROMPT='[%B%n%b:%{$fg[red]%}%30<...<%~%<<%{$reset_color%}]%(!.#.$) '

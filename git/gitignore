@@ -1,0 +1,38 @@
+# .gitignore_global
+
+######################
+# OS generated files #
+######################
+
+**/.DS_Store
+*.swp
+.DS_Store
+.Spotlight-V100
+.Trashes
+._*
+.python_version
+Icon?
+Thumbs.db
+ehthumbs.db
+
+#########################
+# EMACS generated files #
+#########################
+
+*.elc
+*.info
+*-autoloads.el
+/dir
+
+############
+# Packages #
+############
+
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip

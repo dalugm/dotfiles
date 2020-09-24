@@ -16,6 +16,7 @@
     - [TERMINAL](#terminal)
     - [misc](#misc)
     - [Acknowledgments](#acknowledgments)
+- [LICENSE](#license)
 
 <!-- markdown-toc end -->
 
@@ -102,3 +103,11 @@ Inspiration and code were taken from many sources, including:
 - [ghacks-user.js](https://github.com/ghacksuserjs/ghacks-user.js)
 - [The Ultimate Bashrc File GNOME-Look.org](https://gnome-look.org/content/show.php/Ultimate+Bashrc+File?content=129746)
 - [Font configuration - ArchWiki](https://wiki.archlinux.org/index.php/font_configuration)
+
+# LICENSE
+
+    (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
+            without any warranty.                                        
+            Maintained by dalu <mou.tong@qq.com> since 2020-06-03        
+
+

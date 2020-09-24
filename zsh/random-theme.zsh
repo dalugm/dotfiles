@@ -45,20 +45,12 @@ if command diff --color . . &>/dev/null; then
     alias diff='diff --color'
 fi
 
-# git theming default: Variables for theming the git info prompt
-GIT_PROMPT_PREFIX="git:("         # Prefix at the very beginning of the prompt, before the branch name
-GIT_PROMPT_SUFFIX=")"             # At the very end of the prompt
-GIT_PROMPT_DIRTY="*"              # Text to display if the branch is dirty
-GIT_PROMPT_CLEAN=""               # Text to display if the branch is clean
-
 if [[ "${(t)PROMPT_RANDOM_CANDIDATES}" = array && ${#PROMPT_RANDOM_CANDIDATES[@]} -gt 0 ]]; then
     # Use PROMPT_RANDOM_CANDIDATES if properly defined
     themes=(${(@)PROMPT_RANDOM_CANDIDATES:#random})
 else
     # Look for themes under $ZSH/themes
-    themes=(
-        "$ZSH"/themes/*.zsh-theme(N:t:r)
-    )
+    themes=("$ZSH"/themes/*.zsh-theme(N:t:r))
 fi
 
 # Choose a theme out of the pool of candidates
