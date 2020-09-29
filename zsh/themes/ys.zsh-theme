@@ -10,12 +10,12 @@ exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 
 # Prompt format:
 #
-# PRIVILEGES USER @ MACHINE in DIRECTORY on git:BRANCH STATE [TIME] C:LAST_EXIT_CODE
+# PRIVILEGES USER @ MACHINE in DIRECTORY [TIME] BRANCH STATE C:LAST_EXIT_CODE
 # $ COMMAND
 #
 # For example:
 #
-# % ys @ ys-mbp in ~ on git:master x [21:47:42] C:0
+# % ys @ ys-mbp in ~ [21:47:42] master ! C:0
 # $
 PROMPT="
 %{%B%F{blue}%}#%f%b \
