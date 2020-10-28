@@ -1,5 +1,5 @@
 ################################
-#      A Brief Intro           #
+#       PROMPT EXPANSION       #
 ################################
 # %B 加粗 %b 取消加粗          #
 # %F{} 前景色 %f 取消前景色    #
@@ -35,7 +35,8 @@
 # %1~         -- current dir   #
 # $'\n'       -- new line      #
 # %%          -- %             #
-###############################
+# %{n}<...<   -- compress to n #
+################################
 
 # Make themes a unique array
 typeset -Ua themes

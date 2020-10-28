@@ -11,8 +11,7 @@
 # Overwrite the default PS1
 #   user@hostname ~ %
 PS1="%{%F{green}%}%n%f@%{%F{blue}%}%m %f"
-PS1+="%{%F{yellow}%}%30<...<%~ %<<%f"
-PS1+="%# "
+PS1+="%{%F{yellow}%}%1~ %f %# "
 
 RPROMPT='%{%F{magenta}%}$(git_prompt_info)%f'
 

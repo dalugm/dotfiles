@@ -86,6 +86,7 @@ set_path() {
     # Define the directories to be prepended to `PATH`.
     local -a prepend_dirs=(
         /usr/local/bin
+        /usr/local/sbin
     )
 
     # Define the directories to be appended to `PATH`.
@@ -169,13 +170,6 @@ fi
 # COMPLETION #
 ##############
 
-# Enable programmable completion features.
-if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-  source /usr/share/bash-completion/bash_completion
-elif [[ -f /etc/bash_completion ]]; then
-  source /etc/bash_completion
-fi
-
 #######################
 # Local Configuration #
 #######################
@@ -196,6 +190,16 @@ PROMPT_RANDOM_CANDIDATES=(
     minimal
     ys
 )
+
+######################
+# User Configuration #
+######################
+
+# Personal PATH
+export PATH="$HOME/tools/build:$PATH"
+
+## C-family
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # Set the number of trailing directory components to retain in prompt.
 export PROMPT_DIRTRIM=3

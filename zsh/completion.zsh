@@ -21,10 +21,13 @@ autoload -Uz compinit && compinit
 # 修正大小写
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
-# Show completion menu if 2 or more items to select
+# Show completion menu if 2 or more items to select and enable arrow key
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*' select-prompt '%SSelect:  lines: %L  matches: %M  [%p]'
+
+# 新文件自动添加到自动补全当中
+zstyle ':completion:*' rehash true
 
 # Complete . and .. special directories
 zstyle ':completion:*' special-dirs true

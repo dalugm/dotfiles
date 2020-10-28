@@ -123,10 +123,12 @@ autoload -U colors && colors
 ## Keybinding
 #
 
+# [DEFAULT] Use $EDITOR key bindings
+
 # Use EMACS key bindings
 bindkey -e
 
-# # [DEFAULT] Use VIM key bindings
+# # Use VIM key bindings
 # bindkey -v
 
 # eXecute Editor
@@ -157,6 +159,7 @@ set_path() {
     # Define the directories to be prepended to `PATH`.
     local -a prepend_dirs=(
         /usr/local/bin
+        /usr/local/sbin
     )
 
     # Define the directories to be appended to `PATH`.
@@ -258,6 +261,9 @@ fi
 # Personal PATH
 export PATH="$HOME/tools/build:$PATH"
 
+## C-family
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
 ## GO
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
@@ -265,7 +271,6 @@ export PATH="$GOPATH/bin:$PATH"
 ## Python
 export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
 export PATH="${PYENV_ROOT}/bin:${PATH}"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # Lazyload pyenv
 if (( $+commands[pyenv] )) &>/dev/null; then
@@ -307,9 +312,16 @@ if (( $+commands[rbenv] )) &>/dev/null; then
 fi
 
 ## HOMEBREW
+
+export PATH="/usr/local/sbin:$PATH"
+
 # 关闭 homebrew 自动更新
 export HOMEBREW_NO_AUTO_UPDATE=true
+
+# 更改预编译二进制软件包域名
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+
+# N 天后清除下载的安装包
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 
 ##########

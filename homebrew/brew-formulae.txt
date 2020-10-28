@@ -5,7 +5,6 @@ asciidoc
 aspell
 astyle
 autoconf
-autojump
 automake
 axel
 bash
@@ -164,6 +163,7 @@ proxychains-ng
 python
 python3
 python@3.8
+python@3.9
 qt
 rav1e
 re2c
@@ -186,7 +186,6 @@ sl
 snappy
 source-highlight
 speex
-sphinx-doc
 sqlite
 srt
 swig
