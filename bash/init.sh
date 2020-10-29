@@ -46,10 +46,11 @@ export HISTTIMEFORMAT='%F %T '
 # export TERM=xterm-256color
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='nvim'
+if [ -n $SSH_CONNECTION ]; then
+    # export EDITOR='nvim'
+    export EDITOR='emacsclient'
 else
-    export EDITOR='nvim'
+    export EDITOR='vim'
 fi
 
 # Colors!
@@ -217,6 +218,25 @@ fi
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Set fzf installation directory path
+export FZF_BASE=/usr/local/opt/fzf/install
+
+# Set fzf interactive interface
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse \
+    --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500' \
+    --bind 'ctrl-n:down,ctrl-p:up,ctrl-j:preview-down,ctrl-k:preview-up'"
+
+# Set default fzf command style
+# Use fd instead of ripgrep
+# @see https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/
+export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --hidden --type file"
+
+# Search files cwd
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Search directory from HOME
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 # z.lua
 [ -d $BASH/plugins/z.lua ] && eval "$(lua $BASH/plugins/z.lua/z.lua --init bash)"
