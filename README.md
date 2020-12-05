@@ -76,6 +76,7 @@ config push
 ## GIT
 
     ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
+    ln -s ~/dotfiles/git/gitignore ~/.gitignore_global
 
 ## TERMINAL
 
@@ -109,5 +110,3 @@ Inspiration and code were taken from many sources, including:
     (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
             without any warranty.                                        
             Maintained by dalu <mou.tong@qq.com> since 2020-06-03        
-
-

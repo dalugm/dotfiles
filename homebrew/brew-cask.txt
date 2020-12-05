@@ -10,8 +10,9 @@ iina
 iterm2
 keepassxc
 keka
+kindle-comic-creator
 mactex
 monitorcontrol
-razer-synapse
 squirrel
+transmission
 typora
