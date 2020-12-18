@@ -25,8 +25,8 @@ alias screen="/usr/local/bin/screen"
 alias dscreen="/usr/bin/screen"
 
 # proxy
-alias socks5_proxy="export all_proxy=socks5://127.0.0.1:1080; export http_proxy=socks5://127.0.0.1:1080; export https_proxy=socks5://127.0.0.1:1080"
-alias http_proxy="export all_proxy=http://127.0.0.1:1087; export http_proxy=http://127.0.0.1:1087; export https_proxy=http://127.0.0.1:1087"
+alias socks5_proxy="export all_proxy=socks5://127.0.0.1:1080; export http_proxy=http://127.0.0.1:1087; export https_proxy=https://127.0.0.1:1087"
+alias http_proxy="export all_proxy=http://127.0.0.1:1087; export http_proxy=http://127.0.0.1:1087; export https_proxy=https://127.0.0.1:1087"
 alias clean_proxy="export all_proxy=; export http_proxy=; export https_proxy="
 
 # TERM
