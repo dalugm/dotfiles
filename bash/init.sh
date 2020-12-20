@@ -46,12 +46,13 @@ export HISTTIMEFORMAT='%F %T '
 # export TERM=xterm-256color
 
 # Preferred editor for local and remote sessions
-if [ -n $SSH_CONNECTION ]; then
-    export EDITOR='nvim'
+if [ -n "$SSH_CONNECTION" ]; then
+    export EDITOR='nvim -u NORC'
     # export EDITOR='emacsclient'
 else
-    export EDITOR='vim'
+    export EDITOR='vim -u NORC'
 fi
+
 
 # Colors!
 export reset='\033[0m'

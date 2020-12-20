@@ -41,10 +41,10 @@ export LC_COLLATE='C'
 
 # Preferred editor for local and remote sessions
 if [ -n $SSH_CONNECTION ]; then
-    export EDITOR='nvim'
+    export EDITOR='nvim -u NORC'
     # export EDITOR='emacsclient'
 else
-    export EDITOR='vim'
+    export EDITOR='vim -u NORC'
 fi
 
 #
