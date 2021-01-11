@@ -17,9 +17,9 @@
 	sslverify = false
 [alias]
 	# the acronym stands for "subtree add"
-	sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
+	sba = "!f() { git subtree add --prefix $1 $2 master --squash; }; f"
 	# the acronym stands for "subtree update"
-	sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+	sbu = "!f() { git subtree pull --prefix $1 $2 master --squash; }; f"
 	# good-looking git log
 	hist = log --graph --pretty=format:'%C(red)%h %C(yellow)%d %C(cyan)[%an]%Creset %s %C(green)(%cr)%Creset' --abbrev-commit --date=short
 	# useful command
