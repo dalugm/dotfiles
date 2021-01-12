@@ -12,6 +12,7 @@ bat
 bdw-gc
 boost
 brotli
+bzip2
 c-ares
 cairo
 chezscheme
@@ -69,14 +70,17 @@ guile
 harfbuzz
 highlight
 httpie
+hugo
 icu4c
 ilmbase
+ipython
 isl
 jansson
 jemalloc
 jpeg
 jq
 json-c
+jupyterlab
 lame
 ldns
 leptonica
@@ -112,6 +116,7 @@ libsamplerate
 libsigsegv
 libsm
 libsndfile
+libsodium
 libsoxr
 libssh2
 libtasn1
@@ -151,6 +156,7 @@ meson
 mit-scheme
 mpfr
 msgpack
+mysql
 nano
 nasm
 ncurses
@@ -215,6 +221,7 @@ speex
 sqlite
 srt
 swig
+tcl-tk
 tesseract
 texi2html
 texinfo
@@ -242,6 +249,8 @@ yara
 yarn
 you-get
 youtube-dl
+zeromq
+zimg
 zlib
 zsh
 zstd

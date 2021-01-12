@@ -1,8 +1,6 @@
-# TOC
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [TOC](#toc)
 - [Backup](#backup)
     - [SHELL](#shell)
         - [BASH](#bash)
@@ -50,6 +48,7 @@ config push
 ```
 
 ## SHELL
+
 ### BASH
 
 #### My personal bash
@@ -57,6 +56,7 @@ config push
 [bash](bash/README.md)
 
 ### ZSH
+
 #### My personal zsh
 
 [zsh](zsh/README.md)
@@ -84,7 +84,7 @@ config push
 
 ``` shell
 # alacritty terminal
-ln -s ~/dotfiles/alacritty.yml ~/.alacritty.yml
+ln -s ~/dotfiles/terminal/alacritty.yml ~/.alacritty.yml
 ```
 
 ## misc
@@ -108,5 +108,5 @@ Inspiration and code were taken from many sources, including:
 # LICENSE
 
     (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
-            without any warranty.                                        
-            Maintained by dalu <mou.tong@qq.com> since 2020-06-03        
+            without any warranty.
+            Maintained by dalu <mou.tong@qq.com> since 2020-06-03
