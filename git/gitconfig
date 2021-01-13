@@ -4,7 +4,7 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 [user]
-	name = dalu98
+	name = dalugm
 	email = moutong945@outlook.com
 [color]
 	ui = true
@@ -36,6 +36,6 @@
 	conflictstyle = diff3
 	prompt = false
 [github]
-	user = dalu98
+	user = dalugm
 [gitlab]
-	user = dalu98
+	user = dalugm
