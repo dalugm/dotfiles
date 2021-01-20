@@ -194,7 +194,7 @@ unset -f test_path
 unset -f set_path
 
 # remove duplicate PATH
-# @see https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
+# https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
 if [ -n "$PATH" ]; then
     old_PATH=$PATH:; PATH=
     while [ -n "$old_PATH" ]; do
@@ -335,8 +335,8 @@ autoload -Uz promptinit
 promptinit
 
 # # You can also use builtin vcs_info instead of themes
-# # @see https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
-# # @see https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
+# # https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+# # https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
 # autoload -Uz vcs_info
 
 [[ -f $ZSH/random-theme.zsh ]] && source $ZSH/random-theme.zsh
@@ -382,7 +382,7 @@ export FZF_DEFAULT_OPTS="--height 40% --layout=reverse \
 
 # Set default fzf command style
 # Use fd instead of ripgrep
-# @see https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/
+# https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/
 export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --hidden --type file"
 
 # Search files cwd

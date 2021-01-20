@@ -12,17 +12,9 @@ alias ytdlconf="nvim ~/.config/youtube-dl/config"
 
 alias g='git'
 alias ec='emacsclient'
+alias tem='TERM=xterm-24bits emacs'
 alias vi='vim'
 alias nvi='nvim'
-alias pc='proxychains4'
-alias sicp='mit-scheme'
-alias gvim='/Applications/MacVim.app/Contents/MacOS/MacVim'
-alias markdown='/Applications/Typora.app/Contents/MacOS/Typora'
-alias firefox='/Applications/Firefox.app/Contents/MacOS/firefox'
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-
-alias screen="/usr/local/bin/screen"
-alias dscreen="/usr/bin/screen"
 
 # proxy
 alias socks5_proxy="export all_proxy=socks5://127.0.0.1:1080; export http_proxy=socks5://127.0.0.1:1080; export https_proxy=socks5://127.0.0.1:1080"
@@ -37,11 +29,11 @@ alias s24_term="export TERM=screen-24bits"
 # List directory contents
 alias l="ls -ahlG"
 
-# @see https://stackoverflow.com/questions/3746/whats-in-your-bashrc
+# https://stackoverflow.com/questions/3746/whats-in-your-bashrc
 alias ~="cd ~"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-# @see https://www.atlassian.com/git/tutorials/dotfiles
+# https://www.atlassian.com/git/tutorials/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

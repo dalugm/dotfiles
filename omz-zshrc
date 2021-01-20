@@ -149,7 +149,7 @@ export FZF_DEFAULT_OPTS="--height 40% --layout=reverse \
 
 # Set default fzf command style
 # Use fd instead of ripgrep
-# @see https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/
+# https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/
 export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --hidden --type file"
 # Search files cwd
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

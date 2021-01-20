@@ -121,7 +121,7 @@ unset -f test_path
 unset -f set_path
 
 # remove duplicate PATH
-# @see https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
+# https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
 if [ -n "$PATH" ]; then
     old_PATH=$PATH:; PATH=
     while [ -n "$old_PATH" ]; do
@@ -230,7 +230,7 @@ export FZF_DEFAULT_OPTS="--height 40% --layout=reverse \
 
 # Set default fzf command style
 # Use fd instead of ripgrep
-# @see https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/
+# https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/
 export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --hidden --type file"
 
 # Search files cwd

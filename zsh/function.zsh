@@ -119,7 +119,7 @@ vcs_info_wrapper() {
 # LAZY LOAD #
 #############
 
-## @see https://best33.com/283.moe
+## https://best33.com/283.moe
 ## 基本原理：
 # 声明一个占位函数，当执行这个函数时完成对真实命令的初始化、并移除命令占位。
 
