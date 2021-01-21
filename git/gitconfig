@@ -4,7 +4,7 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 [user]
-	name = dalugm
+	name = dalu
 	email = moutong945@outlook.com
 [color]
 	ui = true
@@ -31,6 +31,7 @@
 	df = diff
 	# Look up
 	author = !git log --pretty=format:'%an <%ae>' | sort -u
+	who = shortlog -sne
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
