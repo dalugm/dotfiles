@@ -9,7 +9,7 @@
 [color]
 	ui = true
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore
 	quotePath = false
 [push]
 	default = matching
@@ -40,3 +40,5 @@
 	user = dalugm
 [gitlab]
 	user = dalugm
+[commit]
+	template = ~/.gitmessage
