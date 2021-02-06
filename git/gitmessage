@@ -1,5 +1,6 @@
-# headr: <type>(<scope>): <subject>
-# - type: feat, fix, docs, style, refactor, test, chore
+# header: <type>(<scope>): <subject>
+# - type: feat, fix/to, docs, style, refactor, perf
+#         test, chore, revert, merge, sync
 # - scope: can be empty
 # - subject: start with verb (such as 'change'), 50-character line
 #
