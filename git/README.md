@@ -2,5 +2,6 @@
 
 ``` shell
 ln -s gitconfig ~/.gitconfig
-ln -s gitignore ~/.gitignore_global
+ln -s gitignore ~/.gitignore
+ln -s gitmessage ~/.gitmessage
 ```
