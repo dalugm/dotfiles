@@ -12,7 +12,7 @@ alias ytdlconf="nvim ~/.config/youtube-dl/config"
 
 alias g='git'
 alias ec='emacsclient'
-alias tem='TERM=xterm-24bits emacs'
+alias tem='TERM=xterm-24bit emacs'
 alias vi='vim'
 alias nvi='nvim'
 
