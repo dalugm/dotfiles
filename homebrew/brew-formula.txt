@@ -53,7 +53,6 @@ giflib
 git
 glib
 global
-glslang
 gmp
 gnu-getopt
 gnu-sed
@@ -149,8 +148,10 @@ llvm
 lua
 lua@5.1
 luajit
+luajit-openresty
 luarocks
 lzo
+m4
 makedepend
 meson
 mit-scheme
@@ -172,6 +173,7 @@ oniguruma
 opencc
 opencore-amr
 openexr
+openjdk
 openjpeg
 openldap
 openssh
