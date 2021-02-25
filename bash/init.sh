@@ -42,15 +42,14 @@ export HISTIGNORE='&:bg:fg'
 export HISTTIMEFORMAT='%F %T '
 
 # Set TERM value
-# export TERM=xterm-24bits
+# export TERM=xterm-24bit
 # export TERM=xterm-256color
 
 # Preferred editor for local and remote sessions
-if [ -n "$SSH_CONNECTION" ]; then
-    export EDITOR='nvim -u NORC'
-    # export EDITOR='emacsclient'
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
 else
-    export EDITOR='vim -u NORC'
+    export EDITOR='emacsclient'
 fi
 
 

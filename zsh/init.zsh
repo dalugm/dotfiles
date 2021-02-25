@@ -5,18 +5,18 @@
 [ -z "$PS1" ] && return
 
 # For Performance Debug purpose
-export DALU_ENABLE_PERFORMANCE_PROFILING="false"
+export MY_ENABLE_PERFORMANCE_PROFILING="false"
 
-if [[ "${DALU_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
+if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
     zmodload zsh/zprof
 
     zmodload zsh/datetime
     setopt PROMPT_SUBST
     PS4='+$EPOCHREALTIME %N:%i> '
     rm -rf zsh_profile*
-    __dalu_zsh_profiling_logfile=$(mktemp zsh_profile.XXXXXX)
-    echo "Logging to $__dalu_zsh_profiling_logfile"
-    exec 3>&2 2>$__dalu_zsh_profiling_logfile
+    __my_zsh_profiling_logfile=$(mktemp zsh_profile.XXXXXX)
+    echo "Logging to $__my_zsh_profiling_logfile"
+    exec 3>&2 2>$__my_zsh_profiling_logfile
 
     setopt XTRACE
 fi
@@ -36,15 +36,14 @@ export LANG=en_US.UTF-8
 export LC_COLLATE='C'
 
 # Set TERM value
-# export TERM=xterm-24bits
+# export TERM=xterm-24bit
 # export TERM=xterm-256color
 
 # Preferred editor for local and remote sessions
-if [ -n $SSH_CONNECTION ]; then
-    export EDITOR='nvim -u NORC'
-    # export EDITOR='emacsclient'
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
 else
-    export EDITOR='vim -u NORC'
+    export EDITOR='emacsclient'
 fi
 
 #
@@ -407,7 +406,7 @@ export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 # DEBUG #
 #########
 
-if [[ "${DALU_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
+if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
     unsetopt XTRACE
     exec 2>&3 3>&-
 
@@ -442,7 +441,7 @@ if [[ "${DALU_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
     zprof() {
         unfunction zprof
 
-        parse_zsh_profiling $__dalu_zsh_profiling_logfile | head -n 30
+        parse_zsh_profiling $__my_zsh_profiling_logfile | head -n 30
 
         echo ""
         echo "========================================"
