@@ -55,11 +55,17 @@ config push
 
 [bash](bash/README.md)
 
+    ln -s ~/dotfiles/bash/init.sh ~/.bashrc
+    ln -s ~/dotfiles/bash ~/.config/bash
+
 ### ZSH
 
 #### My personal zsh
 
 [zsh](zsh/README.md)
+
+    ln -s ~/dotfiles/zsh/init.sh ~/.zshrc
+    ln -s ~/dotfiles/zsh ~/.config/zsh
 
 #### oh-my-zsh
 

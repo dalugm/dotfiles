@@ -1,7 +1,7 @@
 # INSTALL
 
 ``` shell
-ln -s gitconfig ~/.gitconfig
-ln -s gitignore ~/.gitignore
-ln -s gitmessage ~/.gitmessage
+ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
+ln -s ~/dotfiles/git/gitignore ~/.gitignore
+ln -s ~/dotfiles/git/gitmessage ~/.gitmessage
 ```

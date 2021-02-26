@@ -4,11 +4,11 @@
 # For a full list of active aliases, run `alias`.
 #
 
-alias bashconf="nvim ~/.bashrc"
-alias zshconf="nvim ~/.zshrc"
-alias tmuxconf="nvim ~/.tmux.conf"
-alias alaconf="nvim ~/.alacritty.yml"
-alias ytdlconf="nvim ~/.config/youtube-dl/config"
+alias bashconf="vim ~/.bashrc"
+alias zshconf="vim ~/.zshrc"
+alias tmuxconf="vim ~/.tmux.conf"
+alias alaconf="vim ~/.alacritty.yml"
+alias ytdlconf="vim ~/.config/youtube-dl/config"
 
 alias g='git'
 alias ec='emacsclient'
@@ -23,9 +23,9 @@ alias clean_proxy="export all_proxy=; export http_proxy=; export https_proxy="
 
 # TERM
 alias x256_term="export TERM=xterm-256color"
-alias x24_term="export TERM=xterm-24bits"
+alias x24_term="export TERM=xterm-24bit"
 alias s256_term="export TERM=screen-256color"
-alias s24_term="export TERM=screen-24bits"
+alias s24_term="export TERM=screen-24bit"
 # List directory contents
 alias l="ls -ahlG"
 
