@@ -105,17 +105,17 @@ z -b foo    # cd to the parent directory starting with foo
 
   To generate old posix compatible script.
 
-- Fish Shell:
+- Fish Shell (version `2.4.0` or above):
 
   Create `~/.config/fish/conf.d/z.fish` with following code
 
-      source (lua /path/to/z.lua --init fish | psub)
+      lua /path/to/z.lua --init fish | source
 
-  Fish version `2.4.0` or above is required. 
+  If you'd like `z.lua` to cooperate with fish's own [directory history](https://fishshell.com/docs/3.2/index.html#id34), you can put
 
-      lua /path/to/z.lua --init fish > ~/.config/fish/conf.d/z.fish
+      set -gx _ZL_CD cd
 
-  This is another way to initialize z.lua in fish shell, but remember to regenerate z.fish if z.lua has been updated or moved.
+  into the same file.
 
 - Power Shell:
 
@@ -153,7 +153,7 @@ z -b foo    # cd to the parent directory starting with foo
 - set `$_ZL_EXCLUDE_DIRS` to a comma separated list of dirs to exclude.
 - set `$_ZL_ADD_ONCE` to '1' to update database only if `$PWD` changed.
 - set `$_ZL_MAXAGE` to define a aging threshold (default is 5000).
-- set `$_ZL_CD` to specify your own cd command.
+- set `$_ZL_CD` to specify your own cd command (default is `builtin cd` in Unix shells).
 - set `$_ZL_ECHO` to 1 to display new directory name after cd.
 - set `$_ZL_MATCH_MODE` to 1 to enable enhanced matching.
 - set `$_ZL_NO_CHECK` to 1 to disable path validation, use `z --purge` to clean
@@ -268,7 +268,7 @@ To enable this, you can set `$_ZL_ADD_ONCE` to `1` before init z.lua. Or you can
 ````bash
 eval "$(lua /path/to/z.lua --init bash once)"
 eval "$(lua /path/to/z.lua --init zsh once)"
-source (lua /path/to/z.lua --init fish once | psub)
+lua /path/to/z.lua --init fish once | source
 ````
 
 With `add once` mode off (default), z.lua will consider the time you spent in the directory (like z.sh). When this mode is on, consider the times you accessed the directory (like autojump), and that could be much faster on slow hardware. 
