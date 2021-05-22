@@ -36,3 +36,12 @@ ehthumbs.db
 *.rar
 *.tar
 *.zip
+
+########
+# Tags #
+########
+
+**/TAGS
+**/GPATH
+**/GTAGS
+**/GRTAGS
