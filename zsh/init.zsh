@@ -361,6 +361,12 @@ fi
 # PLUGINS #
 ###########
 
+# GTAGS
+[ -f /usr/local/share/gtags/gtags.conf ] &&
+    export GTAGSCONF=/usr/local/share/gtags/gtags.conf &&
+    export GTAGSLABEL=native-pygments
+
+
 [ -f $ZSH/plugins/colorman.sh ] && source $ZSH/plugins/colorman.sh
 
 # Lazyload thefuck

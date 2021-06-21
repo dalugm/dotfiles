@@ -216,6 +216,11 @@ fi
 # PLUGINS #
 ###########
 
+# GTAGS
+[ -f /usr/local/share/gtags/gtags.conf ] &&
+    export GTAGSCONF=/usr/local/share/gtags/gtags.conf &&
+    export GTAGSLABEL=native-pygments
+
 [ -f $BASH/plugins/colorman.sh ] && source $BASH/plugins/colorman.sh
 
 # fzf
