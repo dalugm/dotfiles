@@ -321,7 +321,8 @@ export PATH="/usr/local/sbin:$PATH"
 export HOMEBREW_NO_AUTO_UPDATE=true
 
 # 更改预编译二进制软件包域名
-# DEPRECATED since brew v3.0.7 https://github.com/Homebrew/brew/releases/tag/3.0.7
+# DEPRECATED since brew v3.0.7
+# https://github.com/Homebrew/brew/releases/tag/3.0.7
 # export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/bottles"
 

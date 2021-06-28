@@ -17,14 +17,14 @@ mkd() {
 #
 ## Searches for text within bash history.
 #
-qh() {
+greph() {
     command -p grep --color=always -i -- "$*" "${HISTFILE}" | less -RX
 }
 
 #
 ## Searches for text within the current directory.
 #
-qt() {
+grepd() {
     command -p grep --color=always -ir --exclude-dir={.git,node_modules} -- "$*" "${PWD}" | less -RX
 }
 
@@ -49,7 +49,7 @@ lf2crlf() {
 #
 ## Execute `git pull` on every directory within the current directory.
 #
-git-update-all() {
+git_update_all() {
     find . \
          -maxdepth 1 \
          ! -path . \

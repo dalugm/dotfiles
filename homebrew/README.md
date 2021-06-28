@@ -4,7 +4,7 @@
     brew list --cask > brew-cask.txt
 
     # don't record dependency
-    brew leaves > brew.txt
+    brew leaves > brew-formula.txt
 
     brew cask list > brew-cask.txt # DEPRECATED since HOMEBREW v2.50
 
@@ -13,7 +13,7 @@
 1. First way
 
 ``` shell
-brew install $(cat brew.txt)
+brew install $(cat brew-formula.txt)
 brew install --cask $(cat brew-cask.txt)
 
 brew cask install $(cat brew-cask.txt) # DEPRECATED since HOMEBREW v2.50
@@ -21,7 +21,7 @@ brew cask install $(cat brew-cask.txt) # DEPRECATED since HOMEBREW v2.50
 Or use `for` function in shell (which is unnecessary since `cat` has already done this):
 
 ``` shell
-for i in $(cat brew.txt); do;
+for i in $(cat brew-formula.txt); do;
     brew install "$1";
 done
 
@@ -33,8 +33,29 @@ done
 2. Second way
 
 ``` shell
-xargs brew install < brew.txt
+xargs brew install < brew-formula.txt
 xargs brew cask install < brew-cask.txt
+```
+
+## virtualenvs
+
+Install python packages in a virtual env but using homebrew variables:
+
+Use `mysqlclient` as an [example](https://github.com/PyMySQL/mysqlclient/issues/497)
+
+Some guy said:
+
+> So this isn't so much as a fix as an alternate solution but if you're running
+> a virtual environment. Don't use a virtual environment, install python3 with
+> homebrew and install mysql normally with homebrew, then pip3 install
+> mysqlclient and it should work fine. It's not an ideal solution but it's
+> worked for me so far.
+
+Anyway, as a workaround I was able to install in a virtualenv with:
+
+``` shell
+brew install zstd
+CFLAGS="-I$(brew --prefix)/include" LDFLAGS="-L$(brew --prefix)/lib" pip install mysqlclient
 ```
 
 # Use mirror
