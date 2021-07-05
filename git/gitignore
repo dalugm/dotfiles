@@ -41,7 +41,10 @@ ehthumbs.db
 # Tags #
 ########
 
+*.tags
+**/tags
 **/TAGS
 **/GPATH
 **/GTAGS
 **/GRTAGS
+HTML/
