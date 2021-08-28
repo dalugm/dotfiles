@@ -177,6 +177,7 @@ nettle
 nghttp2
 nginx
 ninja
+nnn
 node
 npth
 nspr
@@ -244,6 +245,7 @@ the_silver_searcher
 thefuck
 theora
 tmux
+tomcat
 tree
 tree-sitter
 typescript
