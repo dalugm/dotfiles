@@ -184,15 +184,15 @@ fi
 # PROMPT #
 ##########
 
-[[ -f $BASH/random-theme.sh ]] && source "$BASH/random-theme.sh"
+# [[ -f $BASH/random-theme.sh ]] && source "$BASH/random-theme.sh"
 
-PROMPT_RANDOM_CANDIDATES=(
-    default
-    lambda
-    mh
-    minimal
-    ys
-)
+# PROMPT_RANDOM_CANDIDATES=(
+#     default
+#     lambda
+#     mh
+#     minimal
+#     ys
+# )
 
 ######################
 # User Configuration #
@@ -203,6 +203,19 @@ export PATH="$HOME/tools/build:$PATH"
 
 ## C-family
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+## GO
+export GOPATH=$HOME/go
+export PATH="$GOPATH/bin:$PATH"
+
+## Node.js
+
+# # N
+# export N_PREFIX=$HOME
+# export PATH=$N_PREFIX/bin:$PATH
+
+# fnm
+eval "$(fnm env)"
 
 # Set the number of trailing directory components to retain in prompt.
 export PROMPT_DIRTRIM=3
@@ -221,10 +234,10 @@ fi
     export GTAGSCONF=/usr/local/share/gtags/gtags.conf &&
     export GTAGSLABEL=native-pygments
 
-[ -f $BASH/plugins/colorman.sh ] && source $BASH/plugins/colorman.sh
+[ -f "$BASH"/plugins/colorman.sh ] && source "$BASH"/plugins/colorman.sh
 
 # fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f "$HOME"/.fzf.bash ] && source "$HOME"/.fzf.bash
 
 # Set fzf installation directory path
 export FZF_BASE=/usr/local/opt/fzf/install
@@ -246,12 +259,12 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 # z.lua
-[ -d $BASH/plugins/z.lua ] && eval "$(lua $BASH/plugins/z.lua/z.lua --init bash)"
+[ -d "$BASH"/plugins/z.lua ] && eval "$(lua "$BASH"/plugins/z.lua/z.lua --init bash)"
 
 # Lazyload thefuck
-if (( $+commands[thefuck] )) &>/dev/null; then
+if (( "$+commands[thefuck]" )) &>/dev/null; then
     _my_lazyload_command_fuck() {
-        eval $(thefuck --alias)
+        eval "$(thefuck --alias)"
     }
 
     my_lazyload_add_command fuck

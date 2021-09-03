@@ -7,7 +7,6 @@ font-sarasa-gothic
 iterm2
 keepassxc
 keka
-mactex
 monitorcontrol
 mpv
 snipaste

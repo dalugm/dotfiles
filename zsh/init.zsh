@@ -270,6 +270,15 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 
+## Node.js
+
+# # N
+# export N_PREFIX=$HOME
+# export PATH=$N_PREFIX/bin:$PATH
+
+# fnm
+eval "$(fnm env)"
+
 ## Python
 export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
 export PATH="${PYENV_ROOT}/bin:${PATH}"

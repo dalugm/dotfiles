@@ -41,6 +41,7 @@ ffmpeg
 figlet
 findutils
 flac
+fnm
 fontconfig
 fortune
 freetype
@@ -75,6 +76,7 @@ harfbuzz
 highlight
 httpie
 hugo
+hunspell
 icu4c
 ipython
 isl
@@ -169,6 +171,7 @@ mpfr
 msgpack
 multimarkdown
 mysql
+n
 nano
 nasm
 ncurses
@@ -177,7 +180,7 @@ nettle
 nghttp2
 nginx
 ninja
-nnn
+nmap
 node
 npth
 nspr

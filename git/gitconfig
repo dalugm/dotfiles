@@ -22,6 +22,8 @@
 	sbu = "!f() { git subtree pull --prefix $1 $2 master --squash; }; f"
 	# good-looking git log
 	hist = log --graph --pretty=format:'%C(red)%h %C(yellow)%d %C(cyan)[%an]%Creset %s %C(green)(%cr)%Creset' --abbrev-commit --date=short
+	# shallow clone
+	sc = clone --depth=1
 	# useful command
 	cb = checkout -b
 	ci = commit

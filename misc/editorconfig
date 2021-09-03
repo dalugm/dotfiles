@@ -5,21 +5,24 @@ root = true
 tab_width = 8
 end_of_line = lf
 charset = utf-8
-insert_final_newline = true
 trim_trailing_whitespace = true
 
 [*.{el,html,js,json,rb,vim,yaml,yml,vue}]
 indent_style = space
 indent_size = 2
+insert_final_newline = true
 
 [*.py]
 indent_style = space
 indent_size = 4
+insert_final_newline = true
 
 [*.go]
 indent_style = tab
 indent_size = 8
+insert_final_newline = true
 
 [Makefile]
 indent_style = tab
 indent_size = 8
+insert_final_newline = true
