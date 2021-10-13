@@ -230,9 +230,13 @@ fi
 ###########
 
 # GTAGS
-[ -f /usr/local/share/gtags/gtags.conf ] &&
-    export GTAGSCONF=/usr/local/share/gtags/gtags.conf &&
+if [[ -f $HOME/.globalrc ]]; then
+    export GTAGSCONF=$HOME/.globalrc
     export GTAGSLABEL=native-pygments
+elif [[ -f /usr/local/share/gtags/gtags.conf ]]; then
+    export GTAGSCONF=/usr/local/share/gtags/gtags.conf
+    export GTAGSLABEL=native-pygments
+fi
 
 [ -f "$BASH"/plugins/colorman.sh ] && source "$BASH"/plugins/colorman.sh
 

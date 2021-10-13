@@ -42,9 +42,9 @@ export LC_COLLATE='C'
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
-    export ALTERNATE_EDITOR='emacsclient'
+    export ALTERNATE_EDITOR='emacsclient -nw'
 else
-    export EDITOR='emacsclient'
+    export EDITOR='emacsclient -nw'
     export ALTERNATE_EDITOR='vim'
 fi
 
@@ -266,6 +266,9 @@ export PATH="$HOME/tools/build:$PATH"
 ## C-family
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
+# .NET SDK tools
+export PATH="$PATH:$HOME/.dotnet/tools"
+
 ## GO
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
@@ -329,12 +332,6 @@ export PATH="/usr/local/sbin:$PATH"
 # 关闭 homebrew 自动更新
 export HOMEBREW_NO_AUTO_UPDATE=true
 
-# 更改预编译二进制软件包域名
-# DEPRECATED since brew v3.0.7
-# https://github.com/Homebrew/brew/releases/tag/3.0.7
-# export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
-export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/bottles"
-
 # N 天后清除下载的安装包
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 
@@ -372,10 +369,13 @@ fi
 ###########
 
 # GTAGS
-[ -f /usr/local/share/gtags/gtags.conf ] &&
-    export GTAGSCONF=/usr/local/share/gtags/gtags.conf &&
+if [[ -f $HOME/.globalrc ]]; then
+    export GTAGSCONF=$HOME/.globalrc
     export GTAGSLABEL=native-pygments
-
+elif [[ -f /usr/local/share/gtags/gtags.conf ]]; then
+    export GTAGSCONF=/usr/local/share/gtags/gtags.conf
+    export GTAGSLABEL=native-pygments
+fi
 
 [ -f $ZSH/plugins/colorman.sh ] && source $ZSH/plugins/colorman.sh
 

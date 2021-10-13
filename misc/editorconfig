@@ -7,7 +7,7 @@ end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 
-[*.{el,html,js,json,rb,vim,yaml,yml,vue}]
+[*.{el,css,html,js,json,rb,vim,yaml,yml,vue}]
 indent_style = space
 indent_size = 2
 insert_final_newline = true

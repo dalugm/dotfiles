@@ -6,9 +6,7 @@ if [[ "${PROMPT_RANDOM_CANDIDATES}" = array && ${#PROMPT_RANDOM_CANDIDATES[@]} -
     themes=(${(@)PROMPT_RANDOM_CANDIDATES:#random})
 else
     # Look for all themes under $BASH/themes
-    themes=(
-        "$BASH"/themes/*.bash-theme
-    )
+    themes=("$BASH"/themes/*.bash-theme)
 fi
 
 # Choose a theme out of the pool of candidates
