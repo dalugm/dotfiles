@@ -362,6 +362,7 @@ _zsh_highlight_highlighter_main_paint()
     'env' u:i
     'ionice' cn:t:pPu # util-linux 2.33.1-0.1
     'strace' IbeaosXPpEuOS:ACdfhikqrtTvVxyDc # strace 4.26-0.2
+    'proxychains' q:f # proxychains 4.4.0
 
     # As of OpenSSH 8.1p1
     'ssh-agent' aEPt:csDd:k
@@ -476,7 +477,11 @@ _zsh_highlight_main_highlighter__try_expand_parameter()
             ;;
           (*)
             # scalar, presumably
-            words=( ${(P)MATCH} )
+            if [[ $zsyh_user_options[shwordsplit] == on ]]; then
+              words=( ${(P)=MATCH} )
+            else
+              words=( ${(P)MATCH} )
+            fi
             ;;
         esac
         reply=( "${words[@]}" )
@@ -739,7 +744,7 @@ _zsh_highlight_main_highlighter_highlight_list()
     # Analyse the current word.
     if _zsh_highlight_main__is_redirection $arg ; then
       if (( in_redirection == 1 )); then
-        # Two consecuive redirection operators is an error.
+        # Two consecutive redirection operators is an error.
         _zsh_highlight_main_add_region_highlight $start_pos $end_pos unknown-token
       else
         in_redirection=2
