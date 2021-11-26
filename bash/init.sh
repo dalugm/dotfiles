@@ -204,6 +204,14 @@ export PATH="$HOME/tools/build:$PATH"
 ## C-family
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
+# .NET SDK tools
+export PATH="$PATH:$HOME/.dotnet/tools"
+
+## Java
+
+# andriod
+export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
+
 ## GO
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
@@ -215,14 +223,8 @@ export PATH="$GOPATH/bin:$PATH"
 # export PATH=$N_PREFIX/bin:$PATH
 
 # fnm
-eval "$(fnm env)"
-
-# Set the number of trailing directory components to retain in prompt.
-export PROMPT_DIRTRIM=3
-
-# Make new shells get the history list from all previous shells.
-if [[ ! "${PROMPT_COMMAND}" =~ 'history -a;' ]]; then
-    export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
+if command -v fnm > /dev/null 2>&1; then
+    eval "$(fnm env)"
 fi
 
 ###########

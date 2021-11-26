@@ -269,6 +269,11 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 # .NET SDK tools
 export PATH="$PATH:$HOME/.dotnet/tools"
 
+## Java
+
+# andriod
+export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
+
 ## GO
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
@@ -280,7 +285,10 @@ export PATH="$GOPATH/bin:$PATH"
 # export PATH=$N_PREFIX/bin:$PATH
 
 # fnm
-eval "$(fnm env)"
+if command -v fnm > /dev/null 2>&1; then
+    eval "$(fnm env)"
+fi
+
 
 ## Python
 export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
