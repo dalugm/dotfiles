@@ -40,6 +40,7 @@ docbook
 docbook-xsl
 double-conversion
 emacs
+eslint
 fd
 ffmpeg
 figlet
@@ -75,6 +76,7 @@ gnutls
 go
 go-md2man
 gobject-introspection
+google-java-format
 gradle
 graphite2
 grep
@@ -261,6 +263,7 @@ source-highlight
 speex
 sqlite
 srt
+swiftlint
 swig
 tcl-tk
 tesseract

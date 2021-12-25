@@ -147,7 +147,7 @@ export MANPATH="/usr/local/share/man:${MANPATH}"
 ############
 
 # Load `function.sh` if it exists.
-[[ -f $BASH/function.sh ]] && source $BASH/function.sh
+[[ -f "$BASH"/function.sh ]] && source "$BASH"/function.sh
 
 #########
 # ALIAS #
@@ -200,6 +200,7 @@ fi
 
 # Personal PATH
 export PATH="$HOME/tools/build:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 ## C-family
 export PATH="/usr/local/opt/llvm/bin:$PATH"
@@ -208,6 +209,8 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="$PATH:$HOME/.dotnet/tools"
 
 ## Java
+export JAVA_TOOL_OPTIONS="-Duser.language=en"
+export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
 
 # andriod
 export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"

@@ -262,6 +262,7 @@ fi
 
 # Personal PATH
 export PATH="$HOME/tools/build:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 ## C-family
 export PATH="/usr/local/opt/llvm/bin:$PATH"
@@ -270,6 +271,8 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="$PATH:$HOME/.dotnet/tools"
 
 ## Java
+export JAVA_TOOL_OPTIONS="-Duser.language=en"
+export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
 
 # andriod
 export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
