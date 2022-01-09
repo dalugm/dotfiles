@@ -2,7 +2,7 @@
 
 # ${HOME}/.bashrc: executed by bash(1) for non-login shells.
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[[ $- != *i* ]] && return
 
 # Path to bash installation.
 # Distribute bashrc into smaller, more specific files
@@ -184,6 +184,8 @@ fi
 # PROMPT #
 ##########
 
+PS1='[\u@\h \W]\$ '
+
 # [[ -f $BASH/random-theme.sh ]] && source "$BASH/random-theme.sh"
 
 # PROMPT_RANDOM_CANDIDATES=(
@@ -226,8 +228,9 @@ export PATH="$GOPATH/bin:$PATH"
 # export PATH=$N_PREFIX/bin:$PATH
 
 # fnm
+export PATH="$HOME/.fnm:$PATH"
 if command -v fnm > /dev/null 2>&1; then
-    eval "$(fnm env)"
+    eval "`fnm env`"
 fi
 
 ###########
