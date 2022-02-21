@@ -212,6 +212,7 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 
 ## Java
 export JAVA_TOOL_OPTIONS="-Duser.language=en"
+export JAVA_TOOL_OPTIONS="-Duser.region=US"
 export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
 
 # andriod

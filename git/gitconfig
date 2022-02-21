@@ -44,3 +44,11 @@
 	user = dalugm
 [commit]
 	template = ~/.gitmessage
+# [url "https://hub.fastgit.xyz/"]
+# 	insteadof = https://github.com/
+# [url "https://hub.fastgit.org/"]
+# 	insteadof = https://github.com/
+# [url "https://github.com.cnpmjs.org/"]
+# 	insteadof = https://github.com/
+# [url "https://hub.gitslow.tk/"]
+# 	insteadof = https://github.com/
