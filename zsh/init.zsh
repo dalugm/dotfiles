@@ -277,6 +277,7 @@ export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
 
 # andriod
 export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
+export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 
 ## GO
 export GOPATH=$HOME/go
