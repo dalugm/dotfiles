@@ -5,6 +5,7 @@ cool-retro-term
 flutter
 font-fira-code
 font-gnu-unifont
+font-lxgw-wenkai
 font-sarasa-gothic
 iterm2
 keepassxc

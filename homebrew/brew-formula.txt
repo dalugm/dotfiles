@@ -41,12 +41,17 @@ docbook-xsl
 double-conversion
 emacs
 eslint
+fb303
+fbthrift
 fd
 ffmpeg
 figlet
 findutils
+fizz
 flac
+fmt
 fnm
+folly
 fontconfig
 fortune
 freetype
@@ -61,11 +66,13 @@ gd
 gdbm
 gdk-pixbuf
 gettext
+gflags
 ghostscript
 giflib
 git
 glib
 global
+glog
 gmp
 gnu-getopt
 gnu-sed
@@ -103,8 +110,10 @@ kotlin
 lame
 ldns
 leptonica
+libarchive
 libass
 libassuan
+libavif
 libb2
 libbluray
 libcbor
@@ -127,6 +136,7 @@ liblqr
 libmagic
 libmetalink
 libmikmod
+libmng
 libmpc
 libnghttp2
 libogg
@@ -248,6 +258,7 @@ rtmpdump
 rubberband
 ruby
 rust
+rust-analyzer
 sbcl
 screen
 screenfetch
@@ -284,6 +295,8 @@ utf8proc
 vde
 vim
 w3m
+wangle
+watchman
 webp
 wget
 x264
