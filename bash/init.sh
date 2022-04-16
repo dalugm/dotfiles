@@ -48,9 +48,9 @@ export HISTTIMEFORMAT='%F %T '
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
-    export ALTERNATE_EDITOR='emacsclient'
+    export ALTERNATE_EDITOR='nano'
 else
-    export EDITOR='emacsclient'
+    export EDITOR='nano'
     export ALTERNATE_EDITOR='vim'
 fi
 
@@ -211,9 +211,9 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="$PATH:$HOME/.dotnet/tools"
 
 ## Java
-export JAVA_TOOL_OPTIONS="-Duser.language=en"
-export JAVA_TOOL_OPTIONS="-Duser.region=US"
-export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
+export JAVA_TOOL_OPTIONS="-Duser.language=en \
+                          -Duser.region=US \
+                          -Dfile.encoding=UTF-8"
 
 # andriod
 export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
@@ -231,7 +231,7 @@ export PATH="$GOPATH/bin:$PATH"
 # fnm
 export PATH="$HOME/.fnm:$PATH"
 if command -v fnm > /dev/null 2>&1; then
-    eval "`fnm env`"
+    eval "$(fnm env)"
 fi
 
 ###########

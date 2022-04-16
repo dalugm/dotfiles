@@ -11,7 +11,7 @@ alias alaconf="vim ~/.alacritty.yml"
 alias ytdlconf="vim ~/.config/youtube-dl/config"
 
 alias g='git'
-alias ec='emacsclient -nw'
+alias ec='emacsclient -nw --alternate-editor=nano'
 alias tem='TERM=xterm-24bit emacs'
 alias vi='vim'
 alias nvi='nvim'

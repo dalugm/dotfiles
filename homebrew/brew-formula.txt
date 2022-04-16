@@ -34,6 +34,7 @@ cpanminus
 cscope
 ctags
 curl
+dart
 dav1d
 dbus
 docbook

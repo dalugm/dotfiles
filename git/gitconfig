@@ -52,3 +52,5 @@
 # 	insteadof = https://github.com/
 # [url "https://hub.gitslow.tk/"]
 # 	insteadof = https://github.com/
+# [url "https://gitee.com/mirrors/Flutter.git"]
+# 	insteadof = https://github.com/flutter/flutter.git
