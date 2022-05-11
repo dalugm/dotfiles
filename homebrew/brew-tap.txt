@@ -6,3 +6,4 @@ homebrew/cask-versions
 homebrew/command-not-found
 homebrew/core
 homebrew/services
+mongodb/brew

@@ -264,6 +264,10 @@ fi
 export PATH="$HOME/tools/build:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
+## Lisp
+# Ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
 ## C-family
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
@@ -282,6 +286,11 @@ export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 ## GO
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
+
+## Flutter
+export PATH="$HOME/flutter/bin:$PATH"
+PUB_HOSTED_URL=https://pub.flutter-io.cn
+FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
 ## Node.js
 
@@ -483,3 +492,6 @@ if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
         zprof $@
     }
 fi
+
+export PNPM_HOME="/Users/mou/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
