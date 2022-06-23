@@ -1,8 +1,8 @@
 # .gitignore
 
-######################
-# OS generated files #
-######################
+############
+# OS files #
+############
 
 **/.DS_Store
 *.swp
@@ -15,10 +15,11 @@ Icon?
 Thumbs.db
 ehthumbs.db
 
-#########################
-# EMACS generated files #
-#########################
+###############
+# EMACS files #
+###############
 
+/.cask
 *.elc
 *.info
 *-autoloads.el
