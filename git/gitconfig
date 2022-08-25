@@ -5,12 +5,14 @@
 	smudge = git-lfs smudge -- %f
 [user]
 	name = dalu
-	email = moutong945@outlook.com
+	email = mou.tong@outlook.com
 [color]
 	ui = true
 [core]
 	excludesfile = ~/.gitignore
 	quotePath = false
+[credential]
+	helper = store
 [push]
 	default = matching
 [http]

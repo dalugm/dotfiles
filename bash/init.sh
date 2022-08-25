@@ -210,6 +210,9 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 # .NET SDK tools
 export PATH="$PATH:$HOME/.dotnet/tools"
 
+## Rust
+export PATH="$PATH:$HOME/.cargo/bin"
+
 ## Java
 export JAVA_TOOL_OPTIONS="-Duser.language=en \
                           -Duser.region=US \
