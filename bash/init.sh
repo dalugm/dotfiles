@@ -237,6 +237,19 @@ if command -v fnm > /dev/null 2>&1; then
     eval "$(fnm env)"
 fi
 
+## HOMEBREW
+
+export PATH="/usr/local/sbin:$PATH"
+
+# WSL
+[ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# 关闭 homebrew 自动更新
+export HOMEBREW_NO_AUTO_UPDATE=true
+
+# N 天后清除下载的安装包
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
+
 ###########
 # PLUGINS #
 ###########

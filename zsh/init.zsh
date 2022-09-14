@@ -354,6 +354,9 @@ fi
 
 export PATH="/usr/local/sbin:$PATH"
 
+# WSL
+[ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # 关闭 homebrew 自动更新
 export HOMEBREW_NO_AUTO_UPDATE=true
 
