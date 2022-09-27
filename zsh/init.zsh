@@ -302,10 +302,14 @@ FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 # export PATH=$N_PREFIX/bin:$PATH
 
 # fnm
+export PATH=/home/dalu/.fnm:$PATH
 if command -v fnm > /dev/null 2>&1; then
     eval "$(fnm env)"
 fi
 
+# pnpm
+export PNPM_HOME="$HOME/.local/lib/pnpm"
+export PATH="$PNPM_HOME:$PATH"
 
 ## Python
 export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
@@ -498,6 +502,3 @@ if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
         zprof $@
     }
 fi
-
-export PNPM_HOME="/Users/mou/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"

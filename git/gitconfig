@@ -11,10 +11,17 @@
 [core]
 	excludesfile = ~/.gitignore
 	quotePath = false
+	editor = emacs -nw
+	# avoid converting anything automagically
+	autocrlf = false
+	# avoid Windows problem
+	filemode = false
 [credential]
 	helper = store
 [push]
 	default = matching
+[pull]
+	rebase = true
 [http]
 	sslverify = false
 [alias]
@@ -36,16 +43,14 @@
 	# Look up
 	author = !git log --pretty=format:'%an <%ae>' | sort -u
 	who = shortlog -sne
-[merge]
-	tool = vimdiff
-	conflictstyle = diff3
-	prompt = false
 [github]
 	user = dalugm
 [gitlab]
 	user = dalugm
 [commit]
 	template = ~/.gitmessage
+# [url "https://ghproxy.com/https://github.com/"]
+# 	insteadof = https://github.com/
 # [url "https://hub.fastgit.xyz/"]
 # 	insteadof = https://github.com/
 # [url "https://hub.fastgit.org/"]

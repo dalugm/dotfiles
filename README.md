@@ -70,7 +70,7 @@ config push
 #### oh-my-zsh
 
     ln -s ~/dotfiles/omz-zshrc ~/.zshrc
-    
+
 #### zinit
 
     ln -s ~/dotfiles/zinit-zshrc ~/.zshrc
@@ -89,10 +89,15 @@ config push
 
 `iTerm2` and `alacritty`
 
-``` shell
-# alacritty terminal
-ln -s ~/dotfiles/terminal/alacritty.yml ~/.alacritty.yml
-```
+### alacritty
+
+- on *nix
+
+        ln -s ~/dotfiles/terminal/alacritty.yml ~/.alacritty.yml
+
+- on Windows
+
+  copy `alacritty.yml` to `~/AppData/Roaming/alacritty/alacritty.yml`
 
 ## misc
 

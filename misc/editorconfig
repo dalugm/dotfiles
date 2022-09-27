@@ -7,7 +7,7 @@ end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 
-[*.{el,css,html,js,json,rb,vim,yaml,yml,vue}]
+[*.{el,css,html,js,json,rb,vim,yaml,yml,toml,vue}]
 indent_style = space
 indent_size = 2
 insert_final_newline = true
@@ -15,6 +15,11 @@ insert_final_newline = true
 [*.py]
 indent_style = space
 indent_size = 4
+insert_final_newline = true
+
+[*.lua]
+indent_style = space
+indent_size = 3
 insert_final_newline = true
 
 [*.go]
