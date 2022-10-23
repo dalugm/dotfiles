@@ -20,7 +20,7 @@ alias nvi='nvim'
 # proxy
 export hostip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
 alias all_proxy="export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export all_proxy=socks5://127.0.0.1:1080"
-alias wsl_all_proxy="export http_proxy=http://${hostip}:10811;export https_proxy=http://${hostip}:10811;export all_proxy=socks5://${hostip}:10810" 
+alias wsl_all_proxy="export http_proxy=http://${hostip}:10811;export https_proxy=http://${hostip}:10811;export all_proxy=socks5://${hostip}:10810"
 alias clean_proxy="export all_proxy=; export http_proxy=; export https_proxy="
 
 # TERM

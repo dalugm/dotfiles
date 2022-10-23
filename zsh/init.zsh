@@ -407,6 +407,12 @@ if [[ -f $HOME/.globalrc ]]; then
 elif [[ -f /usr/local/share/gtags/gtags.conf ]]; then
     export GTAGSCONF=/usr/local/share/gtags/gtags.conf
     export GTAGSLABEL=native-pygments
+elif [[ -f /usr/share/global/gtags/gtags.conf ]]; then
+    export GTAGSCONF=/usr/share/global/gtags/gtags.conf
+    export GTAGSLABEL=native-pygments
+elif [[ -f /etc/gtags/gtags.conf ]]; then
+    export GTAGSCONF=/etc/gtags/gtags.conf
+    export GTAGSLABEL=native-pygments
 fi
 
 [ -f $ZSH/plugins/colorman.sh ] && source $ZSH/plugins/colorman.sh
