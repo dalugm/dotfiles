@@ -189,7 +189,7 @@ fi
 ######################
 
 # Personal PATH
-export PATH="$HOME/tools/build:$PATH"
+export PATH="$HOME/vendors/build:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 # launch Emacs from terminal on macOS
