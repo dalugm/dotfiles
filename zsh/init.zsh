@@ -143,78 +143,6 @@ bindkey  '\C-x\C-e' edit-command-line # EMACS style
 # The string may begin with ^ to anchor the search to the beginning of the line.
 bindkey '^r' history-incremental-search-backward
 
-########
-# PATH #
-########
-
-#
-## Tests whether a directory can be added to `PATH`.
-#
-test_path() {
-    [[ -d "${1}" && ":${PATH}:" != *":${1}:"* ]]
-}
-
-#
-## Sets the `PATH` environment variable.
-#
-set_path() {
-    # Define the directories to be prepended to `PATH`.
-    local -a prepend_dirs=(
-        /usr/local/bin
-        /usr/local/sbin
-    )
-
-    # Define the directories to be appended to `PATH`.
-    local -a append_dirs=(
-        /usr/bin
-        "${HOME}/bin"
-        "${HOME}/.local/bin"
-        "${HOME}/tools/build"
-    )
-
-    # # Prepend directories to `PATH`.
-    # for index in ${!prepend_dirs[*]}; do
-    #     if test_path "${prepend_dirs[$index]}"; then
-    #         PATH="${prepend_dirs[$index]}:${PATH}"
-    #     fi
-    #     echo "HERE"
-    # done
-
-    # # Append directories to `PATH`.
-    # for index in ${!append_dirs[*]}; do
-    #     if test_path "${append_dirs[$index]}"; then
-    #         PATH="${PATH}:${append_dirs[$index]}"
-    #     fi
-    # done
-
-    export PATH
-}
-
-set_path
-unset -f test_path
-unset -f set_path
-
-# remove duplicate PATH
-# https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
-if [ -n "$PATH" ]; then
-    old_PATH=$PATH:; PATH=
-    while [ -n "$old_PATH" ]; do
-        x=${old_PATH%%:*}
-        case $PATH: in
-            *:"$x":*) ;;
-            *) PATH=$PATH:$x;;
-        esac
-        old_PATH=${old_PATH#*:}
-    done
-    PATH=${PATH#:}
-    unset old_PATH x
-fi
-
-export PATH
-
-# add the manpath
-export MANPATH="/usr/local/share/man:${MANPATH}"
-
 ############
 # FUNCTION #
 ############
@@ -263,6 +191,12 @@ fi
 # Personal PATH
 export PATH="$HOME/tools/build:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+# launch Emacs from terminal on macOS
+if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
+  export PATH="/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:$PATH"
+  alias emacs="Emacs"
+fi
 
 ## Lisp
 # Ruby
@@ -459,6 +393,31 @@ export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 # zsh-syntax-highlighting
 [ -d $ZSH/plugins/zsh-syntax-highlighting ] && source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+########
+# PATH #
+########
+
+# remove duplicate PATH
+# https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
+if [ -n "$PATH" ]; then
+    old_PATH=$PATH:; PATH=
+    while [ -n "$old_PATH" ]; do
+        x=${old_PATH%%:*}       # the first remaining entry
+        case $PATH: in
+            *:"$x":*) ;;        # already there
+            *) PATH=$PATH:$x;;  # not there yet
+        esac
+        old_PATH=${old_PATH#*:}
+    done
+    PATH=${PATH#:}
+    unset old_PATH x
+fi
+
+export PATH
+
+# add the manpath
+export MANPATH="/usr/local/share/man:${MANPATH}"
 
 #########
 # DEBUG #

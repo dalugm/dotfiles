@@ -70,78 +70,6 @@ export purple='\033[35m'
 export cyan='\033[36m'
 export white='\033[37m'
 
-
-########
-# PATH #
-########
-
-#
-## Tests whether a directory can be added to `PATH`.
-#
-test_path() {
-    [[ -d "${1}" && ":${PATH}:" != *":${1}:"* ]]
-}
-
-#
-## Sets the `PATH` environment variable.
-#
-set_path() {
-    # Define the directories to be prepended to `PATH`.
-    local -a prepend_dirs=(
-        /usr/local/bin
-        /usr/local/sbin
-    )
-
-    # Define the directories to be appended to `PATH`.
-    local -a append_dirs=(
-        /usr/bin
-        "${HOME}/bin"
-        "${HOME}/.local/bin"
-        "${HOME}/tools/build"
-    )
-
-    # Prepend directories to `PATH`.
-    for index in ${!prepend_dirs[*]}; do
-        if test_path "${prepend_dirs[$index]}"; then
-            PATH="${prepend_dirs[$index]}:${PATH}"
-        fi
-    done
-
-    # Append directories to `PATH`.
-    for index in ${!append_dirs[*]}; do
-        if test_path "${append_dirs[$index]}"; then
-            PATH="${PATH}:${append_dirs[$index]}"
-        fi
-    done
-
-    export PATH
-}
-
-set_path
-unset -f test_path
-unset -f set_path
-
-# remove duplicate PATH
-# https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
-if [ -n "$PATH" ]; then
-    old_PATH=$PATH:; PATH=
-    while [ -n "$old_PATH" ]; do
-        x=${old_PATH%%:*}
-        case $PATH: in
-            *:"$x":*) ;;
-            *) PATH=$PATH:$x;;
-        esac
-        old_PATH=${old_PATH#*:}
-    done
-    PATH=${PATH#:}
-    unset old_PATH x
-fi
-
-export PATH
-
-# add the manpath
-export MANPATH="/usr/local/share/man:${MANPATH}"
-
 ############
 # FUNCTION #
 ############
@@ -203,6 +131,12 @@ PS1='[\u@\h \W]\$ '
 # Personal PATH
 export PATH="$HOME/tools/build:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+# launch Emacs from terminal on macOS
+if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
+  export PATH="/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:$PATH"
+  alias emacs="Emacs"
+fi
 
 ## C-family
 export PATH="/usr/local/opt/llvm/bin:$PATH"
@@ -298,3 +232,28 @@ if (( "$+commands[thefuck]" )) &>/dev/null; then
 
     my_lazyload_add_command fuck
 fi
+
+########
+# PATH #
+########
+
+# remove duplicate PATH
+# https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
+if [ -n "$PATH" ]; then
+    old_PATH=$PATH:; PATH=
+    while [ -n "$old_PATH" ]; do
+        x=${old_PATH%%:*}
+        case $PATH: in
+            *:"$x":*) ;;
+            *) PATH=$PATH:$x;;
+        esac
+        old_PATH=${old_PATH#*:}
+    done
+    PATH=${PATH#:}
+    unset old_PATH x
+fi
+
+export PATH
+
+# add the manpath
+export MANPATH="/usr/local/share/man:${MANPATH}"
