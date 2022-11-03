@@ -238,7 +238,7 @@ FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 # fnm
 export PATH=/home/dalu/.fnm:$PATH
 if command -v fnm > /dev/null 2>&1; then
-    eval "$(fnm env)"
+    eval "$(fnm env --use-on-cd)"
 fi
 
 # pnpm

@@ -168,7 +168,7 @@ export PATH="$GOPATH/bin:$PATH"
 # fnm
 export PATH="$HOME/.fnm:$PATH"
 if command -v fnm > /dev/null 2>&1; then
-    eval "$(fnm env)"
+    eval "$(fnm env --use-on-cd)"
 fi
 
 ## HOMEBREW
