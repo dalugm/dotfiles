@@ -221,9 +221,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Search directory from HOME
 export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
-# z.lua
-[ -d "$BASH"/plugins/z.lua ] && eval "$(lua "$BASH"/plugins/z.lua/z.lua --init bash)"
-
 # Lazyload thefuck
 if (( "$+commands[thefuck]" )) &>/dev/null; then
     _my_lazyload_command_fuck() {

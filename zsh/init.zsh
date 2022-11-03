@@ -382,9 +382,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Search directory from HOME
 export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
-# z.lua
-[ -d $ZSH/plugins/z.lua ] && eval "$(lua $ZSH/plugins/z.lua/z.lua --init zsh)"
-
 # zsh-completions
 [ -d $ZSH/plugins/zsh-completions ] && source $ZSH/plugins/zsh-completions/zsh-completions.plugin.zsh
 
