@@ -22,6 +22,8 @@
 	default = matching
 [pull]
 	rebase = true
+[diff "gpg"]
+	textconv = gpg --no-tty --decrypt
 [http]
 	sslverify = false
 [alias]
