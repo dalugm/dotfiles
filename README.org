@@ -1,0 +1,100 @@
+* Table of Contents                                                     :TOC:
+- [[#backup][Backup]]
+- [[#shell][SHELL]]
+  - [[#bash][BASH]]
+  - [[#zsh][ZSH]]
+- [[#homebrew][HOMEBREW]]
+- [[#git][GIT]]
+- [[#terminal][TERMINAL]]
+- [[#misc][misc]]
+- [[#acknowledgments][Acknowledgments]]
+
+* Backup
+
+This repository refers to [[https://www.atlassian.com/git/tutorials/dotfiles][How to store dotfiles?]]
+
+#+begin_src sh
+  git init --bare $HOME/dotfiles
+  alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+  config config --local status.showUntrackedFiles no
+  echo "alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
+#+end_src
+
+1. The first line creates a folder =~/dotfiles= that will track our files.
+2. Then we create an alias config which we will use instead of the regular git when we want to interact with our configuration repository.
+3. We set a flag - local to the repository - to hide files we are not explicitly tracking yet. This is so that when you type config status and other commands later, files you are not interested in tracking will not show up as untracked.
+4. Also you can add the alias definition by hand to your =.bashrc= or use the the fourth line provided for convenience.
+
+After you've executed the setup any file within the =$HOME= folder can be
+versioned with normal commands, replacing git with your newly created =config=
+alias, like:
+
+#+begin_src sh
+  config status
+  config add .vimrc
+  config commit -m "Add vimrc"
+  config add .bashrc
+  config commit -m "Add bashrc"
+  config push
+#+end_src
+
+* SHELL
+
+** BASH
+
+*** My personal bash
+
+[[file:bash/README.md][bash]]
+
+: ln -s ~/dotfiles/bash/init.sh ~/.bashrc
+: ln -s ~/dotfiles/bash ~/.config/bash
+
+** ZSH
+
+*** My personal zsh
+
+[[file:zsh/README.md][zsh]]
+
+: ln -s ~/dotfiles/zsh/init.sh ~/.zshrc
+: ln -s ~/dotfiles/zsh ~/.config/zsh
+
+*** oh-my-zsh
+
+: ln -s ~/dotfiles/omz-zshrc ~/.zshrc
+
+*** zinit
+
+: ln -s ~/dotfiles/zinit-zshrc ~/.zshrc
+
+* HOMEBREW
+
+[[file:homebrew/README.md][homebrew]]
+
+* GIT
+
+: ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
+: ln -s ~/dotfiles/git/gitignore ~/.gitignore
+: ln -s ~/dotfiles/git/gitmessage ~/.gitmessage
+
+* TERMINAL
+
+[[file:terminal/README.org][terminal]]
+
+* misc
+
+[[file:misc/README.md][misc]]
+
+* Acknowledgments
+
+Inspiration and code were taken from many sources, including:
+
+- [[https://github.com/necolas/dotfiles][necolas]]
+- [[https://github.com/alrra/dotfiles][alrra]]
+- [[https://github.com/isaacs/dotfiles][isaacs]]
+- [[https://github.com/eed3si9n/dotfiles][eed3si9n]]
+- [[https://github.com/b4b4r07/dotfiles][b4b4r07]]
+- [[https://github.com/gpakosz/.tmux][gpakosz/.tmux]]
+- [[https://github.com/ghacksuserjs/ghacks-user.js][ghacks-user.js]]
+- [[https://gnome-look.org/content/show.php/Ultimate+Bashrc+File?content=129746][The Ultimate Bashrc File GNOME-Look.org]]
+- [[https://wiki.archlinux.org/index.php/font_configuration][Font configuration - ArchWiki]]
+- [[https://github.com/hackwell/screenrc][hackwell/screenrc]]
