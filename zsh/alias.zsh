@@ -11,7 +11,7 @@ alias alaconf="vim ~/.alacritty.yml"
 alias ytdlconf="vim ~/.config/youtube-dl/config"
 
 alias g='git'
-alias pc='proxychains4'
+alias px='proxychains4'
 alias ec='emacsclient -nw --alternate-editor=nano'
 alias tem='TERM=xterm-24bit emacs'
 alias vi='vim'
@@ -38,4 +38,4 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 
 # https://www.atlassian.com/git/tutorials/dotfiles
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

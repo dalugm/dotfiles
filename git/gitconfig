@@ -51,7 +51,7 @@
 	user = dalugm
 [commit]
 	template = ~/.gitmessage
-# [url "https://ghproxy.com/https://github.com/"]
-# 	insteadof = https://github.com/
+[url "https://ghproxy.com/https://github.com/"]
+	insteadof = https://github.com/
 # [url "https://hub.fastgit.xyz/"]
 # 	insteadof = https://github.com/

@@ -360,28 +360,6 @@ if (( $+commands[thefuck] )) &>/dev/null; then
     my_lazyload_add_command fuck
 fi
 
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Set fzf installation directory path
-export FZF_BASE=/usr/local/opt/fzf/install
-
-# Set fzf interactive interface
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse \
-    --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500' \
-    --bind 'ctrl-n:down,ctrl-p:up,ctrl-j:preview-down,ctrl-k:preview-up'"
-
-# Set default fzf command style
-# Use fd instead of ripgrep
-# https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/
-export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build} --hidden --type file"
-
-# Search files cwd
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# Search directory from HOME
-export FZF_ALT_C_COMMAND="fd -t d . $HOME"
-
 # zsh-completions
 [ -d $ZSH/plugins/zsh-completions ] && source $ZSH/plugins/zsh-completions/zsh-completions.plugin.zsh
 
@@ -390,6 +368,11 @@ export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 # zsh-syntax-highlighting
 [ -d $ZSH/plugins/zsh-syntax-highlighting ] && source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# rust tools
+if command -v zoxide > /dev/null 2>&1; then
+    eval "$(zoxide init zsh)"
+fi
 
 ########
 # PATH #
