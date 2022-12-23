@@ -1,11 +1,15 @@
+abseil
 aom
 aria2
 aspell
 autoconf
+automake
 bash
 bdw-gc
+bear
 berkeley-db
 brotli
+c-ares
 ca-certificates
 cairo
 chezscheme
@@ -25,6 +29,7 @@ ffmpeg
 figlet
 findutils
 flac
+fmt
 fnm
 fontconfig
 fortune
@@ -38,6 +43,7 @@ gdbm
 gdk-pixbuf
 gettext
 ghcup
+ghostscript
 giflib
 git
 glib
@@ -47,10 +53,10 @@ gnu-tar
 gnupg
 gnutls
 go
-gobject-introspection
 google-java-format
 graphite2
 grep
+grpc
 gsasl
 guile
 harfbuzz
@@ -61,6 +67,7 @@ icu4c
 imath
 isl
 jansson
+jbig2dec
 jpeg
 jpeg-turbo
 jpeg-xl
@@ -82,6 +89,7 @@ libgcrypt
 libgpg-error
 libice
 libiconv
+libidn
 libidn2
 libksba
 libmpc
@@ -102,6 +110,7 @@ libtasn1
 libtermkey
 libtiff
 libtool
+libunibreak
 libunistring
 libusb
 libuv
@@ -138,12 +147,14 @@ mbedtls
 mit-scheme
 mpdecimal
 mpfr
+mpg123
 msgpack
 multimarkdown
 nano
 ncurses
 neovim
 nettle
+nlohmann-json
 npth
 nspr
 nss
@@ -167,14 +178,15 @@ perl
 pinentry
 pixman
 pkg-config
-pnpm
 poppler
+protobuf
 python
 python3
 python@3.10
 python@3.11
 python@3.9
 rav1e
+re2
 readline
 reattach-to-user-namespace
 rtmpdump
@@ -188,6 +200,7 @@ shellcheck
 six
 sl
 snappy
+spdlog
 speex
 sqlite
 srt
