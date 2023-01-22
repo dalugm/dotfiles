@@ -1,6 +1,7 @@
 abseil
 aom
 aria2
+aribb24
 aspell
 autoconf
 automake
@@ -25,6 +26,7 @@ cowsay
 curl
 dav1d
 dbus
+deno
 ffmpeg
 figlet
 findutils
@@ -204,6 +206,7 @@ spdlog
 speex
 sqlite
 srt
+svt-av1
 tcl-tk
 tesseract
 texinfo

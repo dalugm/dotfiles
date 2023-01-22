@@ -1,6 +1,8 @@
 bat
 bottom
+create-tauri-app
 fd-find
 lsd
 ripgrep
+tauri-cli
 zoxide
