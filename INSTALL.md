@@ -8,7 +8,7 @@ How to install
 * Fedora: [zsh-syntax-highlighting package][fedora-package-alt] in Fedora 24+ (or in [OBS repository][obs-repository])
 * FreeBSD: `pkg install zsh-syntax-highlighting` (port name: [`shells/zsh-syntax-highlighting`][freebsd-port])
 * Gentoo: [app-shells/zsh-syntax-highlighting][gentoo-repository]
-* Mac OS X / Homebrew: [brew install zsh-syntax-highlighting][brew-package]
+* Mac OS X / Homebrew: `brew install zsh-syntax-highlighting` ([formula][brew-package])
 * NetBSD: `pkg_add zsh-syntax-highlighting` (port name: [`shells/zsh-syntax-highlighting`][netbsd-port])
 * OpenBSD: `pkg_add zsh-syntax-highlighting` (port name: [`shells/zsh-syntax-highlighting`][openbsd-port])
 * openSUSE / SLE: `zsh-syntax-highlighting` package in [OBS repository][obs-repository]
@@ -74,6 +74,12 @@ This list is incomplete as there are too many
 
 Add `antigen bundle zsh-users/zsh-syntax-highlighting` as the last bundle in
 your `.zshrc`.
+
+#### [Fig](https://fig.io)
+
+Click the `Install Plugin` button on the [Fig plugin page][fig-plugin].
+
+[fig-plugin]: https://fig.io/plugins/other/zsh-syntax-highlighting
 
 #### [Oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
