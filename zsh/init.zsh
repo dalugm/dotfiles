@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 
 # ${HOME}/.zshrc: executed by zsh(1) for non-login shells.
-# If not running interactively, don't do anything
+# If not running interactively, don't do anything.
 [ -z "$PS1" ] && return
 
-# For Performance Debug purpose
+# For Performance Debug purpose.
 export MY_ENABLE_PERFORMANCE_PROFILING="false"
 
 if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
@@ -22,24 +22,24 @@ if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
 fi
 
 # Path to zsh installation.
-# Distribute zshrc into smaller, more specific files
+# Distribute zshrc into smaller, more specific files.
 export ZSH=$HOME/.config/zsh
 
 ##########
-# EXPORT #
+# Export #
 ##########
 
-# Set the default language
+# Set the default language.
 export LANG=en_US.UTF-8
 
 # Set the default collation order as in C.
 export LC_COLLATE='C'
 
-# Set TERM value
+# Set TERM value.
 # export TERM=xterm-24bit
 # export TERM=xterm-256color
 
-# Preferred editor for local and remote sessions
+# Preferred editor for local and remote sessions.
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
     export ALTERNATE_EDITOR='nano'
@@ -49,10 +49,10 @@ else
 fi
 
 #
-## History
+## History.
 #
 
-# Lines configured by zsh-newuser-install
+# Lines configured by zsh-newuser-install.
 export HISTFILE=~/.zsh_history
 
 # The maximum number of lines to remember in the command history.
@@ -64,8 +64,8 @@ export HISTFILESIZE=1000
 # The maximum number of history events to save in the history file.
 export SAVEHIST=1000
 
-# Disable saving lines that begin with a space or match the last history line to
-# the history list.
+# Disable saving lines that begin with a space or match the last history
+# line to the history list.
 export HISTCONTROL='ignoreboth'
 
 # Disable saving the following commands to the history list.
@@ -74,27 +74,27 @@ export HISTIGNORE='&:bg:fg'
 # Enable time stamp for `history` builtin.
 export HISTTIMEFORMAT='%F %T '
 
-# 多个 zsh 间分享历史纪录
+# Share history between multi zsh sessions.
 setopt SHARE_HISTORY
 
-# 如果连续输入的命令相同，历史纪录中只保留一个
+# Ignore duplicate commands.
 setopt HIST_IGNORE_DUPS
 
-# 为历史纪录中的命令添加时间戳
+# Add timestamp for history commands.
 #setopt EXTENDED_HISTORY
 
-# 启用 cd 命令的历史纪录，cd -[TAB]进入历史路径
+# cd - to enter history path.
 setopt AUTO_PUSHD
 
-# 相同的历史路径只保留一个
+# Ignore duplicate history path.
 setopt PUSHD_IGNORE_DUPS
 
-# 在命令前添加空格，不将此命令添加到纪录文件中
+# Ignore command with a space ahead.
 setopt HIST_IGNORE_SPACE
 
 # End of lines configured by zsh-newuser-install
 
-# Enable ls colors
+# Enable ls colors.
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 # Colors!
@@ -112,8 +112,88 @@ export purple='\e[35m'
 export cyan='\e[36m'
 export white='\e[37m'
 
+######################
+# User Configuration #
+######################
+
+# Personal PATH.
+export PATH="$HOME/vendors/build:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+# Launch Emacs from terminal on macOS.
+if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
+  export PATH="/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:$PATH"
+  alias emacs="Emacs"
+fi
+
+## Lisp.
+# Ruby.
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+## C-family.
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# .NET SDK tools.
+export PATH="$PATH:$HOME/.dotnet/tools"
+
+## Rust.
+export PATH="$PATH:$HOME/.cargo/bin"
+
+## Java.
+export JAVA_TOOL_OPTIONS="-Duser.language=en \
+                          -Duser.region=US \
+                          -Dfile.encoding=UTF-8"
+
+# Andriod.
+export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
+export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
+
+## GO.
+export GOPATH=$HOME/go
+export PATH="$GOPATH/bin:$PATH"
+
+## Flutter.
+export PATH="$HOME/flutter/bin:$PATH"
+PUB_HOSTED_URL=https://pub.flutter-io.cn
+FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+
+## Asdf.
+[[ -f "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
+# Append completions to fpath.
+fpath=(${ASDF_DIR}/completions $fpath)
+
+# Ruby.
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+
+## Node.js
+
+# fnm
+export PATH="/home/dalu/.fnm:$PATH"
+if command -v fnm > /dev/null 2>&1; then
+    eval "$(fnm env --use-on-cd)"
+fi
+
+# pnpm
+export PNPM_HOME="$HOME/.local/lib/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+## Python
+export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
+export PATH="${PYENV_ROOT}/bin:${PATH}"
+
+## HOMEBREW
+
+# WSL
+[ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# 关闭 homebrew 自动更新
+export HOMEBREW_NO_AUTO_UPDATE=true
+
+# N 天后清除下载的安装包
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
+
 ###########
-# ENHANCE #
+# Enhance #
 ###########
 
 # ls colors
@@ -144,14 +224,30 @@ bindkey  '\C-x\C-e' edit-command-line # EMACS style
 bindkey '^r' history-incremental-search-backward
 
 ############
-# FUNCTION #
+# Function #
 ############
 
-# Load `function.zsh` if it exists.
+# Load `function.zsh' if exists.
 [[ -f $ZSH/function.zsh ]] && source $ZSH/function.zsh
 
+# Lazyload pyenv
+if (( $+commands[pyenv] )) &>/dev/null; then
+    export PATH="${PYENV_ROOT}/shims:${PATH}"
+    _my_lazyload_command_pyenv() {
+        eval "$(command pyenv init -)"
+        if [[ -n "${ZSH_PYENV_LAZY_VIRTUALENV}" ]]; then
+            eval "$(command pyenv virtualenv-init -)"
+        fi
+    }
+    _my_lazyload_completion_pyenv() {
+        source "${PYENV_ROOT}/completions/pyenv.zsh"
+    }
+    my_lazyload_add_command pyenv
+    my_lazyload_add_completion pyenv
+fi
+
 #########
-# ALIAS #
+# Alias #
 #########
 
 # Enable color support.
@@ -171,7 +267,7 @@ fi
 [[ -f "$ZSH/alias.zsh" ]] && source "$ZSH/alias.zsh"
 
 ##############
-# COMPLETION #
+# Completion #
 ##############
 
 # Enable additional programmable completion features.
@@ -183,123 +279,6 @@ fi
 
 # Load `.zshrc.local` if it exists.
 [[ -f "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
-
-######################
-# User Configuration #
-######################
-
-# Personal PATH
-export PATH="$HOME/vendors/build:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-
-# launch Emacs from terminal on macOS
-if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
-  export PATH="/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:$PATH"
-  alias emacs="Emacs"
-fi
-
-## Lisp
-# Ruby
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-## C-family
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-
-# .NET SDK tools
-export PATH="$PATH:$HOME/.dotnet/tools"
-
-## Rust
-export PATH="$PATH:$HOME/.cargo/bin"
-
-## Java
-export JAVA_TOOL_OPTIONS="-Duser.language=en \
-                          -Duser.region=US \
-                          -Dfile.encoding=UTF-8"
-
-# andriod
-export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
-export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
-
-## GO
-export GOPATH=$HOME/go
-export PATH="$GOPATH/bin:$PATH"
-
-## Flutter
-export PATH="$HOME/flutter/bin:$PATH"
-PUB_HOSTED_URL=https://pub.flutter-io.cn
-FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
-
-## Node.js
-
-# # N
-# export N_PREFIX=$HOME
-# export PATH=$N_PREFIX/bin:$PATH
-
-# fnm
-export PATH=/home/dalu/.fnm:$PATH
-if command -v fnm > /dev/null 2>&1; then
-    eval "$(fnm env --use-on-cd)"
-fi
-
-# pnpm
-export PNPM_HOME="$HOME/.local/lib/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
-## Python
-export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
-export PATH="${PYENV_ROOT}/bin:${PATH}"
-
-# Lazyload pyenv
-if (( $+commands[pyenv] )) &>/dev/null; then
-    export PATH="${PYENV_ROOT}/shims:${PATH}"
-
-    _my_lazyload_command_pyenv() {
-        eval "$(command pyenv init -)"
-        if [[ -n "${ZSH_PYENV_LAZY_VIRTUALENV}" ]]; then
-            eval "$(command pyenv virtualenv-init -)"
-        fi
-    }
-
-    _my_lazyload_completion_pyenv() {
-        source "${PYENV_ROOT}/completions/pyenv.zsh"
-    }
-
-    my_lazyload_add_command pyenv
-    my_lazyload_add_completion pyenv
-fi
-
-## Ruby
-export RBENV_ROOT="${RBENV_ROOT:=${HOME}/.rbenv}"
-export PATH="${RBENV_ROOT}/bin:${PATH}"
-
-# Lazyload rbenv
-if (( $+commands[rbenv] )) &>/dev/null; then
-    export PATH="${RBENV_ROOT}/shims:${PATH}"
-
-    _my_lazyload_command_rbenv() {
-        eval "$(rbenv init -)"
-    }
-
-    _my_lazyload_completion_rbenv() {
-        source "${RBENV_ROOT}/completions/rbenv.zsh"
-    }
-
-    my_lazyload_add_command rbenv
-    my_lazyload_add_completion rbenv
-fi
-
-## HOMEBREW
-
-export PATH="/usr/local/sbin:$PATH"
-
-# WSL
-[ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# 关闭 homebrew 自动更新
-export HOMEBREW_NO_AUTO_UPDATE=true
-
-# N 天后清除下载的安装包
-export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 
 ##########
 # PROMPT #
@@ -334,7 +313,7 @@ fi
 # PLUGINS #
 ###########
 
-# GTAGS
+# GTAGS.
 if [[ -f $HOME/.globalrc ]]; then
     export GTAGSCONF=$HOME/.globalrc
     export GTAGSLABEL=native-pygments
@@ -351,7 +330,7 @@ fi
 
 [ -f $ZSH/plugins/colorman.sh ] && source $ZSH/plugins/colorman.sh
 
-# Lazyload thefuck
+# Lazyload `thefuck'.
 if (( $+commands[thefuck] )) &>/dev/null; then
     _my_lazyload_command_fuck() {
         eval $(thefuck --alias)
@@ -360,16 +339,16 @@ if (( $+commands[thefuck] )) &>/dev/null; then
     my_lazyload_add_command fuck
 fi
 
-# zsh-completions
+# zsh-completions.
 [ -d $ZSH/plugins/zsh-completions ] && source $ZSH/plugins/zsh-completions/zsh-completions.plugin.zsh
 
-# zsh-autosuggestions
+# zsh-autosuggestions.
 [ -d $ZSH/plugins/zsh-autosuggestions ] && source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# zsh-syntax-highlighting
+# zsh-syntax-highlighting.
 [ -d $ZSH/plugins/zsh-syntax-highlighting ] && source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# rust tools
+# Rust tools.
 if command -v zoxide > /dev/null 2>&1; then
     eval "$(zoxide init zsh)"
 fi
@@ -378,7 +357,7 @@ fi
 # PATH #
 ########
 
-# remove duplicate PATH
+# Remove duplicate PATH.
 # https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
 if [ -n "$PATH" ]; then
     old_PATH=$PATH:; PATH=
@@ -396,7 +375,7 @@ fi
 
 export PATH
 
-# add the manpath
+# Add the manpath.
 export MANPATH="/usr/local/share/man:${MANPATH}"
 
 #########

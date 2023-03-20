@@ -12,6 +12,7 @@ coreutils
 cowsay
 dbus
 deno
+elixir-ls
 ffmpeg
 findutils
 fnm
@@ -27,6 +28,7 @@ gnu-tar
 gnupg
 go
 google-java-format
+gradle
 grep
 highlight
 hugo
@@ -47,7 +49,6 @@ opencc
 openssh
 openssl@3
 pandoc
-php
 php-cs-fixer
 poppler
 reattach-to-user-namespace
@@ -64,6 +65,7 @@ tree
 vim
 w3m
 wget
+yarn
 you-get
 youtube-dl
 zlib

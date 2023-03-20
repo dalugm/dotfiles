@@ -134,10 +134,10 @@ vcs_info_wrapper() {
 my_lazyload_add_command() {
     local command_name=$1
     eval "${command_name}() { \
-        unfunction ${command_name}; \
-        _my_lazyload_command_${command_name}; \
-        return ${command_name} \"\$@\"; \
-        }"
+                    unfunction ${command_name}; \
+                    _my_lazyload_command_${command_name}; \
+                    return ${command_name} \"\$@\"; \
+    }"
 }
 
 ## Setup auto completion for lazyload
@@ -150,8 +150,8 @@ my_lazyload_add_command() {
 my_lazyload_add_completion() {
     local completion_name="_my_lazyload_completion_$1"
     eval "${completion_name}() { \
-        compdef -d $1; \
-        _my_lazyload_completion_$1; \
+                       compdef -d $1; \
+                       _my_lazyload_completion_$1; \
     }"
     compdef $completion_name $1
 }
