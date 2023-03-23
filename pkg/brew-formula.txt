@@ -40,7 +40,7 @@ librsvg
 llvm
 luarocks
 mailutils
-mariadb
+maven
 mit-scheme
 multimarkdown
 nano
