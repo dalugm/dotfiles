@@ -163,7 +163,9 @@ FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # Ruby.
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+if command -v brew > /dev/null 2>&1; then
+    export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+fi
 
 ## Node.js
 

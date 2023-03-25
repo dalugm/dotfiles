@@ -159,6 +159,21 @@ export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 
+## Flutter.
+export PATH="$HOME/flutter/bin:$PATH"
+PUB_HOSTED_URL=https://pub.flutter-io.cn
+FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+
+## Asdf.
+[[ -f "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
+# Append completions to fpath.
+fpath=(${ASDF_DIR}/completions $fpath)
+
+# Ruby.
+if command -v brew > /dev/null 2>&1; then
+    export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+fi
+
 ## Node.js
 
 # # N
@@ -234,6 +249,3 @@ if [ -n "$PATH" ]; then
 fi
 
 export PATH
-
-# add the manpath
-export MANPATH="/usr/local/share/man:${MANPATH}"
