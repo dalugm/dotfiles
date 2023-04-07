@@ -185,6 +185,8 @@ export PATH="${PYENV_ROOT}/bin:${PATH}"
 
 ## HOMEBREW
 
+export PATH="/usr/local/sbin:$PATH"
+
 # WSL
 [ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 

@@ -1,4 +1,5 @@
 aria2
+aspell
 automake
 bash
 bear
@@ -7,9 +8,11 @@ clisp
 cloc
 cmake
 cmatrix
+cmocka
 codespell
 coreutils
 cowsay
+curl
 dbus
 deno
 elixir-ls
@@ -37,6 +40,7 @@ jq
 libgccjit
 libiconv
 librsvg
+libzip
 llvm
 luarocks
 mailutils
@@ -49,7 +53,6 @@ opencc
 openssh
 openssl@3
 pandoc
-php-cs-fixer
 poppler
 reattach-to-user-namespace
 sbcl
@@ -57,6 +60,7 @@ screen
 screenfetch
 shellcheck
 sl
+stylua
 texinfo
 the_silver_searcher
 thefuck

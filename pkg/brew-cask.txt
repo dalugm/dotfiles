@@ -4,6 +4,7 @@ baidunetdisk
 cool-retro-term
 font-fira-code
 font-gnu-unifont
+font-jetbrains-mono
 font-lxgw-wenkai
 font-sarasa-gothic
 iterm2
@@ -14,4 +15,3 @@ monitorcontrol
 mpv
 snipaste
 squirrel
-transmission
