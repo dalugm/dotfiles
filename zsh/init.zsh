@@ -122,22 +122,18 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 # Launch Emacs from terminal on macOS.
 if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
-  export PATH="/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:$PATH"
-  alias emacs="Emacs"
+    export PATH="/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:$PATH"
+    alias emacs="Emacs"
 fi
-
-## Lisp.
-# Ruby.
-export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 ## C-family.
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-# .NET SDK tools.
-export PATH="$PATH:$HOME/.dotnet/tools"
-
 ## Rust.
 export PATH="$PATH:$HOME/.cargo/bin"
+
+# .NET SDK tools.
+export PATH="$PATH:$HOME/.dotnet/tools"
 
 ## Java.
 export JAVA_TOOL_OPTIONS="-Duser.language=en \
@@ -149,7 +145,7 @@ export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 
 ## GO.
-export GOPATH=$HOME/go
+export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 ## Flutter.
@@ -170,14 +166,17 @@ fi
 ## Node.js
 
 # fnm
-export PATH="/home/dalu/.fnm:$PATH"
-if command -v fnm > /dev/null 2>&1; then
+if [[ -d "$HOME/.fnm" ]]; then
+    export PATH="$HOME/.fnm:$PATH"
     eval "$(fnm env --use-on-cd)"
 fi
 
 # pnpm
 export PNPM_HOME="$HOME/.local/lib/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 ## Python
 export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
