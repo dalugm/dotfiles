@@ -238,7 +238,7 @@ if (( $+commands[pyenv] )) &>/dev/null; then
     export PATH="${PYENV_ROOT}/shims:${PATH}"
     _my_lazyload_command_pyenv() {
         eval "$(command pyenv init -)"
-        if [[ -n "${ZSH_PYENV_LAZY_VIRTUALENV}" ]]; then
+        if [[ -d "${PYENV}/plugins/pyenv-virtualenv" ]]; then
             eval "$(command pyenv virtualenv-init -)"
         fi
     }
