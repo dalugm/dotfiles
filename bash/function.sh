@@ -126,8 +126,8 @@ git_prompt_info() {
 my_lazyload_add_command() {
     local command_name=$1
     eval "${command_name}() { \
-        unset -f ${command_name}; \
-        _my_lazyload_command_${command_name}; \
-        return ${command_name} \"\$@\"; \
+                unset -f ${command_name}; \
+                _my_lazyload_command_${command_name}; \
+                return ${command_name} \"\$@\"; \
         }"
 }

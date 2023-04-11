@@ -128,26 +128,26 @@ PS1='[\u@\h \W]\$ '
 # User Configuration #
 ######################
 
-# Personal PATH
+# Personal PATH.
 export PATH="$HOME/vendors/build:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
-# launch Emacs from terminal on macOS
+# Launch Emacs from terminal on macOS.
 if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
   export PATH="/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:$PATH"
   alias emacs="Emacs"
 fi
 
-## C-family
+## C.
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-# .NET SDK tools
+# .NET.
 export PATH="$PATH:$HOME/.dotnet/tools"
 
-## Rust
-export PATH="$PATH:$HOME/.cargo/bin"
+## Rust.
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-## Java
+## Java.
 export JAVA_TOOL_OPTIONS="-Duser.language=en \
                           -Duser.region=US \
                           -Dfile.encoding=UTF-8"
@@ -169,6 +169,10 @@ FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 # Append completions to fpath.
 fpath=(${ASDF_DIR}/completions $fpath)
 
+# Erlang.
+# Skip java dependency.
+export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
+
 # Ruby.
 if command -v brew > /dev/null 2>&1; then
     export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
@@ -176,28 +180,27 @@ fi
 
 ## Node.js
 
-# # N
-# export N_PREFIX=$HOME
-# export PATH=$N_PREFIX/bin:$PATH
-
 # fnm
-export PATH="$HOME/.fnm:$PATH"
-if command -v fnm > /dev/null 2>&1; then
+if [[ -d "$HOME/.fnm" ]]; then
+    export PATH="$HOME/.fnm:$PATH"
     eval "$(fnm env --use-on-cd)"
 fi
 
-## HOMEBREW
+# pnpm
+export PNPM_HOME="$HOME/.local/lib/pnpm"
+case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
+## HOMEBREW.
+
+export HOMEBREW_NO_AUTO_UPDATE=true
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 export PATH="/usr/local/sbin:$PATH"
 
-# WSL
+# WSL.
 [ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# 关闭 homebrew 自动更新
-export HOMEBREW_NO_AUTO_UPDATE=true
-
-# N 天后清除下载的安装包
-export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 
 ###########
 # PLUGINS #

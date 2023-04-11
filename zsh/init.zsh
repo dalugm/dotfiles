@@ -126,13 +126,13 @@ if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
     alias emacs="Emacs"
 fi
 
-## C-family.
+## C.
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 ## Rust.
-export PATH="$PATH:$HOME/.cargo/bin"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-# .NET SDK tools.
+# .NET.
 export PATH="$PATH:$HOME/.dotnet/tools"
 
 ## Java.
@@ -158,6 +158,10 @@ FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 # Append completions to fpath.
 fpath=(${ASDF_DIR}/completions $fpath)
 
+# Erlang.
+# Skip java dependency.
+export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
+
 # Ruby.
 if command -v brew > /dev/null 2>&1; then
     export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
@@ -178,22 +182,19 @@ case ":$PATH:" in
     *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-## Python
+## Python.
 export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
 export PATH="${PYENV_ROOT}/bin:${PATH}"
 
-## HOMEBREW
+## HOMEBREW.
 
+export HOMEBREW_NO_AUTO_UPDATE=true
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 export PATH="/usr/local/sbin:$PATH"
 
-# WSL
+
+# WSL.
 [ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# 关闭 homebrew 自动更新
-export HOMEBREW_NO_AUTO_UPDATE=true
-
-# N 天后清除下载的安装包
-export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 
 ###########
 # Enhance #
