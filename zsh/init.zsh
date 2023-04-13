@@ -159,8 +159,12 @@ FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # Erlang.
-# Skip java dependency.
-export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
+if command -v javac > /dev/null 2>&1; then
+    export KERL_CONFIGURE_OPTIONS="--disable-debug"
+else
+    # Skip java dependency if Java is unavailable.
+    export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
+fi
 
 # Ruby.
 if command -v brew > /dev/null 2>&1; then
