@@ -6,15 +6,20 @@
 [user]
 	name = dalu
 	email = mou.tong@outlook.com
+[sendemail]
+	smtpEncryption = starttls
+	smtpServer = smtp-mail.outlook.com
+	smtpServerPort = 587
+	smtpUser = mou.tong@outlook.com
 [color]
 	ui = true
 [core]
 	excludesfile = ~/.gitignore
 	quotePath = false
 	editor = emacs -nw
-	# avoid converting anything automagically
+	# Avoid converting anything automagically.
 	autocrlf = false
-	# avoid Windows problem
+	# Avoid Windows problem.
 	filemode = false
 [credential]
 	helper = store
@@ -27,22 +32,20 @@
 [http]
 	sslverify = false
 [alias]
-	# the acronym stands for "subtree add"
+	# The acronym stands for "subtree add".
 	sba = "!f() { git subtree add --prefix $1 $2 master --squash; }; f"
-	# the acronym stands for "subtree update"
+	# The acronym stands for "subtree update".
 	sbu = "!f() { git subtree pull --prefix $1 $2 master --squash; }; f"
-	# good-looking git log
+	# Good-looking git log.
 	hist = log --graph --pretty=format:'%C(red)%h %C(yellow)%d %C(cyan)[%an]%Creset %s %C(green)(%cr)%Creset' --abbrev-commit --date=short
-	# shallow clone
 	sc = clone --depth=1
-	# useful command
 	cb = checkout -b
 	ci = commit
 	co = checkout
 	cp = cherry-pick
 	st = status
 	df = diff
-	# Look up
+	# Look up.
 	author = !git log --pretty=format:'%an <%ae>' | sort -u
 	who = shortlog -sne
 [github]
