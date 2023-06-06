@@ -6,9 +6,12 @@ bear
 chezscheme
 clisp
 cloc
+clojure-lsp/brew/clojure-lsp-native
+clojure/tools/clojure
 cmake
 cmatrix
 cmocka
+cocoapods
 codespell
 coreutils
 cowsay
@@ -36,6 +39,7 @@ grep
 highlight
 hugo
 jdtls
+jpeg
 jq
 libgccjit
 libiconv
@@ -44,14 +48,16 @@ libzip
 llvm
 luarocks
 mailutils
+make
 maven
 mit-scheme
 multimarkdown
 nano
 neovim
+node
 opencc
 openssh
-openssl@3
+p7zip
 pandoc
 poppler
 reattach-to-user-namespace
@@ -60,6 +66,7 @@ screen
 screenfetch
 shellcheck
 sl
+solargraph
 stylua
 texinfo
 the_silver_searcher
