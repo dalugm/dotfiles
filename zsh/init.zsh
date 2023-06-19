@@ -133,7 +133,7 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # .NET.
-export PATH="$PATH:$HOME/.dotnet/tools"
+export PATH="$HOME/.dotnet/tools:$PATH"
 
 ## Java.
 export JAVA_TOOL_OPTIONS="-Duser.language=en \
@@ -153,10 +153,10 @@ export PATH="$HOME/flutter/bin:$PATH"
 PUB_HOSTED_URL=https://pub.flutter-io.cn
 FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
-## Asdf.
-[[ -f "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
-# Append completions to fpath.
-fpath=(${ASDF_DIR}/completions $fpath)
+## Rtx.
+if command -v rtx > /dev/null 2>&1; then
+    eval "$(rtx activate zsh)"
+fi
 
 # Erlang.
 if command -v javac > /dev/null 2>&1; then
@@ -173,22 +173,12 @@ fi
 
 ## Node.js
 
-# fnm
-if [[ -d "$HOME/.fnm" ]]; then
-    export PATH="$HOME/.fnm:$PATH"
-    eval "$(fnm env --use-on-cd)"
-fi
-
 # pnpm
 export PNPM_HOME="$HOME/.local/lib/pnpm"
 case ":$PATH:" in
     *":$PNPM_HOME:"*) ;;
     *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-
-## Python.
-export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
-export PATH="${PYENV_ROOT}/bin:${PATH}"
 
 ## HOMEBREW.
 

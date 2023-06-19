@@ -21,7 +21,6 @@ deno
 elixir-ls
 ffmpeg
 findutils
-fnm
 fortune
 gawk
 gcc
@@ -57,10 +56,12 @@ neovim
 node
 opencc
 openssh
+openssl@3
 p7zip
 pandoc
 poppler
 reattach-to-user-namespace
+rtx
 sbcl
 screen
 screenfetch
@@ -75,7 +76,6 @@ tmux
 tree
 vim
 w3m
-wget
 yarn
 you-get
 youtube-dl
