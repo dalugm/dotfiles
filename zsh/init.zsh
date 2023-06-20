@@ -156,6 +156,9 @@ FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 ## Rtx.
 if command -v rtx > /dev/null 2>&1; then
     eval "$(rtx activate zsh)"
+elif [[ -d "$HOME/.local/share/rtx/bin" ]]; then
+    export PATH="$HOME/.local/share/rtx/bin:$PATH"
+    eval "$(rtx activate zsh)"
 fi
 
 # Erlang.
@@ -227,22 +230,6 @@ bindkey '^r' history-incremental-search-backward
 
 # Load `function.zsh' if exists.
 [[ -f $ZSH/function.zsh ]] && source $ZSH/function.zsh
-
-# Lazyload pyenv
-if (( $+commands[pyenv] )) &>/dev/null; then
-    export PATH="${PYENV_ROOT}/shims:${PATH}"
-    _my_lazyload_command_pyenv() {
-        eval "$(command pyenv init -)"
-        if [[ -d "${PYENV}/plugins/pyenv-virtualenv" ]]; then
-            eval "$(command pyenv virtualenv-init -)"
-        fi
-    }
-    _my_lazyload_completion_pyenv() {
-        source "${PYENV_ROOT}/completions/pyenv.zsh"
-    }
-    my_lazyload_add_command pyenv
-    my_lazyload_add_completion pyenv
-fi
 
 #########
 # Alias #
