@@ -132,13 +132,11 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 ## Rust.
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-# .NET.
+# DOTNET.
 export PATH="$HOME/.dotnet/tools:$PATH"
 
 ## Java.
-export JAVA_TOOL_OPTIONS="-Duser.language=en \
-                          -Duser.region=US \
-                          -Dfile.encoding=UTF-8"
+export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
 
 # Andriod.
 export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
@@ -162,11 +160,16 @@ elif [[ -d "$HOME/.local/share/rtx/bin" ]]; then
 fi
 
 # Erlang.
+export KERL_BUILD_DOCS="yes"
 if command -v javac > /dev/null 2>&1; then
     export KERL_CONFIGURE_OPTIONS="--disable-debug"
 else
     # Skip java dependency if Java is unavailable.
     export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
+fi
+
+if command -v brew > /dev/null 2>&1; then
+    export KERL_CONFIGURE_OPTIONS="--with-ssl=$(brew --prefix openssl@1.1)"
 fi
 
 # Ruby.
