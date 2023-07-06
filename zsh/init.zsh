@@ -122,7 +122,8 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 # Launch Emacs from terminal on macOS.
 if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
-    export PATH="/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin:$PATH"
+    # Put behind PATH to avoid overwritting universal-ctags.
+    export PATH="$PATH:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin"
     alias emacs="Emacs"
 fi
 
