@@ -1,7 +1,9 @@
+clojure-lsp/brew
+clojure/tools
 homebrew/cask
-homebrew/cask-drivers
 homebrew/cask-fonts
 homebrew/cask-versions
 homebrew/command-not-found
 homebrew/core
 homebrew/services
+jdxcode/tap
