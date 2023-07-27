@@ -149,8 +149,8 @@ export PATH="$GOPATH/bin:$PATH"
 
 ## Flutter.
 export PATH="$HOME/flutter/bin:$PATH"
-PUB_HOSTED_URL=https://pub.flutter-io.cn
-FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
 ## Rtx.
 if command -v rtx > /dev/null 2>&1; then
