@@ -138,38 +138,44 @@ if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
   alias emacs="Emacs"
 fi
 
-## C.
+# C.
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-# .NET.
-export PATH="$PATH:$HOME/.dotnet/tools"
-
-## Rust.
+# Rust.
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-## Java.
-export JAVA_TOOL_OPTIONS="-Duser.language=en \
-                          -Duser.region=US \
-                          -Dfile.encoding=UTF-8"
+# DOTNET.
+export PATH="$HOME/.dotnet/tools:$PATH"
 
-# andriod
+# Java.
+export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
+
+# Andriod.
 export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
+export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 
-## GO
-export GOPATH=$HOME/go
+# GO.
+export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
-## Flutter.
+# Flutter.
 export PATH="$HOME/flutter/bin:$PATH"
-PUB_HOSTED_URL=https://pub.flutter-io.cn
-FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
-## Asdf.
-[[ -f "$HOME/.asdf/asdf.sh" ]] && source "$HOME/.asdf/asdf.sh"
-# Append completions to fpath.
-fpath=(${ASDF_DIR}/completions $fpath)
+# Rtx.
+if command -v rtx > /dev/null 2>&1; then
+    eval "$(rtx activate zsh)"
+elif [[ -d "$HOME/.local/share/rtx/bin" ]]; then
+    export PATH="$HOME/.local/share/rtx/bin:$PATH"
+    eval "$(rtx activate zsh)"
+fi
+
+# Haskell.
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
 # Erlang.
+export KERL_BUILD_DOCS="yes"
 if command -v javac > /dev/null 2>&1; then
     export KERL_CONFIGURE_OPTIONS="--disable-debug"
 else
@@ -177,6 +183,9 @@ else
     export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
 fi
 
+if command -v brew > /dev/null 2>&1; then
+    export KERL_CONFIGURE_OPTIONS="--with-ssl=$(brew --prefix openssl@1.1)"
+fi
 
 # Ruby.
 if command -v brew > /dev/null 2>&1; then
@@ -184,12 +193,6 @@ if command -v brew > /dev/null 2>&1; then
 fi
 
 ## Node.js
-
-# fnm
-if [[ -d "$HOME/.fnm" ]]; then
-    export PATH="$HOME/.fnm:$PATH"
-    eval "$(fnm env --use-on-cd)"
-fi
 
 # pnpm
 export PNPM_HOME="$HOME/.local/lib/pnpm"
@@ -203,9 +206,6 @@ esac
 export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 export PATH="/usr/local/sbin:$PATH"
-
-# WSL.
-[ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 ###########
 # PLUGINS #

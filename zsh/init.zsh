@@ -127,38 +127,41 @@ if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
     alias emacs="Emacs"
 fi
 
-## C.
+# C.
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-## Rust.
+# Rust.
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # DOTNET.
 export PATH="$HOME/.dotnet/tools:$PATH"
 
-## Java.
+# Java.
 export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
 
 # Andriod.
 export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 
-## GO.
+# GO.
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
-## Flutter.
+# Flutter.
 export PATH="$HOME/flutter/bin:$PATH"
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
-## Rtx.
+# Rtx.
 if command -v rtx > /dev/null 2>&1; then
     eval "$(rtx activate zsh)"
 elif [[ -d "$HOME/.local/share/rtx/bin" ]]; then
     export PATH="$HOME/.local/share/rtx/bin:$PATH"
     eval "$(rtx activate zsh)"
 fi
+
+# Haskell.
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
 
 # Erlang.
 export KERL_BUILD_DOCS="yes"
@@ -192,10 +195,6 @@ esac
 export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 export PATH="/usr/local/sbin:$PATH"
-
-
-# WSL.
-[ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 ###########
 # Enhance #
