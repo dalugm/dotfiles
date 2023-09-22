@@ -137,6 +137,7 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="$HOME/.dotnet/tools:$PATH"
 
 # Java.
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
 
 # Andriod.
