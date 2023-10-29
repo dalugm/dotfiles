@@ -4,8 +4,8 @@
 
 - On Windows, the profile is located at =$profile=.
 
-  Which value can be =~/Documents/WindowsPowerShell/profile.ps1= or
-  =~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1=
+  Which value can be =~/Documents/PowerShell/profile.ps1= or
+  =~/Documents/WindowsPowerShell/profile.ps1=
 
 - For macOS/Linux, the profile is located at
-  =~/.config/powershell/Microsoft.PowerShell_profile.ps1=.
+  =~/.config/powershell/profile.ps1=.
