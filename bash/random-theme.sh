@@ -1,27 +1,35 @@
-# Make themes a unique array
-typeset -a themes
+#!/usr/bin/env bash
 
-if [[ "${PROMPT_RANDOM_CANDIDATES}" = array && ${#PROMPT_RANDOM_CANDIDATES[@]} -gt 0 ]]; then
-    # Use PROMPT_RANDOM_CANDIDATES if properly defined
-    themes=(${(@)PROMPT_RANDOM_CANDIDATES:#random})
+set -eo pipefail
+
+# Strict check if variable is array.
+if [[ $(declare -p PROMPT_RANDOM_CANDIDATES 2>/dev/null) =~ 'declare -a' ]]; then
+    themes=("${PROMPT_RANDOM_CANDIDATES[@]}")
+elif [[ -n "$PROMPT_RANDOM_CANDIDATES" ]]; then
+    echo "PROMPT_RANDOM_CANDIDATES not an array!" >&2
+    exit 1
 else
-    # Look for all themes under $BASH/themes
-    themes=("$BASH"/themes/*.bash-theme)
+    themes=("$BASH/themes/"*.bash-theme)
 fi
 
-# Choose a theme out of the pool of candidates
-N=$RANDOM%${#themes[@]}
-RANDOM_THEME="${themes[$N]}"
+# Check if themes array not empty.
+((${#themes[@]})) || {
+    echo "No themes found" >&2
+    exit 1
+}
 
-# Source theme
-if [[ -f "$RANDOM_THEME" ]]; then
-    source "$RANDOM_THEME"
+# Randomly pick a theme.
+theme="${themes[RANDOM % ${#themes[@]}]}"
+
+# Source theme if exists.
+if [[ -f "$theme" ]]; then
+    source "$theme" || exit
+    # Show loaded theme name
+    theme="${theme##*/}"
+    theme="${theme%.*}"
+    echo "Theme '$theme' loaded"
+    return 0
 else
-    echo "[bash] '${RANDOM_THEME}' not found"
+    echo "Theme $theme not found" >&2
     return 1
 fi
-
-RANDOM_THEME=${RANDOM_THEME##*/}
-RANDOM_THEME=${RANDOM_THEME%.*}
-
-echo "[bash] Theme '${RANDOM_THEME}' loaded"

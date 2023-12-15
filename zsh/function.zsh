@@ -1,54 +1,52 @@
-#!/usr/env/bin bash
+#!/usr/bin/env zsh
 
-#
-## Lists all defined functions.
-#
-list_functions() {
-    declare -F | grep -v '\-f _'
+# Add $1 as path to PATH, do not effect PATH if path not exists.
+add_path() {
+    local arg_path="$1"
+
+    [[ ":$PATH:" != *":$arg_path:"* ]] && PATH="$arg_path:$PATH"
 }
 
-#
-## Creates new directories and then enters the last one.
-#
+# Like `add_path()`, but put behind PATH.
+add_path_behind() {
+    local arg_path="$1"
+
+    [[ ":$PATH:" != *":$arg_path:"* ]] && PATH="$PATH:$arg_path"
+}
+
+# Check command whether available.
+check_cmd() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Creates new directories and then enters the last one.
 mkd() {
     mkdir -p "$@" && cd "$_" || exit 1
 }
 
-#
-## Searches for text within bash history.
-#
+# Searches for text within bash history.
 greph() {
     command -p grep --color=always -i -- "$*" "${HISTFILE}" | less -RX
 }
 
-#
-## Searches for text within the current directory.
-#
+# Searches for text within the current directory.
 grepd() {
     command -p grep --color=always -ir --exclude-dir={.git,node_modules} -- "$*" "${PWD}" | less -RX
 }
 
-#
-## Converts text files with DOS line endings to Unix line endings.
-#
+# Converts text files with DOS line endings to Unix line endings.
 crlf2lf() {
     cat "$@" <&0 | sed -e 's/\r$//g'
 }
 
-#
-## Converts text files with Unix line endings to DOS line endings.
-#
+# Converts text files with Unix line endings to DOS line endings.
 lf2crlf() {
     cat "$@" <&0 | sed -e 's/$/\r/g'
 }
 
-#######
-# GIT #
-#######
+### Git.
 
-#
-## Execute `git pull` on every directory within the current directory.
-#
+# Execute `git pull` on every directory within the current directory.
 git_update_all() {
     find . \
          -maxdepth 1 \
@@ -58,20 +56,18 @@ git_update_all() {
          -execdir git --git-dir={}/.git --work-tree="${PWD}/{}" pull --rebase \;
 }
 
-#
-## Prints Git branch name and working tree status for prompt.
-#
+# Prints Git branch name and working tree status for prompt.
 git_prompt_info() {
     local git_branch=''
     local git_status=''
 
     # Do nothing if the current directory is not a Git repository.
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) != 'true' ]]; then
+    if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) != 'true' ]]; then
         return
     fi
 
     # Do nothing if the current directory is inside `.git`.
-    if [[ $(git rev-parse --is-inside-git-dir 2> /dev/null) == 'true' ]]; then
+    if [[ $(git rev-parse --is-inside-git-dir 2>/dev/null) == 'true' ]]; then
         return
     fi
 
@@ -91,7 +87,7 @@ git_prompt_info() {
     fi
 
     # Check for stashed files.
-    if git rev-parse --verify refs/stash &> /dev/null; then
+    if git rev-parse --verify refs/stash &>/dev/null; then
         git_status="${git_status}$"
     fi
 
@@ -100,14 +96,14 @@ git_prompt_info() {
     fi
 
     # Get the branch name or short commit SHA.
-    git_branch="$(git rev-parse --abbrev-ref HEAD 2> /dev/null \
-    || git rev-parse --short HEAD 2> /dev/null \
-    || printf '(unknown)')"
+    git_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null ||
+        git rev-parse --short HEAD 2>/dev/null ||
+        printf '(unknown)')"
 
     printf "%s" "${1}${git_branch}${git_status}${2}"
 }
 
-# or use pre_cmd, see man zshcontrib
+# or use pre_cmd, see `man zshcontrib`
 vcs_info_wrapper() {
     vcs_info
     if [ -n "$vcs_info_msg_0_" ]; then
@@ -115,13 +111,7 @@ vcs_info_wrapper() {
     fi
 }
 
-#############
-# LAZY LOAD #
-#############
-
-## https://best33.com/283.moe
-## 基本原理：
-# 声明一个占位函数，当执行这个函数时完成对真实命令的初始化、并移除命令占位。
+### Lazy load.
 
 ## Setup a mock function for lazyload
 ## Principle
@@ -156,17 +146,14 @@ my_lazyload_add_completion() {
     compdef $completion_name $1
 }
 
-########
-# MISC #
-########
+### Misc.
 
-# 在命令前插入 sudo
-sudo-command-line() {
+# Insert sudo before command.
+sudo_command_line() {
     [[ -z $BUFFER ]] && zle up-history
     [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
-    # 光标移动到行末
     zle end-of-line
 }
 
-zle -N sudo-command-line
-bindkey '\e\e' sudo-command-line
+zle -N sudo_command_line
+bindkey '\e\e' sudo_command_line

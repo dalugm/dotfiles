@@ -2,7 +2,7 @@
 
 # ${HOME}/.zshrc: executed by zsh(1) for non-login shells.
 # If not running interactively, don't do anything.
-[ -z "$PS1" ] && return
+[[ -z "$PS1" ]] && return
 
 # For Performance Debug purpose.
 export MY_ENABLE_PERFORMANCE_PROFILING="false"
@@ -25,9 +25,7 @@ fi
 # Distribute zshrc into smaller, more specific files.
 export ZSH=$HOME/.config/zsh
 
-##########
-# Export #
-##########
+### Basic.
 
 # Set the default language.
 export LANG=en_US.UTF-8
@@ -39,6 +37,9 @@ export LC_COLLATE='C'
 # export TERM=xterm-24bit
 # export TERM=xterm-256color
 
+# ls colors.
+autoload -U colors && colors
+
 # Preferred editor for local and remote sessions.
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
@@ -48,9 +49,7 @@ else
     export ALTERNATE_EDITOR='vim'
 fi
 
-#
-## History.
-#
+### History.
 
 # Lines configured by zsh-newuser-install.
 export HISTFILE=~/.zsh_history
@@ -92,124 +91,7 @@ setopt PUSHD_IGNORE_DUPS
 # Ignore command with a space ahead.
 setopt HIST_IGNORE_SPACE
 
-# End of lines configured by zsh-newuser-install
-
-# Enable ls colors.
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
-
-# Colors!
-export reset='\e[0m'
-export gray='\e[30m'
-export red='\e[31m'
-export bold_red='\e[1;31m'
-export green='\e[32m'
-export bold_green='\e[1;32m'
-export yellow='\e[33m'
-export bold_yellow='\e[1;33m'
-export blue='\e[34m'
-export bold_blue='\e[1;34m'
-export purple='\e[35m'
-export cyan='\e[36m'
-export white='\e[37m'
-
-######################
-# User Configuration #
-######################
-
-# Personal PATH.
-export PATH="$HOME/vendors/build:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
-
-# Launch Emacs from terminal on macOS.
-if [ -d "/Applications/Emacs.app/Contents/MacOS/bin" ]; then
-    # Put behind PATH to avoid overwritting universal-ctags.
-    export PATH="$PATH:/Applications/Emacs.app/Contents/MacOS:/Applications/Emacs.app/Contents/MacOS/bin"
-    alias emacs="Emacs"
-fi
-
-# C.
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-
-# Rust.
-[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
-
-# DOTNET.
-export PATH="$HOME/.dotnet/tools:$PATH"
-
-# Java.
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
-
-# Andriod.
-export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
-export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
-
-# GO.
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
-
-# Flutter.
-export PATH="$HOME/flutter/bin:$PATH"
-export PATH="$HOME/.pub-cache/bin:$PATH"
-export PUB_HOSTED_URL=https://pub.flutter-io.cn
-export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
-
-# Rtx.
-if command -v rtx > /dev/null 2>&1; then
-    eval "$(rtx activate zsh)"
-elif [[ -d "$HOME/.local/share/rtx/bin" ]]; then
-    export PATH="$HOME/.local/share/rtx/bin:$PATH"
-    eval "$(rtx activate zsh)"
-fi
-
-# Haskell.
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
-
-# Erlang.
-export KERL_BUILD_DOCS="yes"
-if command -v javac > /dev/null 2>&1; then
-    export KERL_CONFIGURE_OPTIONS="--disable-debug"
-else
-    # Skip java dependency if Java is unavailable.
-    export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
-fi
-
-if command -v brew > /dev/null 2>&1; then
-    export KERL_CONFIGURE_OPTIONS="--with-ssl=$(brew --prefix openssl@1.1)"
-fi
-
-# Ruby.
-if command -v brew > /dev/null 2>&1; then
-    export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
-fi
-
-## Node.js
-
-# pnpm
-export PNPM_HOME="$HOME/.local/lib/pnpm"
-case ":$PATH:" in
-    *":$PNPM_HOME:"*) ;;
-    *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-## HOMEBREW.
-
-export HOMEBREW_NO_AUTO_UPDATE=true
-export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
-export PATH="/usr/local/sbin:$PATH"
-
-###########
-# Enhance #
-###########
-
-# ls colors
-autoload -U colors && colors
-
-[[ -f $ZSH/completion.zsh ]] && source $ZSH/completion.zsh
-
-#
-## Keybinding
-#
+### Keybinding.
 
 # [DEFAULT] Use $EDITOR key bindings
 
@@ -220,59 +102,27 @@ bindkey -e
 # bindkey -v
 
 # eXecute Editor
-autoload -U         edit-command-line
-zle      -N         edit-command-line
-bindkey  '\C-o'     edit-command-line # VIM style
-bindkey  '\C-x\C-e' edit-command-line # EMACS style
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-o' edit-command-line     # VIM style
+bindkey '\C-x\C-e' edit-command-line # EMACS style
 
 # [Ctrl-r] - Search backward incrementally for a specified string.
 # The string may begin with ^ to anchor the search to the beginning of the line.
 bindkey '^r' history-incremental-search-backward
 
-############
-# Function #
-############
+### Better defaults.
 
-# Load `function.zsh' if exists.
-[[ -f $ZSH/function.zsh ]] && source $ZSH/function.zsh
+[[ -f "$ZSH/function.zsh" ]] && . "$ZSH/function.zsh"
+[[ -f "$ZSH/alias.zsh" ]] && . "$ZSH/alias.zsh"
+[[ -f "$ZSH/completion.zsh" ]] && . "$ZSH/completion.zsh"
 
-#########
-# Alias #
-#########
-
-# Enable color support.
-if [[ -x /usr/bin/dircolors ]]; then
-    if [[ -r "${HOME}/.dircolors" ]]; then
-        eval "$(dircolors -b "${HOME}/.dircolors")"
-    else
-        eval "$(dircolors -b)"
-    fi
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# Load `alias.zsh` if it exists.
-[[ -f "$ZSH/alias.zsh" ]] && source "$ZSH/alias.zsh"
-
-##############
-# Completion #
-##############
+### Completion.
 
 # Enable additional programmable completion features.
 [[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
 
-#######################
-# Local Configuration #
-#######################
-
-# Load `.zshrc.local` if it exists.
-[[ -f "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
-
-##########
-# PROMPT #
-##########
+### Prompt.
 
 setopt PROMPT_SUBST
 
@@ -284,7 +134,7 @@ promptinit
 # # https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
 # autoload -Uz vcs_info
 
-[[ -f $ZSH/random-theme.zsh ]] && source $ZSH/random-theme.zsh
+[[ -f "$ZSH/random-theme.zsh" ]] && . "$ZSH/random-theme.zsh"
 
 PROMPT_RANDOM_CANDIDATES=(
     default
@@ -299,29 +149,114 @@ if [[ ! "${PROMPT_COMMAND}" =~ 'history -a;' ]]; then
     export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
 fi
 
-###########
-# PLUGINS #
-###########
+### Path.
+
+add_path "$HOME/vendors/build"
+
+# Launch Emacs from terminal on macOS.  Put behind PATH to avoid
+# overwritting universal-ctags.
+add_path_behind "/Applications/Emacs.app/Contents/MacOS"
+add_path_behind "/Applications/Emacs.app/Contents/MacOS/bin"
+
+### Program.
+
+# Rust.
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+# Java.
+add_path "/usr/local/opt/openjdk/bin"
+export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
+
+# Dotnet.
+add_path "$HOME/.dotnet/tools"
+
+# Andriod.
+add_path_behind "$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
+add_path_behind "$HOME/Library/Android/sdk/platform-tools"
+
+# GO.
+if [[ -d "$HOME/go" ]]; then
+    export GOPATH="$HOME/go"
+    add_path "$GOPATH/bin"
+fi
+
+# Flutter.
+if [[ -d "$HOME/flutter/bin" ]]; then
+    add_path "$HOME/flutter/bin"
+    add_path "$HOME/.pub-cache/bin"
+    export PUB_HOSTED_URL=https://pub.flutter-io.cn
+    export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+fi
+
+### Build.
+
+# Erlang.
+declare -a kerl_options
+
+if check_cmd javac; then
+    kerl_options+=("--disable-debug")
+else
+    kerl_options+=("--disable-debug" "--without-javac")
+fi
+
+check_cmd brew && kerl_options+=("--with-ssl=/usr/local/opt/openssl@1.1")
+
+export KERL_BUILD_DOCS="yes"
+export KERL_CONFIGURE_OPTIONS="${kerl_options[*]}"
+
+# Ruby.
+check_cmd brew && export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@3"
+
+### Tools.
+
+# Haskell.
+[[ -f "$HOME/.ghcup/env" ]] && . "$HOME/.ghcup/env"
+
+# Rtx.
+if check_cmd rtx; then
+    eval "$(rtx activate zsh)"
+elif [[ -d "$HOME/.local/share/rtx/bin" ]]; then
+    add_path "$HOME/.local/share/rtx/bin"
+    eval "$(rtx activate zsh)"
+fi
+
+# Zoxide.
+check_cmd zoxide && eval "$(zoxide init zsh)"
+
+# Bun.
+if [[ -d "$HOME/.bun" ]]; then
+    export BUN_INSTALL="$HOME/.bun"
+    add_path "$BUN_INSTALL/bin"
+    # Completions.
+    [[ -s "$BUN_INSTALL/_bun" ]] && . "$BUN_INSTALL/_bun"
+fi
+
+# Pnpm.
+if [[ -d "$HOME/.local/lib/pnpm" ]]; then
+    export PNPM_HOME="$HOME/.local/lib/pnpm"
+    add_path "$PNPM_HOME"
+fi
+
+# Homebrew.
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 
 # GTAGS.
 if [[ -f $HOME/.globalrc ]]; then
     export GTAGSCONF=$HOME/.globalrc
-    export GTAGSLABEL=native-pygments
 elif [[ -f /usr/local/share/gtags/gtags.conf ]]; then
     export GTAGSCONF=/usr/local/share/gtags/gtags.conf
-    export GTAGSLABEL=native-pygments
 elif [[ -f /usr/share/global/gtags/gtags.conf ]]; then
     export GTAGSCONF=/usr/share/global/gtags/gtags.conf
-    export GTAGSLABEL=native-pygments
 elif [[ -f /etc/gtags/gtags.conf ]]; then
     export GTAGSCONF=/etc/gtags/gtags.conf
-    export GTAGSLABEL=native-pygments
 fi
+export GTAGSLABEL=native-pygments
 
-[ -f $ZSH/plugins/colorman.sh ] && source $ZSH/plugins/colorman.sh
+# Color `man`.
+[[ -f $ZSH/plugins/colorman.sh ]] && source $ZSH/plugins/colorman.sh
 
-# Lazyload `thefuck'.
-if (( $+commands[thefuck] )) &>/dev/null; then
+# Lazyload `thefuck`.
+if check_cmd thefuck; then
     _my_lazyload_command_fuck() {
         eval $(thefuck --alias)
     }
@@ -330,47 +265,18 @@ if (( $+commands[thefuck] )) &>/dev/null; then
 fi
 
 # zsh-completions.
-[ -d $ZSH/plugins/zsh-completions ] && source $ZSH/plugins/zsh-completions/zsh-completions.plugin.zsh
+[[ -d "$ZSH/plugins/zsh-completions" ]] && . "$ZSH/plugins/zsh-completions/zsh-completions.plugin.zsh"
 
 # zsh-autosuggestions.
-[ -d $ZSH/plugins/zsh-autosuggestions ] && source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -d "$ZSH/plugins/zsh-autosuggestions" ]] && . "$ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # zsh-syntax-highlighting.
-[ -d $ZSH/plugins/zsh-syntax-highlighting ] && source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -d "$ZSH/plugins/zsh-syntax-highlighting" ]] && . "$ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-# Rust tools.
-if command -v zoxide > /dev/null 2>&1; then
-    eval "$(zoxide init zsh)"
-fi
+# Load `.zshrc.local` if it exists.
+[[ -f "${HOME}/.zshrc.local" ]] && . "${HOME}/.zshrc.local"
 
-########
-# PATH #
-########
-
-# Remove duplicate PATH.
-# https://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
-if [ -n "$PATH" ]; then
-    old_PATH=$PATH:; PATH=
-    while [ -n "$old_PATH" ]; do
-        x=${old_PATH%%:*}       # the first remaining entry
-        case $PATH: in
-            *:"$x":*) ;;        # already there
-            *) PATH=$PATH:$x;;  # not there yet
-        esac
-        old_PATH=${old_PATH#*:}
-    done
-    PATH=${PATH#:}
-    unset old_PATH x
-fi
-
-export PATH
-
-# Add the manpath.
-export MANPATH="/usr/local/share/man:${MANPATH}"
-
-#########
-# DEBUG #
-#########
+### DEBUG.
 
 if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
     unsetopt XTRACE
@@ -386,7 +292,7 @@ if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
                 integer this_time=$match[1]$match[2]
 
                 if [[ $prev_time -gt 0 ]]; then
-                    time_difference=$(( $this_time - $prev_time ))
+                    time_difference=$(($this_time - $prev_time))
                     lines+="$time_difference $prev_command"
                 fi
 
@@ -399,7 +305,7 @@ if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
                     prev_command="${this_command:0:77}..."
                 fi
             fi
-        done < ${1:-/dev/stdin}
+        done <${1:-/dev/stdin}
 
         print -l ${(@On)lines}
     }
