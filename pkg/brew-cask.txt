@@ -13,5 +13,6 @@ keka
 mactex
 monitorcontrol
 mpv
+racket
 snipaste
 squirrel

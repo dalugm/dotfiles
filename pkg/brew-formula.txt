@@ -34,6 +34,9 @@ grep
 highlight
 jdtls
 jq
+kotlin
+kotlin-language-server
+ktlint
 leoafarias/fvm/fvm
 libgccjit
 libiconv
@@ -60,6 +63,7 @@ sbcl
 screen
 screenfetch
 shellcheck
+shfmt
 sl
 solargraph
 texinfo
