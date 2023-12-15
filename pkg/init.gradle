@@ -2,9 +2,9 @@ def repoConfig = {
     all { ArtifactRepository repo ->
         if (repo instanceof MavenArtifactRepository) {
             def url = repo.url.toString()
-            if (url.contains('repo1.maven.org/maven2/')
-                || url.contains('jcenter.bintray.com')
-                || url.contains('repo.maven.apache.org')) {
+            if (url.contains('repo1.maven.org')
+                || url.contains('repo.maven.apache.org')
+                || url.contains('jcenter.bintray.com')) {
                 println "gradle config: (${repo.name}: ${repo.url}) removed"
                 remove repo
             }

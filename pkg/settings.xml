@@ -5,26 +5,20 @@
   <mirrors>
     <mirror>
       <id>ali-public</id>
-      <mirrorOf>central</mirrorOf>
-      <name>阿里云公共仓库</name>
-      <url>https://maven.aliyun.com/repository/public</url>
-    </mirror>
-    <mirror>
-      <id>ali-public</id>
-      <mirrorOf>jcenter</mirrorOf>
+      <mirrorOf>central,jcenter</mirrorOf>
       <name>阿里云公共仓库</name>
       <url>https://maven.aliyun.com/repository/public</url>
     </mirror>
     <mirror>
       <id>ali-google</id>
       <mirrorOf>google</mirrorOf>
-      <name>阿里云公共仓库</name>
+      <name>阿里云谷歌仓库</name>
       <url>https://maven.aliyun.com/repository/google</url>
     </mirror>
     <mirror>
       <id>clojar-tuna</id>
       <mirrorOf>clojars</mirrorOf>
-      <name>tuna</name>
+      <name>tuna clojar 仓库</name>
       <url>https://mirrors.tuna.tsinghua.edu.cn/clojars</url>
     </mirror>
   </mirrors>
