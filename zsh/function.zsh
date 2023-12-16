@@ -2,16 +2,12 @@
 
 # Add $1 as path to PATH, do not effect PATH if path not exists.
 add_path() {
-    local arg_path="$1"
-
-    [[ ":$PATH:" != *":$arg_path:"* ]] && PATH="$arg_path:$PATH"
+    [[ -d "$1" && ":$PATH:" != *":$1:"* ]] && PATH="$1:$PATH"
 }
 
 # Like `add_path()`, but put behind PATH.
 add_path_behind() {
-    local arg_path="$1"
-
-    [[ ":$PATH:" != *":$arg_path:"* ]] && PATH="$PATH:$arg_path"
+    [[ -d "$1" && ":$PATH:" != *":$1:"* ]] && PATH="$PATH:$1"
 }
 
 # Check command whether available.
