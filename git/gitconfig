@@ -1,8 +1,5 @@
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+[include]
+	path = ~/.gitconfig.local
 [user]
 	name = dalu
 	email = mou.tong@outlook.com
@@ -54,9 +51,3 @@
 	user = dalugm
 [commit]
 	template = ~/.gitmessage
-# [url "https://ghproxy.com/https://github.com/"]
-# 	insteadof = https://github.com/
-# [url "https://kkgithub.com/"]
-# 	insteadof = https://github.com/
-# [url "https://hub.fastgit.xyz/"]
-# 	insteadof = https://github.com/
