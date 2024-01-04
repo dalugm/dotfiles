@@ -1,12 +1,13 @@
 aria2
-aspell
 automake
 bash
 bear
+berkeley-db
 chezscheme
 cloc
 clojure-lsp/brew/clojure-lsp-native
 clojure/tools/clojure
+clozure-cl
 cmake
 cmatrix
 cocoapods
@@ -17,6 +18,7 @@ curl
 dart-lang/dart/dart
 dbus
 deno
+fennel
 ffmpeg
 findutils
 fop
@@ -48,6 +50,7 @@ llvm
 mailutils
 make
 mariadb
+mise
 multimarkdown
 nano
 neovim
@@ -58,7 +61,7 @@ p7zip
 pandoc
 poppler
 reattach-to-user-namespace
-rtx
+roswell
 sbcl
 screen
 screenfetch
@@ -66,6 +69,7 @@ shellcheck
 shfmt
 sl
 solargraph
+stylua
 texinfo
 the_silver_searcher
 tmux

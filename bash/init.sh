@@ -130,13 +130,8 @@ check_cmd brew && export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/
 # Haskell.
 [[ -f "$HOME/.ghcup/env" ]] && . "$HOME/.ghcup/env"
 
-# Rtx.
-if check_cmd rtx; then
-    eval "$(rtx activate bash)"
-elif [[ -d "$HOME/.local/share/rtx/bin" ]]; then
-    export PATH="$HOME/.local/share/rtx/bin:$PATH"
-    eval "$(rtx activate bash)"
-fi
+# Mise.
+check_cmd mise && eval "$(mise activate zsh)"
 
 # Zoxide.
 check_cmd zoxide && eval "$(zoxide init bash)"
@@ -148,8 +143,8 @@ if [[ -d "$HOME/.bun" ]]; then
 fi
 
 # Pnpm.
-if [[ -d "$HOME/.local/lib/pnpm" ]]; then
-    export PNPM_HOME="$HOME/.local/lib/pnpm"
+if [[ -d "$HOME/Library/pnpm" ]]; then
+    export PNPM_HOME="$HOME/Library/pnpm"
     add_path "$PNPM_HOME"
 fi
 
