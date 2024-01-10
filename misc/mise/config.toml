@@ -1,0 +1,6 @@
+[tools]
+python = "latest"
+node = "system"
+erlang = "latest"
+elixir = "latest"
+clojure = "system"

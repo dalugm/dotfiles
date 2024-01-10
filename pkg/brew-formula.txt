@@ -26,6 +26,7 @@ fortune
 gawk
 gcc
 gdb
+geckodriver
 git
 global
 gnu-tar
@@ -57,6 +58,7 @@ neovim
 node
 opencc
 openssh
+openssl@1.1
 p7zip
 pandoc
 poppler

@@ -1,7 +1,7 @@
 aerial
 android-file-transfer
 baidunetdisk
-cool-retro-term
+chromedriver
 font-fira-code
 font-gnu-unifont
 font-jetbrains-mono
