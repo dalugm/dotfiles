@@ -3,6 +3,7 @@ automake
 bash
 bear
 berkeley-db
+borkdude/brew/babashka
 chezscheme
 cloc
 clojure-lsp/brew/clojure-lsp-native
@@ -15,9 +16,9 @@ codespell
 coreutils
 cowsay
 curl
-dart-lang/dart/dart
 dbus
 deno
+elixir
 fennel
 ffmpeg
 findutils
@@ -34,13 +35,13 @@ go
 google-java-format
 gradle
 grep
+gtk4
 highlight
 jdtls
 jq
 kotlin
 kotlin-language-server
 ktlint
-leoafarias/fvm/fvm
 libgccjit
 libiconv
 librsvg
@@ -62,6 +63,7 @@ openssl@1.1
 p7zip
 pandoc
 poppler
+postgresql@16
 reattach-to-user-namespace
 roswell
 sbcl
