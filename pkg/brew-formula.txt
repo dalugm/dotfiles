@@ -2,7 +2,6 @@ aria2
 automake
 bash
 bear
-berkeley-db
 borkdude/brew/babashka
 chezscheme
 cloc
@@ -25,13 +24,12 @@ findutils
 fop
 fortune
 gawk
-gcc
-gdb
 geckodriver
 git
 global
 gnu-tar
 go
+gobject-introspection
 google-java-format
 gradle
 grep
@@ -45,7 +43,6 @@ ktlint
 libgccjit
 libiconv
 librsvg
-libsigsegv
 libxslt
 libzip
 llvm
@@ -59,8 +56,6 @@ neovim
 node
 opencc
 openssh
-openssl@1.1
-p7zip
 pandoc
 poppler
 postgresql@16
