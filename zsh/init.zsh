@@ -234,6 +234,7 @@ fi
 
 # Homebrew.
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
+add_path "/usr/local/sbin"
 
 # GTAGS.
 if [[ -f $HOME/.globalrc ]]; then
@@ -317,3 +318,6 @@ if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
         zprof $@
     }
 fi
+
+# bun completions
+[ -s "/Users/mou/.bun/_bun" ] && source "/Users/mou/.bun/_bun"

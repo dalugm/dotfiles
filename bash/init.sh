@@ -150,6 +150,7 @@ fi
 
 # Homebrew.
 export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
+add_path "/usr/local/sbin"
 
 # GTAGS.
 if [[ -f $HOME/.globalrc ]]; then
