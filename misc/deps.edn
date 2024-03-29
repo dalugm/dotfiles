@@ -1,0 +1,12 @@
+{:mvn/repos
+ {"central" {:url "https://maven.aliyun.com/repository/public/"}
+  "clojars" {:url "https://mirrors.tuna.tsinghua.edu.cn/clojars/"}
+  "maven-central" {:url "https://repo1.maven.org/maven2/"}
+  "clojars-default" {:url "https://clojars.org/repo/"}}
+
+ :aliases
+ {:outdated {;; Note that it is `:deps`, not `:extra-deps`
+             :deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
+             :main-opts ["-m" "antq.core"]}
+  :run
+  {:main-opts ["-m" "core"]}}}
