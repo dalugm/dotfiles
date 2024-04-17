@@ -15,7 +15,7 @@ codespell
 coreutils
 curl
 dbus
-elixir
+elixir-ls
 fennel
 ffmpeg
 findutils
@@ -61,7 +61,6 @@ poppler
 postgresql@16
 reattach-to-user-namespace
 redis
-roswell
 sbcl
 screen
 screenfetch
