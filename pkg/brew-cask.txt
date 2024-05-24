@@ -14,5 +14,4 @@ monitorcontrol
 mpv
 racket
 snipaste
-squirrel
 stolendata-mpv
