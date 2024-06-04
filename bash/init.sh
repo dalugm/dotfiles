@@ -80,6 +80,8 @@ add_path_behind "/Applications/Emacs.app/Contents/MacOS/bin"
 
 # Rust.
 [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+export RUSTUP_DIST_SERVER="https://rsproxy.cn"
+export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
 # Java.
 add_path "/usr/local/opt/openjdk/bin"
@@ -89,8 +91,8 @@ export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UT
 add_path "$HOME/.dotnet/tools"
 
 # Andriod.
-export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
-export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
+add_path_behind "$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
+add_path_behind "$HOME/Library/Android/sdk/platform-tools"
 
 # GO.
 if [ -d "$HOME/go" ]; then

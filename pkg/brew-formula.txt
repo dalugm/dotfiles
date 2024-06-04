@@ -1,7 +1,6 @@
 aria2
 automake
 bash
-bear
 borkdude/brew/babashka
 chezscheme
 cloc
@@ -14,7 +13,6 @@ cocoapods
 codespell
 coreutils
 curl
-dbus
 elixir-ls
 fennel
 ffmpeg
@@ -40,6 +38,7 @@ ktlint
 libadwaita
 libgccjit
 libiconv
+libpq
 librsvg
 libxslt
 libzip
@@ -52,7 +51,6 @@ meson
 mise
 multimarkdown
 nano
-neovim
 netcat
 node
 opencc
@@ -73,6 +71,7 @@ solargraph
 stylua
 texinfo
 the_silver_searcher
+timescale/tap/timescaledb
 tmux
 tree
 typst

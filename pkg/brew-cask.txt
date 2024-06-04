@@ -12,6 +12,7 @@ keepassxc
 keka
 monitorcontrol
 mpv
+neovide
 racket
 snipaste
 stolendata-mpv

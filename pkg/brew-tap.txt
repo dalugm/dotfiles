@@ -1,9 +1,10 @@
+borkdude/brew
 clojure-lsp/brew
 clojure/tools
 homebrew/cask
-homebrew/cask-fonts
-homebrew/cask-versions
 homebrew/command-not-found
 homebrew/core
 homebrew/services
 jdxcode/tap
+sergiobenitez/osxct
+timescale/tap
