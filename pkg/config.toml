@@ -19,3 +19,6 @@ git-fetch-with-cli = true
 
 [alias]
 t = "test -- --show-output"
+ta = "test -- --include-ignored"
+ti = "test -- --ignored"
+tt = "test --test"
