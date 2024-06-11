@@ -8,8 +8,8 @@ alias g='git'
 alias px='proxychains4'
 alias ec='emacsclient -nw --alternate-editor=nano'
 alias tem='TERM=xterm-24bit emacs'
-alias vi='vim'
-alias nvi='nvim'
+alias nv='neovide'
+alias nvt='neovide --frame transparent'
 
 # Proxy.
 export hostip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')

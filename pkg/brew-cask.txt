@@ -2,10 +2,13 @@ aerial
 android-file-transfer
 baidunetdisk
 chromedriver
-font-fira-code
+font-comic-shanns-mono-nerd-font
+font-fira-code-nerd-font
 font-gnu-unifont
-font-jetbrains-mono
+font-hack-nerd-font
+font-jetbrains-mono-nerd-font
 font-lxgw-wenkai
+font-roboto-mono-nerd-font
 font-sarasa-gothic
 iterm2
 keepassxc

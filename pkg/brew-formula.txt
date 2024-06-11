@@ -60,6 +60,7 @@ poppler
 postgresql@16
 reattach-to-user-namespace
 redis
+rust-analyzer
 sbcl
 screen
 screenfetch
@@ -79,4 +80,5 @@ universal-ctags
 vim
 w3m
 zlib
+zls
 zsh
