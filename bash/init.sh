@@ -57,15 +57,15 @@ export HISTTIMEFORMAT='%F %T '
 
 ### Prompt.
 
-PS1='[\u@\h \W]\$ '
-
-[[ -f $BASH/random-theme.sh ]] && . "$BASH/random-theme.sh"
+# PS1='[\u@\h \W]\$ '
 
 PROMPT_RANDOM_CANDIDATES=(
-    lambda
-    minimal
-    ys
+    bash
+    simple
+    zsh
 )
+
+[[ -f "$BASH/random-theme.sh" ]] && . "$BASH/random-theme.sh"
 
 ### Path.
 
@@ -133,7 +133,7 @@ check_cmd brew && export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/
 [[ -f "$HOME/.ghcup/env" ]] && . "$HOME/.ghcup/env"
 
 # Mise.
-check_cmd mise && eval "$(mise activate zsh)"
+check_cmd mise && eval "$(mise activate bash)"
 
 # Zoxide.
 check_cmd zoxide && eval "$(zoxide init bash)"

@@ -53,7 +53,7 @@ git_update_all() {
 }
 
 # Prints Git branch name and working tree status for prompt.
-git_prompt_info() {
+__git_prompt_info() {
     local git_branch=''
     local git_status=''
 

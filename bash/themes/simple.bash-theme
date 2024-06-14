@@ -1,0 +1,14 @@
+#!/usr/env/bin bash
+
+# bash simple theme
+#   user@hostname: ~ [master]
+#   $ ...
+
+PS1="[\t] \e[0;32m\u\e[m@\e[0;34m\h\e[m: \e[0;35m\w\e[m"
+PS1+="\$(__git_prompt_info ' [\e[0;36m' '\e[m]')"
+PS1+=$'\n'
+PS1+="\\$ "
+
+# Set the continuation interactive prompt.
+# > ...
+PS2="\e[0;35m> \e[m"

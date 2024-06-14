@@ -124,25 +124,37 @@ bindkey '^r' history-incremental-search-backward
 
 ### Prompt.
 
+autoload -Uz promptinit && promptinit
+
+# You can also use builtin vcs_info instead of themes
+# https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+# https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
+autoload -Uz vcs_info
+
+# Executed before every command run in the terminal.
+precmd() { vcs_info }
+
 setopt PROMPT_SUBST
 
-autoload -Uz promptinit
-promptinit
+# The %s gets replaced by the vc system (e.g. git)
+# And the %b gets replaced by the current branch.
 
-# # You can also use builtin vcs_info instead of themes
-# # https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
-# # https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
-# autoload -Uz vcs_info
+# zstyle ':vcs_info:*' actionformats \
+#     '%F{magenta}(%f%s%F{magenta})%F{yellow}-%F{magenta}[%F{green}%b%F{yellow}|%F{red}%a%F{magenta}]%f '
+# zstyle ':vcs_info:*' formats       \
+#     '%F{magenta}(%f%s%F{magenta})%F{yellow}-%F{magenta}[%F{green}%b%F{magenta}]%f '
+# zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{yellow}%r'
+# zstyle ':vcs_info:*' enable git cvs svn
 
-[[ -f "$ZSH/random-theme.zsh" ]] && . "$ZSH/random-theme.zsh"
+zstyle ':vcs_info:git:*' formats '%F{cyan} %b%f'
 
 PROMPT_RANDOM_CANDIDATES=(
-    default
-    lambda
-    mh
-    minimal
-    ys
+    bash
+    simple
+    zsh
 )
+
+[[ -f "$ZSH/random-theme.zsh" ]] && . "$ZSH/random-theme.zsh"
 
 # Make new shells get the history list from all previous shells.
 if [[ ! "${PROMPT_COMMAND}" =~ 'history -a;' ]]; then
@@ -320,6 +332,3 @@ if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
         zprof $@
     }
 fi
-
-# bun completions
-[ -s "/Users/mou/.bun/_bun" ] && source "/Users/mou/.bun/_bun"
