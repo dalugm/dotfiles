@@ -1,5 +1,0 @@
-* Installation
-
-#+begin_src bash-ts
-  ln -sf $HOME/.tmux/tmux.conf ~/.tmux.conf
-#+end_src

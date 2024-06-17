@@ -32,6 +32,7 @@ family = "ComicShannsMono Nerd Font"
 [window]
 decorations = "Buttonless"
 opacity = 0.8
+option_as_alt = "OnlyLeft"
 
 [window.dimensions]
 columns = 160

@@ -11,9 +11,8 @@
 [color]
 	ui = true
 [core]
-	excludesfile = ~/.gitignore
+	excludesFile = ~/.gitignore # global ignore
 	quotePath = false
-	editor = emacs -nw
 	# Avoid converting anything automagically.
 	autocrlf = false
 	# Avoid Windows problem.
