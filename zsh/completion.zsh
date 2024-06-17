@@ -15,9 +15,6 @@ unsetopt MENU_COMPLETE
 # show completion menu on successive tab press
 setopt AUTO_MENU
 
-# enable zsh completion
-autoload -Uz compinit && compinit
-
 # handle with the up/lowcase
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
@@ -38,6 +35,9 @@ zmodload zsh/complist
 
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+
+# enable zsh completion
+autoload -Uz compinit && compinit
 
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit

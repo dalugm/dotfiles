@@ -117,11 +117,6 @@ bindkey '^r' history-incremental-search-backward
 [[ -f "$ZSH/alias.zsh" ]] && . "$ZSH/alias.zsh"
 [[ -f "$ZSH/completion.zsh" ]] && . "$ZSH/completion.zsh"
 
-### Completion.
-
-# Enable additional programmable completion features.
-[[ -d /usr/local/share/zsh-completions ]] && fpath=(/usr/local/share/zsh-completions $fpath)
-
 ### Prompt.
 
 autoload -Uz promptinit && promptinit
@@ -273,9 +268,6 @@ if check_cmd thefuck; then
 
     my_lazyload_add_command fuck
 fi
-
-# zsh-completions.
-[[ -d "$ZSH/plugins/zsh-completions" ]] && . "$ZSH/plugins/zsh-completions/zsh-completions.plugin.zsh"
 
 # zsh-autosuggestions.
 [[ -d "$ZSH/plugins/zsh-autosuggestions" ]] && . "$ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
