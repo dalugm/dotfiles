@@ -55,6 +55,7 @@ netcat
 node
 opencc
 openssh
+p7zip
 pandoc
 poppler
 postgresql@16
