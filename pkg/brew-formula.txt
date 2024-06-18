@@ -17,11 +17,9 @@ elixir-ls
 fennel
 ffmpeg
 findutils
-fop
 fortune
 gawk
 geckodriver
-gi-docgen
 git
 gnu-tar
 gobject-introspection
@@ -52,7 +50,6 @@ mise
 multimarkdown
 nano
 netcat
-node
 opencc
 openssh
 p7zip
@@ -63,16 +60,10 @@ reattach-to-user-namespace
 redis
 rust-analyzer
 sbcl
-screen
 screenfetch
 sergiobenitez/osxct/x86_64-unknown-linux-gnu
-shellcheck
-shfmt
 sl
-solargraph
-stylua
 texinfo
-the_silver_searcher
 timescale/tap/timescaledb
 tmux
 tree
