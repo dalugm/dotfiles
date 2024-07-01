@@ -121,7 +121,6 @@ bindkey '^r' history-incremental-search-backward
 
 autoload -Uz promptinit && promptinit
 
-# You can also use builtin vcs_info instead of themes
 # https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
 # https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
 autoload -Uz vcs_info
@@ -131,17 +130,26 @@ precmd() { vcs_info }
 
 setopt PROMPT_SUBST
 
-# The %s gets replaced by the vc system (e.g. git)
-# And the %b gets replaced by the current branch.
+# # Keep track of what's going on in vcs_info
+# zstyle ':vcs_info:*+*:*' debug true
 
-# zstyle ':vcs_info:*' actionformats \
-#     '%F{magenta}(%f%s%F{magenta})%F{yellow}-%F{magenta}[%F{green}%b%F{yellow}|%F{red}%a%F{magenta}]%f '
-# zstyle ':vcs_info:*' formats       \
-#     '%F{magenta}(%f%s%F{magenta})%F{yellow}-%F{magenta}[%F{green}%b%F{magenta}]%f '
-# zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{yellow}%r'
-# zstyle ':vcs_info:*' enable git cvs svn
+# %s => vc system
+# %b => current branch
+# %i => hash
 
 zstyle ':vcs_info:git:*' formats '%F{cyan} %b%f'
+
+# zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
+# # http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#vcs_005finfo-Hooks
+# # Append '?' to `unstaged (%u)` if there are any untracked files.
+# +vi-git-untracked() {
+#     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+#            git status --porcelain | grep -m 1 '^??' &>/dev/null; then
+#         # Append to unstaged (%u).
+#         hook_com[unstaged]='?'
+#     fi
+# }
 
 PROMPT_RANDOM_CANDIDATES=(
     bash
