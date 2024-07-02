@@ -62,7 +62,6 @@ rust-analyzer
 sbcl
 screenfetch
 sergiobenitez/osxct/x86_64-unknown-linux-gnu
-sl
 texinfo
 timescale/tap/timescaledb
 tmux

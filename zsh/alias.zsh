@@ -23,14 +23,11 @@ alias x24_term="export TERM=xterm-24bit"
 alias s256_term="export TERM=screen-256color"
 alias s24_term="export TERM=screen-24bit"
 
-# List directory contents.
-alias l="ls -ahlG"
+# Colorize the ls output.
+alias ls="ls --color=auto"
 
-# https://stackoverflow.com/questions/3746/whats-in-your-bashrc
-alias ~="cd ~"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
+# Use a long listing format.
+alias ll="ls -ahl"
 
-# https://www.atlassian.com/git/tutorials/dotfiles
-alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+# Show hidden files only.
+alias l.="ls -d .*"
