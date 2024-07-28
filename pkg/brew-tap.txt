@@ -1,6 +1,7 @@
 borkdude/brew
 clojure-lsp/brew
 clojure/tools
+coursier/formulas
 homebrew/cask
 homebrew/command-not-found
 homebrew/core

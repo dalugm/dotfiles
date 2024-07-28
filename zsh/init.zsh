@@ -184,6 +184,9 @@ export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 add_path "/usr/local/opt/openjdk/bin"
 export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
 
+# Scala.
+export SBT_OPTS="-Dsbt.override.build.repos=true"
+
 # Dotnet.
 add_path "$HOME/.dotnet/tools"
 

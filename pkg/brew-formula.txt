@@ -12,6 +12,7 @@ cmatrix
 cocoapods
 codespell
 coreutils
+coursier/formulas/coursier
 curl
 elixir-ls
 fennel
@@ -20,6 +21,7 @@ findutils
 fortune
 gawk
 geckodriver
+gh
 git
 gnu-tar
 gobject-introspection
@@ -30,9 +32,7 @@ highlight
 hyperspec
 jdtls
 jq
-kotlin
 kotlin-language-server
-ktlint
 libadwaita
 libgccjit
 libiconv
@@ -50,6 +50,7 @@ mise
 multimarkdown
 nano
 netcat
+node
 opencc
 openssh
 p7zip
@@ -58,10 +59,12 @@ poppler
 postgresql@16
 reattach-to-user-namespace
 redis
+ruff
 rust-analyzer
 sbcl
 screenfetch
 sergiobenitez/osxct/x86_64-unknown-linux-gnu
+taplo
 texinfo
 timescale/tap/timescaledb
 tmux
