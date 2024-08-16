@@ -23,6 +23,7 @@ gawk
 geckodriver
 gh
 git
+gnu-sed
 gnu-tar
 gobject-introspection
 google-java-format
@@ -32,7 +33,6 @@ highlight
 hyperspec
 jdtls
 jq
-kotlin-language-server
 libadwaita
 libgccjit
 libiconv
@@ -46,12 +46,14 @@ make
 mariadb
 maven
 meson
+metals
 mise
 multimarkdown
 nano
 netcat
 node
 opencc
+openldap
 openssh
 p7zip
 pandoc
@@ -67,12 +69,15 @@ sergiobenitez/osxct/x86_64-unknown-linux-gnu
 taplo
 texinfo
 timescale/tap/timescaledb
+tinymist
 tmux
 tree
 typst
+typstyle
 universal-ctags
 vim
 w3m
+websocat
 zlib
 zls
 zsh
