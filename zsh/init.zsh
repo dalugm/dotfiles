@@ -40,14 +40,8 @@ export LC_COLLATE='C'
 # ls colors.
 autoload -U colors && colors
 
-# Preferred editor for local and remote sessions.
-if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='vim'
-    export ALTERNATE_EDITOR='nano'
-else
-    export EDITOR='nano'
-    export ALTERNATE_EDITOR='vim'
-fi
+export EDITOR='vim'
+export ALTERNATE_EDITOR='nano'
 
 ### History.
 

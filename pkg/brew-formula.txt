@@ -33,7 +33,7 @@ highlight
 hyperspec
 jdtls
 jq
-libadwaita
+libev
 libgccjit
 libiconv
 libpq
@@ -45,12 +45,10 @@ mailutils
 make
 mariadb
 maven
-meson
 metals
 mise
 multimarkdown
 nano
-netcat
 node
 opencc
 openldap
@@ -66,6 +64,7 @@ rust-analyzer
 sbcl
 screenfetch
 sergiobenitez/osxct/x86_64-unknown-linux-gnu
+socat
 taplo
 texinfo
 timescale/tap/timescaledb
