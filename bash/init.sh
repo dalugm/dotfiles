@@ -63,6 +63,8 @@ PROMPT_RANDOM_CANDIDATES=(
 
 ### Path.
 
+add_path "$HOME/.local/bin"
+
 add_path "$HOME/vendors/build"
 
 # Launch Emacs from terminal on macOS.  Put behind PATH to avoid
