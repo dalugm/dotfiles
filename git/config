@@ -49,4 +49,4 @@
 [gitlab]
 	user = dalugm
 [commit]
-	template = ~/.gitmessage
+	template = ~/.config/git/message
