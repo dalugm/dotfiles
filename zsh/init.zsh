@@ -162,8 +162,6 @@ fi
 
 add_path "$HOME/.local/bin"
 
-add_path "$HOME/vendors/build"
-
 # Launch Emacs from terminal on macOS.  Put behind PATH to avoid
 # overwritting universal-ctags.
 add_path_behind "/Applications/Emacs.app/Contents/MacOS"

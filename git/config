@@ -1,17 +1,11 @@
 [include]
-	path = ~/.gitconfig.local
+	path = ~/.config/git/config.local
 [user]
 	name = dalu
 	email = mou.tong@outlook.com
-[sendemail]
-	smtpEncryption = starttls
-	smtpServer = smtp-mail.outlook.com
-	smtpServerPort = 587
-	smtpUser = mou.tong@outlook.com
 [color]
 	ui = true
 [core]
-	excludesFile = ~/.gitignore # global ignore
 	quotePath = false
 	# Avoid converting anything automagically.
 	autocrlf = false
@@ -49,4 +43,4 @@
 [gitlab]
 	user = dalugm
 [commit]
-	template = ~/.config/git/message
+	template = ~/.config/git/commit-template
