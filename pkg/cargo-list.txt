@@ -1,6 +1,0 @@
-bat
-bottom
-fd-find
-ripgrep
-sqlx-cli
-zoxide
