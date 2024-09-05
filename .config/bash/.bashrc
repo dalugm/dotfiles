@@ -5,7 +5,7 @@
 [[ $- != *i* ]] && return
 
 # Path to bash installation.
-# Distribute bashrc into smaller, more specific files
+# Distribute bashrc into smaller, more specific files.
 export BASH=$HOME/.config/bash
 
 ### Basic.
@@ -159,6 +159,10 @@ elif [[ -f /etc/gtags/gtags.conf ]]; then
     export GTAGSCONF=/etc/gtags/gtags.conf
 fi
 export GTAGSLABEL=native-pygments
+
+# Screen.
+export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
+export SCREENDIR="${XDG_RUNTIME_DIR}/screen"
 
 # Color `man`.
 [[ -f "$BASH/plugins/colorman.sh" ]] && . "$BASH/plugins/colorman.sh"

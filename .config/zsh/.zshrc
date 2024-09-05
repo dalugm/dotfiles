@@ -23,7 +23,7 @@ fi
 
 # Path to zsh installation.
 # Distribute zshrc into smaller, more specific files.
-export ZSH=$HOME/.config/zsh
+export ZDOTDIR="$HOME"/.config/zsh
 
 ### Basic.
 
@@ -45,39 +45,23 @@ export ALTERNATE_EDITOR='nano'
 
 ### History.
 
-# Lines configured by zsh-newuser-install.
-export HISTFILE=~/.zsh_history
+# Consistent with .bash_history, .psql_histroy, etc.
+HISTFILE="$HOME"/.zsh_history
 
 # The maximum number of lines to remember in the command history.
-export HISTSIZE=1000
-
-# The maximum number of lines to save in the history file.
-export HISTFILESIZE=1000
+HISTSIZE=1000
 
 # The maximum number of history events to save in the history file.
-export SAVEHIST=1000
-
-# Disable saving lines that begin with a space or match the last history
-# line to the history list.
-export HISTCONTROL='ignoreboth'
-
-# Disable saving the following commands to the history list.
-export HISTIGNORE='&:bg:fg'
-
-# Enable time stamp for `history` builtin.
-export HISTTIMEFORMAT='%F %T '
+SAVEHIST=$HISTSIZE
 
 # Share history between multi zsh sessions.
 setopt SHARE_HISTORY
 
+# Add timestamp for history commands.
+setopt EXTENDED_HISTORY
+
 # Ignore duplicate commands.
 setopt HIST_IGNORE_DUPS
-
-# Add timestamp for history commands.
-#setopt EXTENDED_HISTORY
-
-# cd - to enter history path.
-setopt AUTO_PUSHD
 
 # Ignore duplicate history path.
 setopt PUSHD_IGNORE_DUPS
@@ -92,8 +76,8 @@ setopt HIST_IGNORE_SPACE
 # Use EMACS key bindings
 bindkey -e
 
-# # Use VIM key bindings
-# bindkey -v
+# Use VIM key bindings
+#bindkey -v
 
 # eXecute Editor
 autoload -U edit-command-line
@@ -107,9 +91,9 @@ bindkey '^r' history-incremental-search-backward
 
 ### Better defaults.
 
-[[ -f "$ZSH/function.zsh" ]] && . "$ZSH/function.zsh"
-[[ -f "$ZSH/alias.zsh" ]] && . "$ZSH/alias.zsh"
-[[ -f "$ZSH/completion.zsh" ]] && . "$ZSH/completion.zsh"
+[[ -f "$ZDOTDIR"/function.zsh ]] && . "$ZDOTDIR/function.zsh"
+[[ -f "$ZDOTDIR"/alias.zsh ]] && . "$ZDOTDIR/alias.zsh"
+[[ -f "$ZDOTDIR"/completion.zsh ]] && . "$ZDOTDIR/completion.zsh"
 
 ### Prompt.
 
@@ -151,16 +135,11 @@ PROMPT_RANDOM_CANDIDATES=(
     zsh
 )
 
-[[ -f "$ZSH/random-theme.zsh" ]] && . "$ZSH/random-theme.zsh"
-
-# Make new shells get the history list from all previous shells.
-if [[ ! "${PROMPT_COMMAND}" =~ 'history -a;' ]]; then
-    export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
-fi
+[[ -f "$ZDOTDIR"/random-theme.zsh ]] && . "$ZDOTDIR"/random-theme.zsh
 
 ### Path.
 
-add_path "$HOME/.local/bin"
+add_path "$HOME"/.local/bin
 
 # Launch Emacs from terminal on macOS.  Put behind PATH to avoid
 # overwritting universal-ctags.
@@ -170,7 +149,7 @@ add_path_behind "/Applications/Emacs.app/Contents/MacOS/bin"
 ### Program.
 
 # Rust.
-[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+[[ -f "$HOME"/.cargo/env ]] && . "$HOME"/.cargo/env
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
@@ -182,22 +161,22 @@ export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UT
 export SBT_OPTS="-Dsbt.override.build.repos=true"
 
 # Dotnet.
-add_path "$HOME/.dotnet/tools"
+add_path "$HOME"/.config/dotnet/tools
 
 # Andriod.
-add_path_behind "$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
-add_path_behind "$HOME/Library/Android/sdk/platform-tools"
+add_path_behind "$HOME"/Library/Android/sdk/cmdline-tools/latest/bin
+add_path_behind "$HOME"/Library/Android/sdk/platform-tools
 
 # GO.
-if [[ -d "$HOME/go" ]]; then
-    export GOPATH="$HOME/go"
-    add_path "$GOPATH/bin"
+if [[ -d "$HOME"/go ]]; then
+    export GOPATH="$HOME"/go
+    add_path "$GOPATH"/bin
 fi
 
 # Flutter.
-if [[ -d "$HOME/flutter/bin" ]]; then
-    add_path "$HOME/flutter/bin"
-    add_path "$HOME/.pub-cache/bin"
+if [[ -d "$HOME"/flutter/bin ]]; then
+    add_path "$HOME"/flutter/bin
+    add_path "$HOME"/.pub-cache/bin
     export PUB_HOSTED_URL=https://pub.flutter-io.cn
     export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 fi
@@ -224,7 +203,7 @@ check_cmd brew && export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/
 ### Tools.
 
 # Haskell.
-[[ -f "$HOME/.ghcup/env" ]] && . "$HOME/.ghcup/env"
+export GHCUP_USE_XDG_DIRS=1
 
 # Mise.
 check_cmd mise && eval "$(mise activate zsh)"
@@ -233,26 +212,28 @@ check_cmd mise && eval "$(mise activate zsh)"
 check_cmd zoxide && eval "$(zoxide init zsh)"
 
 # Bun.
-if [[ -d "$HOME/.bun" ]]; then
-    export BUN_INSTALL="$HOME/.bun"
-    add_path "$BUN_INSTALL/bin"
+if [[ -d "$HOME"/.bun ]]; then
+    export BUN_INSTALL="$HOME"/.bun
+    add_path "$BUN_INSTALL"/bin
     # Completions.
-    [[ -s "$BUN_INSTALL/_bun" ]] && . "$BUN_INSTALL/_bun"
+    [[ -s "$BUN_INSTALL"/_bun ]] && . "$BUN_INSTALL"/_bun
 fi
 
 # Pnpm.
-if [[ -d "$HOME/Library/pnpm" ]]; then
-    export PNPM_HOME="$HOME/Library/pnpm"
+if [[ -d "$HOME"/Library/pnpm ]]; then
+    export PNPM_HOME="$HOME"/Library/pnpm
     add_path "$PNPM_HOME"
 fi
 
 # Homebrew.
-export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
-add_path "/usr/local/sbin"
+if check_cmd brew; then
+    export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
+    add_path "/usr/local/sbin"
+fi
 
 # GTAGS.
-if [[ -f $HOME/.globalrc ]]; then
-    export GTAGSCONF=$HOME/.globalrc
+if [[ -f "$HOME"/.globalrc ]]; then
+    export GTAGSCONF="$HOME"/.globalrc
 elif [[ -f /usr/local/share/gtags/gtags.conf ]]; then
     export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 elif [[ -f /usr/share/global/gtags/gtags.conf ]]; then
@@ -262,8 +243,15 @@ elif [[ -f /etc/gtags/gtags.conf ]]; then
 fi
 export GTAGSLABEL=native-pygments
 
+# Screen.
+export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
+export SCREENDIR="${XDG_RUNTIME_DIR}/screen"
+
+# Gradle.
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+
 # Color `man`.
-[[ -f $ZSH/plugins/colorman.sh ]] && source $ZSH/plugins/colorman.sh
+[[ -f "$ZDOTDIR"/plugins/colorman.sh ]] && . "$ZDOTDIR"/plugins/colorman.sh
 
 # Lazyload `thefuck`.
 if check_cmd thefuck; then
@@ -275,13 +263,13 @@ if check_cmd thefuck; then
 fi
 
 # zsh-autosuggestions.
-[[ -d "$ZSH/plugins/zsh-autosuggestions" ]] && . "$ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ -d "$ZDOTDIR"/plugins/zsh-autosuggestions ]] && . "$ZDOTDIR"/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # zsh-syntax-highlighting.
-[[ -d "$ZSH/plugins/zsh-syntax-highlighting" ]] && . "$ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -d "$ZDOTDIR"/plugins/zsh-syntax-highlighting ]] && . "$ZDOTDIR"/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Load `.zshrc.local` if it exists.
-[[ -f "${HOME}/.zshrc.local" ]] && . "${HOME}/.zshrc.local"
+[[ -f "$ZDOTDIR"/.zshrc.local ]] && . "$ZDOTDIR"/.zshrc.local
 
 ### DEBUG.
 

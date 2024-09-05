@@ -1,0 +1,14 @@
+Makefile
+LICENSE
+README.org
+
+\.git
+\.gitignore
+
+nix-darwin
+nixos
+pkg
+powershell
+
+eslintrc.js
+prettierrc.mjs

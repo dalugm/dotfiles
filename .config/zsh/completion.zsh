@@ -1,5 +1,3 @@
-# The following lines were added by compinstall
-
 # expand path like
 # /v/c/p/p => /var/cache/pacman/pkg
 setopt complete_in_word
@@ -41,5 +39,3 @@ autoload -Uz compinit && compinit
 
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit
-
-# End of lines added by compinstall

@@ -22,12 +22,12 @@ mkd() {
 
 # Searches for text within bash history.
 greph() {
-    command -p grep --color=always -i -- "$*" "${HISTFILE}" | less -RX
+    command -p grep --color=always -i -- "$*" "$HISTFILE" | less -RX
 }
 
 # Searches for text within the current directory.
 grepd() {
-    command -p grep --color=always -ir --exclude-dir={.git,node_modules} -- "$*" "${PWD}" | less -RX
+    command -p grep --color=always -ir --exclude-dir={.git,node_modules} -- "$*" "$PWD" | less -RX
 }
 
 # Converts text files with DOS line endings to Unix line endings.

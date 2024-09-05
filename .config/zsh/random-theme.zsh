@@ -6,7 +6,7 @@ local -a themes
 if [[ -n "$PROMPT_RANDOM_CANDIDATES[@]" ]]; then
     themes+=(${=PROMPT_RANDOM_CANDIDATES})
 else
-    themes+=($ZSH/themes/*.zsh-theme(N:t:r))
+    themes+=("$ZDOTDIR"/themes/*.zsh-theme(N:t:r))
 fi
 
 # Ensure we have themes to select.
@@ -16,7 +16,7 @@ integer rand=$RANDOM%$#themes+1
 local theme=${themes[$rand]}
 
 # Extracted theme file paths.
-local file="$ZSH/themes/$theme.zsh-theme"
+local file="$ZDOTDIR"/themes/"$theme".zsh-theme
 
 # Source theme if exists.
 if [[ -f "$file" ]]; then

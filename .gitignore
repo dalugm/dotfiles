@@ -1,11 +1,2 @@
-########
-# FILE #
-########
-*/.DS_Store
-.DS_Store
-/histfile
-
-##########
-# FOLDER #
-##########
-/mpv/watch_later/
+\.config/zsh/.*
+!\.config/zsh/.zshrc
