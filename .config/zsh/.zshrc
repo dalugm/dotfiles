@@ -250,9 +250,6 @@ export SCREENDIR="${XDG_RUNTIME_DIR}/screen"
 # Gradle.
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 
-# Color `man`.
-[[ -f "$ZDOTDIR"/plugins/colorman.sh ]] && . "$ZDOTDIR"/plugins/colorman.sh
-
 # Lazyload `thefuck`.
 if check_cmd thefuck; then
     _my_lazyload_command_fuck() {
@@ -262,11 +259,10 @@ if check_cmd thefuck; then
     my_lazyload_add_command fuck
 fi
 
-# zsh-autosuggestions.
-[[ -d "$ZDOTDIR"/plugins/zsh-autosuggestions ]] && . "$ZDOTDIR"/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+### Plugins.
 
-# zsh-syntax-highlighting.
-[[ -d "$ZDOTDIR"/plugins/zsh-syntax-highlighting ]] && . "$ZDOTDIR"/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Color `man`.
+[[ -f "$ZDOTDIR"/plugins/colorman.sh ]] && . "$ZDOTDIR"/plugins/colorman.sh
 
 # Load `.zshrc.local` if it exists.
 [[ -f "$ZDOTDIR"/.zshrc.local ]] && . "$ZDOTDIR"/.zshrc.local
