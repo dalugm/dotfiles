@@ -1,2 +1,5 @@
 \.config/zsh/.*
 !\.config/zsh/.zshrc
+
+\.config/bash/.*
+!\.config/bash/.bashrc

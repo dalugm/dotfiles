@@ -9,6 +9,4 @@ nix-darwin
 nixos
 pkg
 powershell
-
-eslintrc.js
-prettierrc.mjs
+vendors
