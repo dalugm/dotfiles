@@ -1,17 +1,17 @@
 default:
-	stow .
-	@if [ ! -e ${HOME}/.zshrc ]; then \
+	stow . --no-folding --target=${HOME}
+	@if [[ ! -e ${HOME}/.zshrc ]]; then \
 		ln -s ${HOME}/.config/zsh/.zshrc ${HOME}/.zshrc; \
 	fi
-	@if [ ! -e ${HOME}/.bashrc ]; then \
+	@if [[ ! -e ${HOME}/.bashrc ]]; then \
 		ln -s ${HOME}/.config/bash/.bashrc ${HOME}/.bashrc; \
 	fi
 
 clean:
 	stow -D .
-	@if [ -e ${HOME}/.zshrc ]; then \
+	@if [[ -L ${HOME}/.zshrc ]]; then \
 		rm ${HOME}/.zshrc; \
 	fi
-	@if [ -e ${HOME}/.bashrc ]; then \
+	@if [[ -L ${HOME}/.bashrc ]]; then \
 		rm ${HOME}/.bashrc; \
 	fi
