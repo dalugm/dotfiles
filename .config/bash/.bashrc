@@ -6,7 +6,7 @@
 
 # Path to bash installation.
 # Distribute bashrc into smaller, more specific files.
-export BASH=$HOME/.config/bash
+export BASH="$HOME"/.config/bash
 
 ### Basic.
 
@@ -46,8 +46,8 @@ export HISTTIMEFORMAT='%F %T '
 
 ### Better defaults.
 
-[[ -f "$BASH/function.sh" ]] && . "$BASH/function.sh"
-[[ -f "$BASH/alias.sh" ]] && . "$BASH/alias.sh"
+[[ -f "$BASH"/function.sh ]] && . "$BASH"/function.sh
+[[ -f "$BASH"/alias.sh ]] && . "$BASH"/alias.sh
 
 ### Prompt.
 
@@ -59,11 +59,11 @@ PROMPT_RANDOM_CANDIDATES=(
     zsh
 )
 
-[[ -f "$BASH/random-theme.sh" ]] && . "$BASH/random-theme.sh"
+[[ -f "$BASH"/random-theme.sh ]] && . "$BASH"/random-theme.sh
 
 ### Path.
 
-add_path "$HOME/.local/bin"
+add_path "$HOME"/.local/bin
 
 # Launch Emacs from terminal on macOS.  Put behind PATH to avoid
 # overwritting universal-ctags.
@@ -73,7 +73,7 @@ add_path_behind "/Applications/Emacs.app/Contents/MacOS/bin"
 ### Program.
 
 # Rust.
-[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+[[ -f "$HOME"/.cargo/env ]] && . "$HOME"/.cargo/env
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
@@ -82,22 +82,25 @@ add_path "/usr/local/opt/openjdk/bin"
 export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
 
 # Dotnet.
-add_path "$HOME/.dotnet/tools"
+add_path "$HOME"/.dotnet/tools
 
 # Andriod.
-add_path_behind "$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
-add_path_behind "$HOME/Library/Android/sdk/platform-tools"
+add_path_behind "$HOME"/Android/sdk/cmdline-tools/latest/bin
+add_path_behind "$HOME"/Android/sdk/platform-tools
+
+add_path_behind "$HOME"/Library/Android/sdk/cmdline-tools/latest/bin
+add_path_behind "$HOME"/Library/Android/sdk/platform-tools
 
 # GO.
-if [ -d "$HOME/go" ]; then
-    export GOPATH="$HOME/go"
-    add_path "$GOPATH/bin"
+if [ -d "$HOME"/go ]; then
+    export GOPATH="$HOME"/go
+    add_path "$GOPATH"/bin
 fi
 
 # Flutter.
-if [ -d "$HOME/flutter/bin" ]; then
-    add_path "$HOME/flutter/bin"
-    add_path "$HOME/.pub-cache/bin"
+if [ -d "$HOME"/flutter/bin ]; then
+    add_path "$HOME"/flutter/bin
+    add_path "$HOME"/.pub-cache/bin
     export PUB_HOSTED_URL=https://pub.flutter-io.cn
     export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 fi
@@ -124,7 +127,7 @@ check_cmd brew && export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/
 ### Tools.
 
 # Haskell.
-[[ -f "$HOME/.ghcup/env" ]] && . "$HOME/.ghcup/env"
+[[ -f "$HOME"/.ghcup/env ]] && . "$HOME"/.ghcup/env
 
 # Mise.
 check_cmd mise && eval "$(mise activate bash)"
@@ -133,24 +136,26 @@ check_cmd mise && eval "$(mise activate bash)"
 check_cmd zoxide && eval "$(zoxide init bash)"
 
 # Bun.
-if [[ -d "$HOME/.bun" ]]; then
-    export BUN_INSTALL="$HOME/.bun"
-    add_path "$BUN_INSTALL/bin"
+if [[ -d "$HOME"/.bun ]]; then
+    export BUN_INSTALL="$HOME"/.bun
+    add_path "$BUN_INSTALL"/bin
 fi
 
 # Pnpm.
 if [[ -d "$HOME/Library/pnpm" ]]; then
-    export PNPM_HOME="$HOME/Library/pnpm"
+    export PNPM_HOME="$HOME"/Library/pnpm
     add_path "$PNPM_HOME"
 fi
 
 # Homebrew.
-export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
-add_path "/usr/local/sbin"
+if check_cmd brew; then
+    export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
+    add_path "/usr/local/sbin"
+fi
 
 # GTAGS.
-if [[ -f $HOME/.globalrc ]]; then
-    export GTAGSCONF=$HOME/.globalrc
+if [[ -f "$HOME"/.globalrc ]]; then
+    export GTAGSCONF="$HOME"/.globalrc
 elif [[ -f /usr/local/share/gtags/gtags.conf ]]; then
     export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 elif [[ -f /usr/share/global/gtags/gtags.conf ]]; then
@@ -162,10 +167,10 @@ export GTAGSLABEL=native-pygments
 
 # Screen.
 export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
-export SCREENDIR="${XDG_RUNTIME_DIR}/screen"
+export SCREENDIR="$XDG_RUNTIME_DIR"/screen
 
 # Color `man`.
-[[ -f "$BASH/plugins/colorman.sh" ]] && . "$BASH/plugins/colorman.sh"
+[[ -f "$BASH"/plugins/colorman.sh ]] && . "$BASH"/plugins/colorman.sh
 
 # Lazyload `thefuck`.
 if check_cmd thefuck; then
@@ -177,4 +182,4 @@ if check_cmd thefuck; then
 fi
 
 # Load `.bashrc.local` if it exists.
-[[ -f "$HOME/.bashrc.local" ]] && . "$HOME/.bashrc.local"
+[[ -f "$BASH"/.bashrc.local ]] && . "$BASH"/.bashrc.local

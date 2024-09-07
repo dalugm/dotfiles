@@ -164,6 +164,9 @@ export SBT_OPTS="-Dsbt.override.build.repos=true"
 add_path "$HOME"/.config/dotnet/tools
 
 # Andriod.
+add_path_behind "$HOME"/Android/sdk/cmdline-tools/latest/bin
+add_path_behind "$HOME"/Android/sdk/platform-tools
+
 add_path_behind "$HOME"/Library/Android/sdk/cmdline-tools/latest/bin
 add_path_behind "$HOME"/Library/Android/sdk/platform-tools
 
@@ -245,10 +248,7 @@ export GTAGSLABEL=native-pygments
 
 # Screen.
 export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
-export SCREENDIR="${XDG_RUNTIME_DIR}/screen"
-
-# Gradle.
-export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export SCREENDIR="$XDG_RUNTIME_DIR"/screen
 
 # Lazyload `thefuck`.
 if check_cmd thefuck; then
