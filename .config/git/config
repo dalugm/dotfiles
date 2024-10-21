@@ -19,6 +19,9 @@
 	rebase = true
 [diff "gpg"]
 	textconv = gpg --no-tty --decrypt
+[diff "lockb"]
+	textconv = bun
+	binary = true
 [http]
 	sslverify = false
 [alias]

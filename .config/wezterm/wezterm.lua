@@ -16,7 +16,7 @@ local act = wezterm.action
 --- Settings.
 
 config.font = wezterm.font_with_fallback({
-   -- 'FiraCode Nerd Font',
+   -- "FiraCode Nerd Font",
    "ComicShannsMono Nerd Font",
    "LXGW WenKai Mono",
 })

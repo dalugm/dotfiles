@@ -1,5 +1,5 @@
 [font]
-# Will use the bundled Fira Code Nerd Font by default.
+# Will use the bundled FiraCode Nerd Font by default.
 normal = ["ComicShannsMono Nerd Font", "LXGW WenKai Mono", "Sarasa Mono SC"]
 size = 16
 
