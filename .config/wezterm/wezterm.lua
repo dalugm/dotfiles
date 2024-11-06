@@ -16,12 +16,13 @@ local act = wezterm.action
 --- Settings.
 
 config.font = wezterm.font_with_fallback({
-   -- "FiraCode Nerd Font",
    "ComicShannsMono Nerd Font",
    "LXGW WenKai Mono",
+   "FiraCode Nerd Font",
+   "Sarasa Mono SC",
 })
 
-config.font_size = 16
+config.font_size = 14
 
 config.window_background_opacity = 0.9
 config.window_close_confirmation = "AlwaysPrompt"
