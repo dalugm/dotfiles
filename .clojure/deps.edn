@@ -5,18 +5,19 @@
   "clojars-default" {:url "https://clojars.org/repo/"}}
 
  :aliases
- {:outdated {;; Note that it is `:deps`, not `:extra-deps`
-             :deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
-             :main-opts ["-m" "antq.core"]}
+ {:nREPL {:extra-deps {nrepl/nrepl {:mvn/version "1.3.0"}}}
 
-  :nREPL {:extra-deps {nrepl/nrepl {:mvn/version "1.3.0"}}}
+  :repl/clj {:extra-deps {nrepl/nrepl {:mvn/version "1.3.0"}
+                          cider/cider-nrepl {:mvn/version "0.50.2"}}
+             :main-opts ["--main" "nrepl.cmdline"
+                         "--middleware" "[cider.nrepl/cider-middleware]"
+                         "--interactive"]}
 
-  :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.50.1"}}
-              :main-opts ["-m" "nrepl.cmdline" "--middleware" "[cider.nrepl/cider-middleware]"]}
-
-  :cider-cljs {:extra-deps {cider/cider-nrepl {:mvn/version "0.50.1"}
-                            cider/piggieback {:mvn/version "0.5.3"}}
-               :main-opts ["-m" "nrepl.cmdline" "--middleware"
-                           "[cider.nrepl/cider-middleware,cider.piggieback/wrap-cljs-repl]"]}
+  :repl/cljs {:extra-deps {nrepl/nrepl {:mvn/version "1.3.0"}
+                           cider/cider-nrepl {:mvn/version "0.50.2"}
+                           cider/piggieback {:mvn/version "0.5.3"}}
+              :main-opts ["--main" "nrepl.cmdline"
+                          "--middleware" "[cider.nrepl/cider-middleware,cider.piggieback/wrap-cljs-repl]"
+                          "--interactive"]}
 
   :run {:main-opts ["-m" "main.core"]}}}
