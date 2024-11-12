@@ -161,7 +161,7 @@ export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UT
 export SBT_OPTS="-Dsbt.override.build.repos=true"
 
 # Dotnet.
-add_path "$HOME"/.config/dotnet/tools
+add_path "$HOME"/.dotnet/tools
 
 # Andriod.
 add_path_behind "$HOME"/Android/sdk/cmdline-tools/latest/bin

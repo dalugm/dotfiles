@@ -3,7 +3,7 @@
 
 [[ -d "$HOME"/.local/bin ]] && export PATH="$PATH:$HOME/.local/bin"
 [[ -d "$HOME"/go/bin ]] && export PATH="$PATH:$HOME/go/bin"
-
+[[ -d "$HOME"/.dotnet/tools ]] && export PATH="$PATH:$HOME/.dotnet/tools"
 [[ -f "$HOME"/.cargo/env ]] && . "$HOME"/.cargo/env
 
 # >>> coursier install directory >>>
