@@ -1,0 +1,139 @@
+" Leader.
+let mapleader = " "
+
+map <Leader>vr <Action>(IdeaVim.ReloadVimRc.reload)
+
+""" Plugins
+set surround
+set commentary
+set multiple-cursors
+set argtextobj
+set textobj-entire
+set exchange
+set ReplaceWithRegister
+
+""" Plugin settings
+let g:argtextobj_pairs="[:],(:),<:>"
+
+""" Common settings
+set showmode
+set number
+set relativenumber
+
+set clipboard^=unnamed,unnamedplus
+
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" Highlight search results
+set hlsearch
+
+" When searching try to be smart about cases
+set smartcase
+
+set nobackup
+set noswapfile
+
+set showmatch
+
+""" Idea specific settings
+set ideajoin
+set ideastatusicon=gray
+
+""" Mappings
+map <silent> <C-L> :<C-U>nohlsearch<CR>
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" Brackets.
+nmap [b :bprevious<CR>
+nmap ]b :bnext<CR>
+nmap [d <Action>(GotoPreviousError)
+nmap ]d <Action>(GotoNextError)
+nmap [t :tabprevious<CR>
+nmap ]t :tabnext<CR>
+
+nmap [<Space> O<Esc>j
+nmap ]<Space> o<Esc>k
+nmap [q <Action>(PreviousOccurence)
+nmap ]q <Action>(NextOccurence)
+nmap [m <Action>(MethodUp)
+nmap ]m <Action>(MethodDown)
+nmap [h <Action>(VcsShowPrevChangeMarker)
+nmap ]h <Action>(VcsShowNextChangeMarker)
+
+" Moving lines
+nmap [l <Action>(MoveLineUp)
+nmap ]l <Action>(MoveLineDown)
+" Moving statements
+nmap [s <Action>(MoveStatementUp)
+nmap ]s <Action>(MoveStatementDown)
+
+" Readline like behavior.
+cmap <C-A> <Home>
+cmap <C-E> <End>
+cmap <C-D> <Delete>
+cmap <C-F> <Right>
+cmap <C-B> <Left>
+
+imap <C-A> <Home>
+imap <C-E> <End>
+imap <C-D> <Delete>
+imap <C-F> <Right>
+imap <C-B> <Left>
+imap <C-N> <Down>
+imap <C-P> <Up>
+
+nmap <Leader>dd <Action>(ToggleLineBreakpoint)
+nmap <Leader>ee <Action>(ShowErrorDescription)
+nmap <Leader>ww :write<CR>
+nmap <Leader>zz <Action>(ToggleDistractionFreeMode)
+
+nmap <Leader>la <Action>(ShowIntentionActions)
+nmap <Leader>lF <Action>(ReformatCode)
+nmap <Leader>ld <Action>(GotoDeclaration)
+nmap <Leader>lf <Action>(AutoIndentLines)
+nmap <Leader>li <Action>(GotoImplementation)
+nmap <Leader>lr <Action>(FindUsages)
+nmap <Leader>ln <Action>(RenameElement)
+
+nmap <Leader>wh <Action>(HideActiveWindow)
+
+nmap <Leader>pr <Action>(Run)
+nmap <Leader>pd <Action>(Debug)
+nmap <Leader>ps <Action>(Stop)
+
+nmap <Leader>ss <Action>(FindInPath)
+nmap <Leader>se <Action>(SearchEverywhere)
+nmap <Leader>sf <Action>(GotoFile)
+nmap <Leader>sc <Action>(GotoClass)
+nmap <Leader>so <Action>(GotoSymbol)
+nmap <Leader>sa <Action>(GotoAction)
+nmap <Leader>st <Action>(TextSearchAction)
+
+nmap <Leader>fs <Action>(FileStructurePopup)
+nmap <Leader>ff <Action>(SelectInProjectView)
+
+map <Leader>ga <Action>(Annotate)
+
+" Close current buffer
+nmap <Leader>bd :bp<Bar>bd #<CR>
+
+" Switch to prev buffer.
+nmap <Leader>bb :e #<CR>
+
+nmap <silent> <M-j> <C-W>j
+nmap <silent> <M-k> <C-W>k
+nmap <silent> <M-h> <C-W>h
+nmap <silent> <M-l> <C-W>l
+
+nmap <C-X>0 <C-W>q
+nmap <C-X>1 <C-W>o
+nmap <C-X>2 <C-W>s
+nmap <C-X>3 <C-W>v
+nmap <C-X>o <C-W><C-W>
