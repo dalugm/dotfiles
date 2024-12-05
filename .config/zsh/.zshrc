@@ -228,6 +228,11 @@ if [[ -d "$HOME"/Library/pnpm ]]; then
     add_path "$PNPM_HOME"
 fi
 
+if [[ -d "$HOME"/.local/share/pnpm ]]; then
+    export PNPM_HOME="$HOME"/.local/share/pnpm
+    add_path "$PNPM_HOME"
+fi
+
 # Homebrew.
 if check_cmd brew; then
     export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30

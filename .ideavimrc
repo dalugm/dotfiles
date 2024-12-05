@@ -94,6 +94,11 @@ nmap <Leader>ee <Action>(ShowErrorDescription)
 nmap <Leader>ww :write<CR>
 nmap <Leader>zz <Action>(ToggleDistractionFreeMode)
 
+nmap <Leader>pp <Action>(ChooseRunConfiguration)
+nmap <Leader>pr <Action>(Run)
+nmap <Leader>pd <Action>(Debug)
+nmap <Leader>ps <Action>(Stop)
+
 nmap <Leader>la <Action>(ShowIntentionActions)
 nmap <Leader>lF <Action>(ReformatCode)
 nmap <Leader>ld <Action>(GotoDeclaration)
@@ -103,10 +108,6 @@ nmap <Leader>lr <Action>(FindUsages)
 nmap <Leader>ln <Action>(RenameElement)
 
 nmap <Leader>wh <Action>(HideActiveWindow)
-
-nmap <Leader>pr <Action>(Run)
-nmap <Leader>pd <Action>(Debug)
-nmap <Leader>ps <Action>(Stop)
 
 nmap <Leader>ss <Action>(FindInPath)
 nmap <Leader>se <Action>(SearchEverywhere)

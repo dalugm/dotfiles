@@ -1,12 +1,12 @@
 [font]
 # Will use the bundled FiraCode Nerd Font by default.
 normal = [
-  "ComicShannsMono Nerd Font",
-  "LXGW WenKai Mono",
+  # "ComicShannsMono Nerd Font",
   "FiraCode Nerd Font",
+  "LXGW WenKai Mono",
   "Sarasa Mono SC",
 ]
-size = 14
+size = 12
 
 fork = false
 frame = "full"
