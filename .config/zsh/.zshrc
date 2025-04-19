@@ -208,6 +208,14 @@ check_cmd brew && export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/
 # Haskell.
 export GHCUP_USE_XDG_DIRS=1
 
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '${HOME}'/.opam/opam-init/init.zsh ]] || source '${HOME}'/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
+# END opam configuration
+
 # Mise.
 check_cmd mise && eval "$(mise activate zsh)"
 

@@ -7,7 +7,7 @@ normal = [
   "LXGW WenKai Mono",
   "Sarasa Mono SC",
 ]
-size = 13
+size = 12
 
 fork = false
 frame = "full"

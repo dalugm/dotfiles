@@ -1,6 +1,1 @@
 [tools]
-clojure = "system"
-elixir = "system"
-erlang = "system"
-node = "system"
-python = "system"
