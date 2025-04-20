@@ -10,6 +10,7 @@ alias ec='emacsclient -nw --alternate-editor=nano'
 alias tem='TERM=xterm-24bit emacs'
 alias nv='neovide'
 alias nvt='neovide --frame transparent'
+check_cmd helix && alias hx='helix'
 
 # Proxy.
 export hostip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
