@@ -1,0 +1,61 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "[ t": "pane::ActivatePreviousItem",
+      "] t": "pane::ActivateNextItem"
+    }
+  },
+
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "[ h": "editor::GoToPreviousHunk",
+      "] h": "editor::GoToHunk",
+      "space a": "editor::ToggleCodeActions",
+      "space f": "file_finder::Toggle",
+      "space /": "workspace::NewSearch"
+    }
+  },
+
+  {
+    "context": "vim_mode == insert && !menu",
+    "bindings": {
+      "ctrl-f": "editor::MoveRight",
+      "ctrl-b": "editor::MoveLeft",
+      "ctrl-n": "editor::MoveDown",
+      "ctrl-p": "editor::MoveUp",
+      "ctrl-a": "editor::MoveToBeginningOfLine",
+      "ctrl-e": "editor::MoveToEndOfLine"
+    }
+  },
+
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": ["vim::PushAddSurrounds", {}]
+    }
+  },
+
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  }
+]
