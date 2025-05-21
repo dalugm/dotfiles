@@ -10,5 +10,8 @@
 {
   "format_on_save": "off",
   "use_system_prompts": false,
+  "collaboration_panel": {
+    "button": false
+  },
   "vim_mode": true
 }
