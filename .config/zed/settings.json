@@ -13,5 +13,6 @@
   "collaboration_panel": {
     "button": false
   },
+  "relative_line_numbers": true,
   "vim_mode": true
 }

@@ -2,12 +2,13 @@
 # Will use the bundled FiraCode Nerd Font by default.
 normal = [
   "JetBrains Maple Mono",
+  "JetBrainsMono Nerd Font",
   "FiraCode Nerd Font",
-  "JetbrainsMono Nerd Font",
   "ComicShannsMono Nerd Font",
+  "BigBlueTermPlus Nerd Font Mono",
   "LXGW WenKai Mono",
-  "Maple Mono NF CN",
   "Sarasa Mono SC",
+  "Maple Mono NF CN",
   "Unifont",
 ]
 size = 15
