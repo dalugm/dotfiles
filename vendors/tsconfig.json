@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "noImplicitAny": true,
+    "removeComments": false,
+    "erasableSyntaxOnly": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "noEmit": true,
+    "strict": true,
+    "types": ["node"],
+    "isolatedModules": true,
+    "baseUrl": "./",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  }
+}
