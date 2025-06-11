@@ -41,7 +41,9 @@
       "ctrl-n": "editor::MoveDown",
       "ctrl-p": "editor::MoveUp",
       "ctrl-a": "editor::MoveToBeginningOfLine",
-      "ctrl-e": "editor::MoveToEndOfLine"
+      "ctrl-e": "editor::MoveToEndOfLine",
+      "ctrl-d": "editor::Delete",
+      "ctrl-k": "editor::DeleteToEndOfLine"
     }
   },
 
