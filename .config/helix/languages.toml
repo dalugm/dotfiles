@@ -34,7 +34,7 @@ language-servers = ["typescript-language-server"]
 
 [[language-server.typescript-language-server.config.plugins]]
 name = "@vue/typescript-plugin"
-location = "/path/to/@vue/typescript-plugin"
+location = "/path/to/node_modules/@vue/typescript-plugin"
 languages = ["vue"]
 
 [[language]]
