@@ -49,6 +49,9 @@ export HISTTIMEFORMAT='%F %T '
 [[ -f "$BASH"/function.sh ]] && . "$BASH"/function.sh
 [[ -f "$BASH"/alias.sh ]] && . "$BASH"/alias.sh
 
+# Color `man`.
+[[ -f "$BASH"/plugins/colorman.sh ]] && . "$BASH"/plugins/colorman.sh
+
 ### Prompt.
 
 # PS1='[\u@\h \W]\$ '
@@ -65,39 +68,50 @@ PROMPT_RANDOM_CANDIDATES=(
 
 add_path "$HOME"/.local/bin
 
-# Launch Emacs from terminal on macOS.  Put behind PATH to avoid
-# overwritting universal-ctags.
-add_path_behind "/Applications/Emacs.app/Contents/MacOS"
-add_path_behind "/Applications/Emacs.app/Contents/MacOS/bin"
+### Langs.
 
-### Program.
+#### Haskell.
+export GHCUP_USE_XDG_DIRS=1
+#[[ -f "$HOME"/.ghcup/env ]] && . "$HOME"/.ghcup/env
 
-# Rust.
+#### Ocaml.
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+if [[ -f "${HOME}"/.opam/opam-init/init.sh ]]; then
+    source "${HOME}"/.opam/opam-init/init.sh > /dev/null 2>&1
+fi
+# END opam configuration
+
+#### Rust.
 [[ -f "$HOME"/.cargo/env ]] && . "$HOME"/.cargo/env
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
-# Java.
-add_path "/usr/local/opt/openjdk/bin"
-export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
+#### GO.
+if [ -d "$HOME"/go ]; then
+    export GOPATH="$HOME"/go
+    add_path "$GOPATH"/bin
+fi
 
-# Dotnet.
+#### Dotnet.
 add_path "$HOME"/.dotnet/tools
 
-# Andriod.
+#### Java.
+add_path "/usr/local/opt/openjdk/bin"
+add_path "/opt/homebrew/opt/openjdk/bin"
+export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
+
+#### Andriod.
 add_path_behind "$HOME"/Android/sdk/cmdline-tools/latest/bin
 add_path_behind "$HOME"/Android/sdk/platform-tools
 
 add_path_behind "$HOME"/Library/Android/sdk/cmdline-tools/latest/bin
 add_path_behind "$HOME"/Library/Android/sdk/platform-tools
 
-# GO.
-if [ -d "$HOME"/go ]; then
-    export GOPATH="$HOME"/go
-    add_path "$GOPATH"/bin
-fi
-
-# Flutter.
+#### Flutter.
 if [ -d "$HOME"/flutter/bin ]; then
     add_path "$HOME"/flutter/bin
     add_path "$HOME"/.pub-cache/bin
@@ -105,9 +119,7 @@ if [ -d "$HOME"/flutter/bin ]; then
     export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 fi
 
-### Build.
-
-# Erlang.
+#### Erlang.
 declare -a kerl_options
 
 if check_cmd javac; then
@@ -121,39 +133,34 @@ check_cmd brew && kerl_options+=("--with-ssl=/usr/local/opt/openssl@1.1")
 export KERL_BUILD_DOCS="yes"
 export KERL_CONFIGURE_OPTIONS="${kerl_options[*]}"
 
-# Ruby.
+#### Ruby.
 check_cmd brew && export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@3"
 
-### Tools.
-
-# Haskell.
-[[ -f "$HOME"/.ghcup/env ]] && . "$HOME"/.ghcup/env
-
-# Mise.
+#### Mise.
 check_cmd mise && eval "$(mise activate bash)"
 
-# Zoxide.
+#### Zoxide.
 check_cmd zoxide && eval "$(zoxide init bash)"
 
-# Bun.
+#### Bun.
 if [[ -d "$HOME"/.bun ]]; then
     export BUN_INSTALL="$HOME"/.bun
     add_path "$BUN_INSTALL"/bin
 fi
 
-# Pnpm.
+#### Pnpm.
 if [[ -d "$HOME/Library/pnpm" ]]; then
     export PNPM_HOME="$HOME"/Library/pnpm
     add_path "$PNPM_HOME"
 fi
 
-# Homebrew.
+#### Homebrew.
 if check_cmd brew; then
     export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
     add_path "/usr/local/sbin"
 fi
 
-# GTAGS.
+#### GTAGS.
 if [[ -f "$HOME"/.globalrc ]]; then
     export GTAGSCONF="$HOME"/.globalrc
 elif [[ -f /usr/local/share/gtags/gtags.conf ]]; then
@@ -165,14 +172,11 @@ elif [[ -f /etc/gtags/gtags.conf ]]; then
 fi
 export GTAGSLABEL=native-pygments
 
-# Screen.
+#### Screen.
 export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
 export SCREENDIR="$XDG_RUNTIME_DIR"/screen
 
-# Color `man`.
-[[ -f "$BASH"/plugins/colorman.sh ]] && . "$BASH"/plugins/colorman.sh
-
-# Lazyload `thefuck`.
+#### Lazyload `thefuck`.
 if check_cmd thefuck; then
     _my_lazyload_command_fuck() {
         eval "$(thefuck --alias)"
@@ -181,5 +185,9 @@ if check_cmd thefuck; then
     my_lazyload_add_command fuck
 fi
 
-# Load `.bashrc.local` if it exists.
+### Load `.bashrc.local` if exists.
 [[ -f "$BASH"/.bashrc.local ]] && . "$BASH"/.bashrc.local
+
+## Local Variables:
+## outline-regexp: "###"
+## End:

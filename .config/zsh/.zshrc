@@ -95,6 +95,9 @@ bindkey '^r' history-incremental-search-backward
 [[ -f "$ZDOTDIR"/alias.zsh ]] && . "$ZDOTDIR/alias.zsh"
 [[ -f "$ZDOTDIR"/completion.zsh ]] && . "$ZDOTDIR/completion.zsh"
 
+# Color `man`.
+[[ -f "$ZDOTDIR"/plugins/colorman.sh ]] && . "$ZDOTDIR"/plugins/colorman.sh
+
 ### Prompt.
 
 autoload -Uz promptinit && promptinit
@@ -141,52 +144,46 @@ PROMPT_RANDOM_CANDIDATES=(
 
 add_path "$HOME"/.local/bin
 
-# Launch Emacs from terminal on macOS.  Put behind PATH to avoid
-# overwritting universal-ctags.
-add_path_behind "/Applications/Emacs.app/Contents/MacOS"
-add_path_behind "/Applications/Emacs.app/Contents/MacOS/bin"
+### Langs.
 
-### Program.
+#### Haskell.
+export GHCUP_USE_XDG_DIRS=1
+#[[ -f "$HOME"/.ghcup/env ]] && . "$HOME"/.ghcup/env
 
-# Rust.
+#### Ocaml
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+if [[ -f "${HOME}"/.opam/opam-init/init.zsh ]]; then
+    source "${HOME}"/.opam/opam-init/init.zsh > /dev/null 2>&1
+fi
+# END opam configuration
+
+#### Rust.
 [[ -f "$HOME"/.cargo/env ]] && . "$HOME"/.cargo/env
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
-# Java.
-add_path "/usr/local/opt/openjdk/bin"
-export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
-
-# Scala.
-export SBT_OPTS="-Dsbt.override.build.repos=true"
-
-# Dotnet.
-add_path "$HOME"/.dotnet/tools
-
-# Andriod.
-add_path_behind "$HOME"/Android/sdk/cmdline-tools/latest/bin
-add_path_behind "$HOME"/Android/sdk/platform-tools
-
-add_path_behind "$HOME"/Library/Android/sdk/cmdline-tools/latest/bin
-add_path_behind "$HOME"/Library/Android/sdk/platform-tools
-
-# GO.
+#### GO.
 if [[ -d "$HOME"/go ]]; then
     export GOPATH="$HOME"/go
     add_path "$GOPATH"/bin
 fi
 
-# Flutter.
-if [[ -d "$HOME"/flutter/bin ]]; then
-    add_path "$HOME"/flutter/bin
-    add_path "$HOME"/.pub-cache/bin
-    export PUB_HOSTED_URL=https://pub.flutter-io.cn
-    export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
-fi
+#### Java.
+add_path "/usr/local/opt/openjdk/bin"
+add_path "/opt/homebrew/opt/openjdk/bin"
+export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
 
-### Build.
+#### Scala.
+export SBT_OPTS="-Dsbt.override.build.repos=true"
 
-# Erlang.
+#### Dotnet.
+add_path "$HOME"/.dotnet/tools
+
+#### Erlang.
 declare -a kerl_options
 
 if check_cmd javac; then
@@ -200,29 +197,31 @@ check_cmd brew && kerl_options+=("--with-ssl=/usr/local/opt/openssl@1.1")
 export KERL_BUILD_DOCS="yes"
 export KERL_CONFIGURE_OPTIONS="${kerl_options[*]}"
 
-# Ruby.
+#### Ruby.
 check_cmd brew && export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@3"
 
-### Tools.
+#### Andriod.
+add_path_behind "$HOME"/Android/sdk/cmdline-tools/latest/bin
+add_path_behind "$HOME"/Android/sdk/platform-tools
 
-# Haskell.
-export GHCUP_USE_XDG_DIRS=1
+add_path_behind "$HOME"/Library/Android/sdk/cmdline-tools/latest/bin
+add_path_behind "$HOME"/Library/Android/sdk/platform-tools
 
-# BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
-[[ ! -r '${HOME}'/.opam/opam-init/init.zsh ]] || source '${HOME}'/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
-# END opam configuration
+#### Flutter.
+if [[ -d "$HOME"/flutter/bin ]]; then
+    add_path "$HOME"/flutter/bin
+    add_path "$HOME"/.pub-cache/bin
+    export PUB_HOSTED_URL=https://pub.flutter-io.cn
+    export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+fi
 
-# Mise.
+#### Mise.
 check_cmd mise && eval "$(mise activate zsh)"
 
-# Zoxide.
+#### Zoxide.
 check_cmd zoxide && eval "$(zoxide init zsh)"
 
-# Bun.
+#### Bun.
 if [[ -d "$HOME"/.bun ]]; then
     export BUN_INSTALL="$HOME"/.bun
     add_path "$BUN_INSTALL"/bin
@@ -230,7 +229,7 @@ if [[ -d "$HOME"/.bun ]]; then
     [[ -s "$BUN_INSTALL"/_bun ]] && . "$BUN_INSTALL"/_bun
 fi
 
-# Pnpm.
+#### Pnpm.
 if [[ -d "$HOME"/Library/pnpm ]]; then
     export PNPM_HOME="$HOME"/Library/pnpm
     add_path "$PNPM_HOME"
@@ -241,13 +240,13 @@ if [[ -d "$HOME"/.local/share/pnpm ]]; then
     add_path "$PNPM_HOME"
 fi
 
-# Homebrew.
+#### Homebrew.
 if check_cmd brew; then
     export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
     add_path "/usr/local/sbin"
 fi
 
-# GTAGS.
+#### GTAGS.
 if [[ -f "$HOME"/.globalrc ]]; then
     export GTAGSCONF="$HOME"/.globalrc
 elif [[ -f /usr/local/share/gtags/gtags.conf ]]; then
@@ -259,11 +258,11 @@ elif [[ -f /etc/gtags/gtags.conf ]]; then
 fi
 export GTAGSLABEL=native-pygments
 
-# Screen.
+#### Screen.
 export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
 export SCREENDIR="$XDG_RUNTIME_DIR"/screen
 
-# Lazyload `thefuck`.
+#### Lazyload `thefuck`.
 if check_cmd thefuck; then
     _my_lazyload_command_fuck() {
         eval $(thefuck --alias)
@@ -272,12 +271,7 @@ if check_cmd thefuck; then
     my_lazyload_add_command fuck
 fi
 
-### Plugins.
-
-# Color `man`.
-[[ -f "$ZDOTDIR"/plugins/colorman.sh ]] && . "$ZDOTDIR"/plugins/colorman.sh
-
-# Load `.zshrc.local` if it exists.
+### Load `.zshrc.local` if exists.
 [[ -f "$ZDOTDIR"/.zshrc.local ]] && . "$ZDOTDIR"/.zshrc.local
 
 ### DEBUG.
@@ -326,3 +320,7 @@ if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
         zprof $@
     }
 fi
+
+## Local Variables:
+## outline-regexp: "###"
+## End:
