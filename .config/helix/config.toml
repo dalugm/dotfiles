@@ -14,6 +14,14 @@ hidden = false
 [keys.normal."space"]
 "F" = "file_picker_in_current_buffer_directory"
 
+[keys.normal]
+X = ["extend_line_up", "extend_to_line_bounds"]
+A-x = "extend_to_line_bounds"
+
+[keys.select]
+X = ["extend_line_up", "extend_to_line_bounds"]
+A-x = "extend_to_line_bounds"
+
 [keys.insert]
 "C-[" = "normal_mode"
 "C-f" = "move_char_right"

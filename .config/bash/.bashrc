@@ -80,9 +80,7 @@ export GHCUP_USE_XDG_DIRS=1
 #   - the correct directories to the PATH
 #   - auto-completion for the opam binary
 # This section can be safely removed at any time if needed.
-if [[ -f "${HOME}"/.opam/opam-init/init.sh ]]; then
-    source "${HOME}"/.opam/opam-init/init.sh > /dev/null 2>&1
-fi
+[[ -f "${HOME}"/.opam/opam-init/init.sh ]] && . "${HOME}"/.opam/opam-init/init.sh
 # END opam configuration
 
 #### Rust.

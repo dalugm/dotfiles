@@ -30,13 +30,22 @@ auto-format = false
 name = "vue"
 formatter = { command = "prettier", args = ["--parser", "vue"] }
 auto-format = false
-language-servers = ["typescript-language-server"]
-
-[[language-server.typescript-language-server.config.plugins]]
-name = "@vue/typescript-plugin"
-location = "/path/to/node_modules/@vue/typescript-plugin"
-languages = ["vue"]
+language-servers = ["vtsls", "vue-language-server"]
 
 [[language]]
 name = "zig"
 auto-format = false
+
+# Language servers.
+
+[language-server.vue-language-server]
+command = "vue-language-server"
+args = ["--stdio"]
+
+[language-server.vtsls]
+command = "vtsls"
+args = ["--stdio"]
+
+[language-server.vtsls.config]
+hostInfo = "helix"
+vtsls.tsserver.globalPlugins = [{name = "@vue/typescript-plugin", location = "/path/to/@vue/language-server", languages = ["vue"], configNamespace = "typescript"}]
