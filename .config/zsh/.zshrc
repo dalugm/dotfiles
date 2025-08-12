@@ -150,7 +150,7 @@ add_path "$HOME"/.local/bin
 export GHCUP_USE_XDG_DIRS=1
 #[[ -f "$HOME"/.ghcup/env ]] && . "$HOME"/.ghcup/env
 
-#### Ocaml
+#### Ocaml.
 # BEGIN opam configuration
 # This is useful if you're using opam as it adds:
 #   - the correct directories to the PATH
@@ -158,6 +158,10 @@ export GHCUP_USE_XDG_DIRS=1
 # This section can be safely removed at any time if needed.
 [[ -f "${HOME}"/.opam/opam-init/init.zsh ]] && . "${HOME}"/.opam/opam-init/init.zsh
 # END opam configuration
+
+#### LLVM.
+add_path "/usr/local/opt/llvm/bin"
+add_path "/opt/homebrew/opt/llvm/bin"
 
 #### Rust.
 [[ -f "$HOME"/.cargo/env ]] && . "$HOME"/.cargo/env

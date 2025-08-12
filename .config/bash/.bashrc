@@ -83,6 +83,10 @@ export GHCUP_USE_XDG_DIRS=1
 [[ -f "${HOME}"/.opam/opam-init/init.sh ]] && . "${HOME}"/.opam/opam-init/init.sh
 # END opam configuration
 
+#### LLVM.
+add_path "/usr/local/opt/llvm/bin"
+add_path "/opt/homebrew/opt/llvm/bin"
+
 #### Rust.
 [[ -f "$HOME"/.cargo/env ]] && . "$HOME"/.cargo/env
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
