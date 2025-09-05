@@ -16,14 +16,12 @@ local act = wezterm.action
 --- Settings.
 
 config.font = wezterm.font_with_fallback({
-   "JetBrains Maple Mono",
-   "JetBrainsMono Nerd Font",
-   "FiraCode Nerd Font",
-   "ComicShannsMono Nerd Font",
-   "BigBlueTermPlus Nerd Font Mono",
+   "Maple Mono CN",
+   "Maple Mono Normal CN",
+   "JetBrains Mono",
+   "Fira Code",
    "LXGW WenKai Mono",
    "Sarasa Mono SC",
-   "Maple Mono NF CN",
    "Unifont",
 })
 
