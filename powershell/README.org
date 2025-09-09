@@ -7,5 +7,7 @@
   Which value can be =~/Documents/PowerShell/profile.ps1= or
   =~/Documents/WindowsPowerShell/profile.ps1=
 
+  Get it by =echo $profile=.
+
 - For macOS/Linux, the profile is located at
   =~/.config/powershell/profile.ps1=.
