@@ -153,3 +153,20 @@ Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 # `echo $profile` in PowerShell):
 #
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
+# =============================================================================
+#
+# Fzf
+#
+$env:FZF_DEFAULT_OPTS=@"
+--preview 'bat {}'
+--bind ctrl-a:preview-top
+--bind ctrl-e:preview-bottom
+--bind ctrl-f:preview-page-down
+--bind ctrl-b:preview-page-up
+--bind ctrl-d:preview-half-page-down
+--bind ctrl-u:preview-half-page-up
+--bind ctrl-j:preview-down
+--bind ctrl-k:preview-up
+--bind ctrl-g:toggle-preview
+"@

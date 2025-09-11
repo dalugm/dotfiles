@@ -144,6 +144,24 @@ check_cmd mise && eval "$(mise activate bash)"
 #### Zoxide.
 check_cmd zoxide && eval "$(zoxide init bash)"
 
+#### Fzf.
+if check_cmd fzf; then
+    eval "$(fzf --bash)"
+
+    FZF_DEFAULT_OPTS="--preview 'fzf-preview.sh {}' "
+    FZF_DEFAULT_OPTS+="--bind 'ctrl-a:preview-top' "
+    FZF_DEFAULT_OPTS+="--bind 'ctrl-e:preview-bottom' "
+    FZF_DEFAULT_OPTS+="--bind 'ctrl-f:preview-page-down' "
+    FZF_DEFAULT_OPTS+="--bind 'ctrl-b:preview-page-up' "
+    FZF_DEFAULT_OPTS+="--bind 'ctrl-d:preview-half-page-down' "
+    FZF_DEFAULT_OPTS+="--bind 'ctrl-u:preview-half-page-up' "
+    FZF_DEFAULT_OPTS+="--bind 'ctrl-j:preview-down' "
+    FZF_DEFAULT_OPTS+="--bind 'ctrl-k:preview-up' "
+    FZF_DEFAULT_OPTS+="--bind 'ctrl-g:toggle-preview'"
+
+    export FZF_DEFAULT_OPTS
+fi
+
 #### Bun.
 if [[ -d "$HOME"/.bun ]]; then
     export BUN_INSTALL="$HOME"/.bun
