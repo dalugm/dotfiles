@@ -19,13 +19,6 @@ function Get-FileSize {
 
 Set-Alias -Name ll -Value Get-FileSize
 
-# Mise.
-
-$shimPath = "$env:USERPROFILE\AppData\Local\mise\shims"
-$currentPath = [Environment]::GetEnvironmentVariable('Path', 'User')
-$newPath = $currentPath + ";" + $shimPath
-[Environment]::SetEnvironmentVariable('Path', $newPath, 'User')
-
 # =============================================================================
 #
 # Utility functions for zoxide.

@@ -1,4 +1,7 @@
-#+options: toc:nil
+* Table of Contents                                            :TOC:noexport:
+- [[#install][Install]]
+- [[#windows][Windows]]
+  - [[#mise][Mise]]
 
 * Install
 
@@ -11,3 +14,16 @@
 
 - For macOS/Linux, the profile is located at
   =~/.config/powershell/profile.ps1=.
+
+* Windows
+
+** Mise
+
+Add mise shims to system environment's path.
+
+#+begin_verbose
+$shimPath = "$env:USERPROFILE\AppData\Local\mise\shims"
+$currentPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+$newPath = $currentPath + ";" + $shimPath
+[Environment]::SetEnvironmentVariable('Path', $newPath, 'User')
+#+end_verbose
