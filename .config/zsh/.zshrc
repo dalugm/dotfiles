@@ -177,7 +177,6 @@ fi
 #### Java.
 add_path "/usr/local/opt/openjdk/bin"
 add_path "/opt/homebrew/opt/openjdk/bin"
-export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
 
 #### Scala.
 export SBT_OPTS="-Dsbt.override.build.repos=true"

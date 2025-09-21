@@ -93,7 +93,7 @@ export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
 #### GO.
-if [ -d "$HOME"/go ]; then
+if [[ -d "$HOME"/go ]]; then
     export GOPATH="$HOME"/go
     add_path "$GOPATH"/bin
 fi
@@ -104,7 +104,6 @@ add_path "$HOME"/.dotnet/tools
 #### Java.
 add_path "/usr/local/opt/openjdk/bin"
 add_path "/opt/homebrew/opt/openjdk/bin"
-export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.region=US -Dfile.encoding=UTF-8"
 
 #### Andriod.
 add_path_behind "$HOME"/Android/sdk/cmdline-tools/latest/bin
@@ -114,7 +113,7 @@ add_path_behind "$HOME"/Library/Android/sdk/cmdline-tools/latest/bin
 add_path_behind "$HOME"/Library/Android/sdk/platform-tools
 
 #### Flutter.
-if [ -d "$HOME"/flutter/bin ]; then
+if [[ -d "$HOME"/flutter/bin ]]; then
     add_path "$HOME"/flutter/bin
     add_path "$HOME"/.pub-cache/bin
     export PUB_HOSTED_URL=https://pub.flutter-io.cn
