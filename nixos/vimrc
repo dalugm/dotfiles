@@ -1,18 +1,27 @@
-" Basic {{{
+" Basic
 
 " Disable vi compatibility, if for some reason it's on.
 if &compatible
   set nocompatible
 endif
 
-set title
+" Disable title modification.
+set notitle
+
 " Improve smoothness of redrawing.
 set ttyfast
 
 " Message language.
 let $LANG='en_US.UTF-8'
-" Menu language.
-set langmenu=en
+
+" Use the English menus, equals to:
+" set langmenu=en_US.UTF-8, or just set langmenu=en for short.
+" Set before loading menus.
+set langmenu=none
+
+" " Delete all predefined menus to solve garbled code problem on Windows.
+" source $VIMRUNTIME/delmenu.vim
+" source $VIMRUNTIME/menu.vim
 
 " Avoid local vimrc's problem.
 set secure
@@ -45,8 +54,10 @@ set fileformats=unix,mac,dos
 set formatoptions+=m
 " When joining lines, don't insert a space between two multi-byte characters.
 set formatoptions+=B
-" Where it makes sense, remove a comment leader when joining lines.
-set formatoptions+=j
+" Delete comment character when joining commented lines.
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j
+endif
 " When formatting text, recognize numbered lists.
 set formatoptions+=n
 
@@ -92,30 +103,18 @@ set whichwrap+=<,>,h,l,[,]
 set mouse=a
 
 " Clear vert split and empty line fillchar.
-set fillchars=vert:│,fold:·
+set fillchars=vert:\|,fold:·
 
 " Use these symbols for invisible chars.
 set listchars=tab:>\ ,eol:$,trail:⋅,extends:>,precedes:<,nbsp:+
 
-" Fold code config
-set foldenable
-set foldmethod=marker
-
-if has("win16") || has("win32")
-  " Solve the unreadable problem on Windows.
-  source $VIMRUNTIME/delmenu.vim
-  source $VIMRUNTIME/menu.vim
-
+if has("win32") || has("win16")
   if executable('pwsh')
     set shell=pwsh
   elseif executable('powershell')
     set shell=powershell
   endif
 endif
-
-" }}} Basic
-
-" Appearence {{{
 
 " Enable syntax highlighting.
 syntax enable
@@ -144,7 +143,7 @@ set mousehide
 set ruler
 
 " Always show the sign column, otherwise it would shift the text each time.
-set signcolumn="number"
+set signcolumn="yes"
 
 " " " Highlight chars when over 80 rows.
 " " augroup vimrc_autocmds
@@ -166,7 +165,7 @@ set wildmode=list:longest,full
 " Ignore compiled files.
 set wildignore=*.so,*.swp,*.pyc,*.pyo,*.exe,*.7z
 
-if has("win16") || has("win32")
+if has("win32") || has("win16")
   set wildignore+=.git\*,.hg\*,.svn\*,*\desktop.ini
 else
   set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
@@ -197,12 +196,8 @@ set laststatus=2
 " ColorScheme means to match keywords after loading a color scheme.
 " Syntax means to match keywords when the `syntax` option has been set.
 " More details can be checked by `:help autocmd`.
-autocmd ColorScheme * call matchadd('Todo', '\W\zs\(TODO\|FIXME\|CHANGED\|BUG\|HACK\|XXX\|NOTICE\|WARNING\|DANGER\|DEPRECATED\|REVIEW\)')
-autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
-
-" }}} Appearance
-
-" Edit {{{
+autocmd ColorScheme * call matchadd('Todo', '\W\zs\(TODO\|FIXME\|HACK\|XXX\)')
+autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\)')
 
 " execute `:argdo' etc. by omitting `!'
 set hidden
@@ -283,10 +278,6 @@ command! Bd :bp | :sp | :bn | :bd
 " For a better commit message
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-" }}} Edit
-
-" Keybindings {{{
-
 let mapleader = " "
 let maplocalleader = ","
 
@@ -347,7 +338,6 @@ nnoremap <LocalLeader>xx :cc<CR>
 nnoremap <LocalLeader>xg :edit<CR>
 nnoremap <LocalLeader>xG :checktime<CR>
 
-" Brackets {{{
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
@@ -368,19 +358,11 @@ nnoremap ]T :tablast<CR>
 nnoremap [<Space> :call append(line('.') - 1, repeat([''], v:count1))<CR>
 nnoremap ]<Space> :call append(line('.'),     repeat([''], v:count1))<CR>
 
-" }}} Brackets
-
-" Buffer {{{
-
 " Close current buffer
 nnoremap <Leader>bd :bp<Bar>bd #<CR>
 
 " Switch to prev buffer.
 nnoremap <LocalLeader>bb :e #<CR>
-
-" }}} Buffer
-
-" Window {{{
 
 nnoremap <silent> <M-j> <C-W>j
 nnoremap <silent> <M-k> <C-W>k
@@ -397,10 +379,6 @@ nnoremap <C-X>2 <C-W>s
 nnoremap <C-X>3 <C-W>v
 nnoremap <C-X>o <C-W><C-W>
 
-" }}} Window
-
-" Tab {{{
-
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>tx :tabclose<CR>
 nnoremap <Leader>tn :tabn<CR>
@@ -412,10 +390,6 @@ nnoremap <Leader>th :tabmove -<CR>
 nnoremap <Leader>tl :tabmove +<CR>
 nnoremap <Leader>ta :tabmove 0<CR>
 nnoremap <Leader>te :tabmove $<CR>
-
-" }}} Tab
-
-" Enhance {{{
 
 " Edit macros.
 nnoremap <LocalLeader>em :<C-U><C-R><C-R>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><Left>
@@ -446,12 +420,6 @@ if maparg('<LocalLeader>*', 'v') == ''
   vmap <LocalLeader>* :<C-U>call <SID>VSetSearch()<CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'<CR>
 endif
 
-" }}} Enhance
-
-" }}} Keybindings
-
-" Package {{{
-
 if has('packages')
   " Enhance `%' command
   packadd! matchit
@@ -462,7 +430,6 @@ if has('packages')
   " when editing a file that is already edited with another Vim instance
   " go to that Vim instance
   packadd! editexisting
-
 else
   runtime macros/matchit.vim
   autocmd FileType python let b:match_words = '\<if\>:\<elif\>:\<else\>,'
@@ -470,43 +437,12 @@ else
   let b:match_ignorecase=0
 
   runtime macros/editexisting.vim
+endif
 
+" Enable the :Man command shipped inside Vim's man filetype plugin.
+if exists(':Man') != 2 && !exists('g:loaded_man') && &filetype !=? 'man'
+  runtime ftplugin/man.vim
 endif
 
 " Load help doc
 silent! helptags ALL
-
-" }}} Package
-
-" GUI Related {{{
-
-if has('gui_running')
-  " Cursor shape.
-  set guicursor=n-v-sm:block
-  set guicursor+=i-c-ci:ver25
-  set guicursor+=ve-r-cr-o:hor20
-  " No cursor blink.
-  set guicursor+=a:blinkon0
-
-  " Font.
-  set guifont=LXGW\ WenKai\ Mono:h14
-
-  " Change GUI relatives.
-  command! Bigger  :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
-  command! Smaller :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
-
-  " Show table numbers.
-  set guitablabel=%N:%M%t
-
-  " Disables the GUI tab line in favor of the plain text version.
-  set guioptions-=e
-  " Disable scrollbars.
-  set guioptions-=L
-  set guioptions-=l
-  set guioptions-=R
-  set guioptions-=r
-  " Disable toolbar.
-  set guioptions-=T
-endif
-
-" }}} GUI Releated

@@ -156,7 +156,7 @@ export GHCUP_USE_XDG_DIRS=1
 #   - the correct directories to the PATH
 #   - auto-completion for the opam binary
 # This section can be safely removed at any time if needed.
-[[ -f "${HOME}"/.opam/opam-init/init.zsh ]] && . "${HOME}"/.opam/opam-init/init.zsh
+[[ -f "$HOME"/.opam/opam-init/init.zsh ]] && . "$HOME"/.opam/opam-init/init.zsh
 # END opam configuration
 
 #### LLVM.
