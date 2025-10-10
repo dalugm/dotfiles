@@ -68,8 +68,8 @@ nmap [h <Action>(VcsShowPrevChangeMarker)
 nmap ]h <Action>(VcsShowNextChangeMarker)
 
 " Moving lines
-nmap [l <Action>(MoveLineUp)
-nmap ]l <Action>(MoveLineDown)
+nmap [e <Action>(MoveLineUp)
+nmap ]e <Action>(MoveLineDown)
 " Moving statements
 nmap [s <Action>(MoveStatementUp)
 nmap ]s <Action>(MoveStatementDown)
