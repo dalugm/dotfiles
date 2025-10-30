@@ -4,6 +4,8 @@
 [color]
 	ui = true
 [core]
+	# Always take account of the case
+	ignorecase = false
 	quotePath = false
 	# Avoid converting anything automagically.
 	autocrlf = false
@@ -15,6 +17,8 @@
 	default = matching
 [pull]
 	rebase = true
+[fetch]
+	prune = true
 [diff "gpg"]
 	textconv = gpg --no-tty --decrypt
 [diff "lockb"]

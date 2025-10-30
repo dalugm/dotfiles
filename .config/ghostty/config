@@ -55,3 +55,8 @@ keybind = ctrl+a>s=new_split:auto
 keybind = ctrl+a>z=toggle_split_zoom
 
 keybind = ctrl+a>x=close_surface
+
+# Shader.
+# This can be repeated multiple times to load multiple shaders.
+# The shaders will be run in the order they are specified.
+# custom-shader = ./shaders/bettercrt.glsl
