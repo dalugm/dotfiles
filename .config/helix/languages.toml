@@ -48,4 +48,8 @@ args = ["--stdio"]
 
 [language-server.vtsls.config]
 hostInfo = "helix"
-vtsls.tsserver.globalPlugins = [{name = "@vue/typescript-plugin", location = "/path/to/@vue/language-server", languages = ["vue"], configNamespace = "typescript"}]
+vtsls.tsserver.globalPlugins = [
+  { name = "@vue/typescript-plugin", location = "~/.bun/install/global/node_modules/@vue/language-server", languages = [
+    "vue",
+  ], configNamespace = "typescript" },
+]

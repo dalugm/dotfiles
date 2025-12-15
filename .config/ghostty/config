@@ -31,6 +31,7 @@ keybind = ctrl+a>w=new_window
 keybind = ctrl+a>c=new_tab
 keybind = ctrl+a>ctrl+l=next_tab
 keybind = ctrl+a>ctrl+h=previous_tab
+keybind = ctrl+a>n=prompt_surface_title
 
 keybind = ctrl+a>1=goto_tab:1
 keybind = ctrl+a>2=goto_tab:2
