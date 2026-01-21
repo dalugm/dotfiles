@@ -1,7 +1,7 @@
 {
-  "editor.fontFamily": "'JetBrains Maple Mono', 'JetBrainsMono Nerd Font', 'FiraCode Nerd Font', 'ComicShannsMono Nerd Font', 'LXGW WenKai Mono', 'Sarasa Mono SC', monospace",
+  "editor.fontFamily": "'Maple Mono CN', 'Maple Mono Normal CN', 'JetBrains Mono', 'Fira Code', 'LXGW WenKai Mono', 'Sarasa Mono SC', monospace",
   "editor.fontSize": 15,
-  // Vim.
+  // Vim
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
   "vim.hlsearch": true,
@@ -84,6 +84,34 @@
       ],
       "commands": [
         ":nohl"
+      ]
+    },
+    {
+      "before": [
+        "<Esc>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "c"
+      ],
+      "commands": [
+        "workbench.action.terminal.toggleTerminal"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "f"
+      ],
+      "commands": [
+        "editor.action.formatDocument"
       ]
     },
     {
@@ -337,5 +365,21 @@
     "vscodevim.vim": 1
   },
   "window.autoDetectColorScheme": true,
-  "containers.containerClient": "com.microsoft.visualstudio.containers.docker"
+  "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "[ ]",
+    "[x]",
+    "NOTE"
+  ]
 }

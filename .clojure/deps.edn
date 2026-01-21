@@ -1,7 +1,7 @@
 {:aliases
  {:outdated {;; Note that it is `:deps`, not `:extra-deps`
              :deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
-             :main-opts ["-m" "antq.core"]}
+             :main-opts ["--main" "antq.core"]}
 
   :nrepl-clj {:extra-deps {nrepl/nrepl {:mvn/version "1.5.2"}
                            cider/cider-nrepl {:mvn/version "0.58.0"}}

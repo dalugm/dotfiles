@@ -28,7 +28,10 @@
       "[ h": "editor::GoToPreviousHunk",
       "] h": "editor::GoToHunk",
       "space a": "editor::ToggleCodeActions",
+      "space c c": "terminal_panel::Toggle",
+      "space c f": "editor::Format",
       "space f": "file_finder::Toggle",
+      "space t t": "workspace::NewCenterTerminal",
       "space /": "workspace::NewSearch"
     }
   },
