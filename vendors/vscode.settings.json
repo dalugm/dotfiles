@@ -280,6 +280,16 @@
   "vim.insertModeKeyBindings": [
     {
       "before": [
+        "<C-x>",
+        "<C-o>"
+      ],
+      "commands": [
+        "editor.action.triggerSuggest"
+      ],
+      "when": "editorTextFocus"
+    },
+    {
+      "before": [
         "<C-a>"
       ],
       "commands": [
