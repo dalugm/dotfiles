@@ -23,10 +23,10 @@ set relativenumber
 set clipboard^=unnamed,unnamedplus
 
 " Show a few lines of context around the cursor. Note that this makes the
-" text scroll if you mouse-click near the start or end of the window.
+" text scroll if you mouse-click near the start or end of the window
 set scrolloff=5
 
-" Do incremental searching.
+" Do incremental searching
 set incsearch
 
 " Highlight search results
@@ -47,10 +47,10 @@ set ideastatusicon=gray
 """ Mappings
 map <silent> <C-L> :<C-U>nohlsearch<CR>
 
-" Don't use Ex mode, use Q for formatting.
+" Don't use Ex mode, use Q for formatting
 map Q gq
 
-" Brackets.
+" Brackets
 nmap [b :bprevious<CR>
 nmap ]b :bnext<CR>
 nmap [d <Action>(GotoPreviousError)
@@ -74,7 +74,7 @@ nmap ]e <Action>(MoveLineDown)
 nmap [s <Action>(MoveStatementUp)
 nmap ]s <Action>(MoveStatementDown)
 
-" Readline like behavior.
+" Readline like behavior
 cmap <C-A> <Home>
 cmap <C-E> <End>
 cmap <C-D> <Delete>
@@ -125,7 +125,7 @@ map <Leader>ga <Action>(Annotate)
 " Close current buffer
 nmap <Leader>bd :bp<Bar>bd #<CR>
 
-" Switch to prev buffer.
+" Switch to prev buffer
 nmap <Leader>bb :e #<CR>
 
 nmap <silent> <M-j> <C-W>j

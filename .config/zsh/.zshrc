@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 
-# ${HOME}/.zshrc: executed by zsh(1) for non-login shells.
-# If not running interactively, don't do anything.
+# ${HOME}/.zshrc: executed by zsh(1) for non-login shells
+# If not running interactively, don't do anything
 [[ -z "$PS1" ]] && return
 
-# For Performance Debug purpose.
+# For Performance Debug purpose
 export MY_ENABLE_PERFORMANCE_PROFILING="false"
 
 if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
@@ -21,55 +21,66 @@ if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
     setopt XTRACE
 fi
 
-# Path to zsh installation.
-# Distribute zshrc into smaller, more specific files.
+# Path to zsh installation
+# Distribute zshrc into smaller, more specific files
 export ZDOTDIR="$HOME"/.config/zsh
 
-### Basic.
+### Basic
 
-# Set the default language.
+# Set the default language
 export LANG=en_US.UTF-8
 
-# Set the default collation order as in C.
+# Set the default collation order as in C
 export LC_COLLATE='C'
 
-# Set TERM value.
+# Set TERM value
 # export TERM=xterm-24bit
 # export TERM=xterm-256color
 
-# ls colors.
+# ls colors
 autoload -U colors && colors
 
-export EDITOR='vim'
-export ALTERNATE_EDITOR='nano'
+if command -v nvim >/dev/null 2>&1; then
+    export EDITOR='nvim'
+    export VISUAL='nvim'
+elif command -v vim >/dev/null 2>&1; then
+    export EDITOR='vim'
+    export VISUAL='vim'
+elif command -v nano >/dev/null 2>&1; then
+    export EDITOR='nano'
+    export VISUAL='nano'
+else
+    export EDITOR='vi'
+    export VISUAL='vi'
+fi
 
-### History.
+### History
 
-# Consistent with .bash_history, .psql_histroy, etc.
+# Consistent with .bash_history, .psql_histroy, etc
 HISTFILE="$HOME"/.zsh_history
 
-# The maximum number of lines to remember in the command history.
+# The maximum number of lines to remember in the command history
 HISTSIZE=1000
 
-# The maximum number of history events to save in the history file.
+# The maximum number of history events to save in the history file
 SAVEHIST=$HISTSIZE
 
-# Share history between multi zsh sessions.
+# Share history between multi zsh sessions
 setopt SHARE_HISTORY
 
-# Add timestamp for history commands.
+# Add timestamp for history commands
 setopt EXTENDED_HISTORY
 
-# Ignore duplicate commands.
+# Ignore duplicate commands
 setopt HIST_IGNORE_DUPS
 
-# Ignore duplicate history path.
+# Ignore duplicate history path
 setopt PUSHD_IGNORE_DUPS
 
-# Ignore command with a space ahead.
+# Ignore command with a space ahead
 setopt HIST_IGNORE_SPACE
 
-### Keybinding.
+### Keybinding
 
 # [DEFAULT] Use $EDITOR key bindings
 
@@ -85,20 +96,20 @@ zle -N edit-command-line
 bindkey '\C-o' edit-command-line     # VIM style
 bindkey '\C-x\C-e' edit-command-line # EMACS style
 
-# [Ctrl-r] - Search backward incrementally for a specified string.
-# The string may begin with ^ to anchor the search to the beginning of the line.
+# [Ctrl-r] - Search backward incrementally for a specified string
+# The string may begin with ^ to anchor the search to the beginning of the line
 bindkey '^r' history-incremental-search-backward
 
-### Better defaults.
+### Better defaults
 
 [[ -f "$ZDOTDIR"/function.zsh ]] && . "$ZDOTDIR/function.zsh"
 [[ -f "$ZDOTDIR"/alias.zsh ]] && . "$ZDOTDIR/alias.zsh"
 [[ -f "$ZDOTDIR"/completion.zsh ]] && . "$ZDOTDIR/completion.zsh"
 
-# Color `man`.
+# Color `man`
 [[ -f "$ZDOTDIR"/plugins/colorman.sh ]] && . "$ZDOTDIR"/plugins/colorman.sh
 
-### Prompt.
+### Prompt
 
 autoload -Uz promptinit && promptinit
 
@@ -106,7 +117,7 @@ autoload -Uz promptinit && promptinit
 # https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
 autoload -Uz vcs_info
 
-# Executed before every command run in the terminal.
+# Executed before every command run in the terminal
 precmd() { vcs_info }
 
 setopt PROMPT_SUBST
@@ -123,11 +134,11 @@ zstyle ':vcs_info:git:*' formats '%F{cyan} %b%f'
 # zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 
 # # http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#vcs_005finfo-Hooks
-# # Append '?' to `unstaged (%u)` if there are any untracked files.
+# # Append '?' to `unstaged (%u)` if there are any untracked files
 # +vi-git-untracked() {
 #     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
 #            git status --porcelain | grep -m 1 '^??' &>/dev/null; then
-#         # Append to unstaged (%u).
+#         # Append to unstaged (%u)
 #         hook_com[unstaged]='?'
 #     fi
 # }
@@ -140,75 +151,75 @@ PROMPT_RANDOM_CANDIDATES=(
 
 [[ -f "$ZDOTDIR"/random-theme.zsh ]] && . "$ZDOTDIR"/random-theme.zsh
 
-### Path.
+### Path
 
 add_path "$HOME"/.local/bin
 
-### Langs.
+### Langs
 
-#### Haskell.
+#### Haskell
 export GHCUP_USE_XDG_DIRS=1
 #[[ -f "$HOME"/.ghcup/env ]] && . "$HOME"/.ghcup/env
 
-#### Ocaml.
+#### Ocaml
 # BEGIN opam configuration
 # This is useful if you're using opam as it adds:
 #   - the correct directories to the PATH
 #   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
+# This section can be safely removed at any time if needed
 [[ -f "$HOME"/.opam/opam-init/init.zsh ]] && . "$HOME"/.opam/opam-init/init.zsh
 # END opam configuration
 
-#### LLVM.
+#### LLVM
 add_path "/usr/local/opt/llvm/bin"
 add_path "/opt/homebrew/opt/llvm/bin"
 
-#### Rust.
+#### Rust
 [[ -f "$HOME"/.cargo/env ]] && . "$HOME"/.cargo/env
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
-#### GO.
+#### GO
 if [[ -d "$HOME"/go ]]; then
     export GOPATH="$HOME"/go
     add_path "$GOPATH"/bin
 fi
 
-#### Java.
+#### Java
 add_path "/usr/local/opt/openjdk/bin"
 add_path "/opt/homebrew/opt/openjdk/bin"
 
-#### Scala.
+#### Scala
 export SBT_OPTS="-Dsbt.override.build.repos=true"
 
-#### Dotnet.
+#### Dotnet
 add_path "$HOME"/.dotnet/tools
 
-#### Erlang.
+#### Erlang
 declare -a kerl_options
 
-if check_cmd javac; then
+if command_exists javac; then
     kerl_options+=("--disable-debug")
 else
     kerl_options+=("--disable-debug" "--without-javac")
 fi
 
-check_cmd brew && kerl_options+=("--with-ssl=/usr/local/opt/openssl@1.1")
+command_exists brew && kerl_options+=("--with-ssl=/usr/local/opt/openssl@1.1")
 
 export KERL_BUILD_DOCS="yes"
 export KERL_CONFIGURE_OPTIONS="${kerl_options[*]}"
 
-#### Ruby.
-check_cmd brew && export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@3"
+#### Ruby
+command_exists brew && export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@3"
 
-#### Andriod.
+#### Andriod
 add_path_behind "$HOME"/Android/sdk/cmdline-tools/latest/bin
 add_path_behind "$HOME"/Android/sdk/platform-tools
 
 add_path_behind "$HOME"/Library/Android/sdk/cmdline-tools/latest/bin
 add_path_behind "$HOME"/Library/Android/sdk/platform-tools
 
-#### Flutter.
+#### Flutter
 if [[ -d "$HOME"/flutter/bin ]]; then
     add_path "$HOME"/flutter/bin
     add_path "$HOME"/.pub-cache/bin
@@ -216,14 +227,14 @@ if [[ -d "$HOME"/flutter/bin ]]; then
     export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 fi
 
-#### Mise.
-check_cmd mise && eval "$(mise activate zsh)"
+#### Mise
+command_exists mise && eval "$(mise activate zsh)"
 
-#### Zoxide.
-check_cmd zoxide && eval "$(zoxide init zsh)"
+#### Zoxide
+command_exists zoxide && eval "$(zoxide init zsh)"
 
-#### Fzf.
-if check_cmd fzf; then
+#### Fzf
+if command_exists fzf; then
     source <(fzf --zsh)
 
     FZF_DEFAULT_OPTS="--preview 'fzf-preview.sh {}' "
@@ -240,15 +251,15 @@ if check_cmd fzf; then
     export FZF_DEFAULT_OPTS
 fi
 
-#### Bun.
+#### Bun
 if [[ -d "$HOME"/.bun ]]; then
     export BUN_INSTALL="$HOME"/.bun
     add_path "$BUN_INSTALL"/bin
-    # Completions.
+    # Completions
     [[ -s "$BUN_INSTALL"/_bun ]] && . "$BUN_INSTALL"/_bun
 fi
 
-#### Pnpm.
+#### Pnpm
 if [[ -d "$HOME"/Library/pnpm ]]; then
     export PNPM_HOME="$HOME"/Library/pnpm
     add_path "$PNPM_HOME"
@@ -259,13 +270,13 @@ if [[ -d "$HOME"/.local/share/pnpm ]]; then
     add_path "$PNPM_HOME"
 fi
 
-#### Homebrew.
-if check_cmd brew; then
+#### Homebrew
+if command_exists brew; then
     export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
     add_path "/usr/local/sbin"
 fi
 
-#### GTAGS.
+#### GTAGS
 if [[ -f "$HOME"/.globalrc ]]; then
     export GTAGSCONF="$HOME"/.globalrc
 elif [[ -f /usr/local/share/gtags/gtags.conf ]]; then
@@ -277,12 +288,12 @@ elif [[ -f /etc/gtags/gtags.conf ]]; then
 fi
 export GTAGSLABEL=native-pygments
 
-#### Screen.
+#### Screen
 export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
 export SCREENDIR="$XDG_RUNTIME_DIR"/screen
 
-#### Lazyload `thefuck`.
-if check_cmd thefuck; then
+#### Lazyload `thefuck`
+if command_exists thefuck; then
     _my_lazyload_command_fuck() {
         eval $(thefuck --alias)
     }
@@ -290,10 +301,10 @@ if check_cmd thefuck; then
     my_lazyload_add_command fuck
 fi
 
-### Load `.zshrc.local` if exists.
+### Load `.zshrc.local` if exists
 [[ -f "$ZDOTDIR"/.zshrc.local ]] && . "$ZDOTDIR"/.zshrc.local
 
-### DEBUG.
+### DEBUG
 
 if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
     unsetopt XTRACE
@@ -341,5 +352,5 @@ if [[ "${MY_ENABLE_PERFORMANCE_PROFILING:-}" == "true" ]]; then
 fi
 
 ## Local Variables:
-## outline-regexp: "###"
+## outline-regexp: "###+"
 ## End:

@@ -1,6 +1,0 @@
-* INSTALL
-
-#+begin_src bash-ts
-  ln -s ~/dotfiles/bash ~/.config/bash
-  ln -s ~/dotfiles/bash/init.sh ~/.bashrc
-#+end_src

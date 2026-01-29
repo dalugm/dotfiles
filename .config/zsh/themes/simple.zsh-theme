@@ -9,6 +9,6 @@ PROMPT='%F{green}%n%f@%F{blue}%m%f: %F{magenta}%~%f${vcs_info_msg_0_} [%F{grey}%
 PROMPT+=$'\n'
 PROMPT+="%(?.$.%F{red}$%f)%b%f "
 
-# Set the continuation interactive prompt.
+# Set the continuation interactive prompt
 # > ...
 PS2="$fg[magenta]> $reset_color"

@@ -9,6 +9,6 @@ PS1+="\$(__git_prompt_info ' [\e[0;36m' '\e[m]')"
 PS1+=$'\n'
 PS1+="\\$ "
 
-# Set the continuation interactive prompt.
+# Set the continuation interactive prompt
 # > ...
 PS2="\e[0;35m> \e[m"
