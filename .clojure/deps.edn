@@ -1,17 +1,18 @@
 {:aliases
- {:outdated {;; Note that it is `:deps`, not `:extra-deps`
-             :deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
-             :main-opts ["--main" "antq.core"]}
-
-  :nrepl-clj {:extra-deps {nrepl/nrepl {:mvn/version "1.5.2"}
+ {:cider-clj {:extra-deps {nrepl/nrepl {:mvn/version "1.5.2"}
                            cider/cider-nrepl {:mvn/version "0.58.0"}}
-              :main-opts ["--main" "nrepl.cmdline"
+              :main-opts ["-m" "nrepl.cmdline"
                           "--middleware" "[cider.nrepl/cider-middleware]"
                           "--interactive"]}
 
-  :nrepl-cljs {:extra-deps {nrepl/nrepl {:mvn/version "1.5.2"}
+  :cider-cljs {:extra-deps {org.clojure/clojurescript {:mvn/version "1.12.134"}
+                            nrepl/nrepl {:mvn/version "1.5.2"}
                             cider/cider-nrepl {:mvn/version "0.58.0"}
                             cider/piggieback {:mvn/version "0.6.1"}}
-               :main-opts ["--main" "nrepl.cmdline"
+               :main-opts ["-m" "nrepl.cmdline"
                            "--middleware" "[cider.nrepl/cider-middleware,cider.piggieback/wrap-cljs-repl]"
-                           "--interactive"]}}}
+                           "--interactive"]}
+
+  :clj-kondo
+  {:replace-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
+   :main-opts ["-m" "clj-kondo.main"]}}}

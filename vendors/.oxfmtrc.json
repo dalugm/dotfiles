@@ -1,0 +1,25 @@
+// Initialize by running "oxfmt --init"
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  // Sort imports by distance (furthest to closest), disabled by default
+  "experimentalSortImports": {
+    "groups": [
+      ["side-effect"],
+      ["builtin"],
+      ["external", "type-external"],
+      ["internal", "type-internal"],
+      ["parent", "type-parent"],
+      ["sibling", "type-sibling"],
+      ["index", "type-index"]
+    ]
+  },
+  // Sort Tailwind utility classes, disabled by default
+  "experimentalTailwindcss": {
+    "stylesheet": "./path/to/stylesheet.css",
+    "attributes": ["class", "className"],
+    "functions": ["clsx", "cn"],
+    "preserveWhitespace": true
+  },
+  // Sorts keys in package.json, enabled by default
+  "experimentalSortPackageJson": false
+}
