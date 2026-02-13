@@ -1,4 +1,3 @@
-# Basic.
 Set-PSReadLineOption -EditMode Emacs
 
 function Get-FileSize {
@@ -19,12 +18,14 @@ function Get-FileSize {
 
 Set-Alias -Name ll -Value Get-FileSize
 
+## Zoxide
+
 # =============================================================================
 #
-# Utility functions for zoxide.
+# Utility functions for zoxide
 #
 
-# Call zoxide binary, returning the output as UTF-8.
+# Call zoxide binary, returning the output as UTF-8
 function global:__zoxide_bin {
     $encoding = [Console]::OutputEncoding
     try {
@@ -36,7 +37,7 @@ function global:__zoxide_bin {
     }
 }
 
-# pwd based on zoxide's format.
+# pwd based on zoxide's format
 function global:__zoxide_pwd {
     $cwd = Get-Location
     if ($cwd.Provider.Name -eq "FileSystem") {
@@ -44,7 +45,7 @@ function global:__zoxide_pwd {
     }
 }
 
-# cd + custom logic based on the value of _ZO_ECHO.
+# cd + custom logic based on the value of _ZO_ECHO
 function global:__zoxide_cd($dir, $literal) {
     $dir = if ($literal) {
         Set-Location -LiteralPath $dir -Passthru -ErrorAction Stop
@@ -65,10 +66,10 @@ PowerShell."
 
 # =============================================================================
 #
-# Hook configuration for zoxide.
+# Hook configuration for zoxide
 #
 
-# Hook to add new entries to the database.
+# Hook to add new entries to the database
 $global:__zoxide_oldpwd = __zoxide_pwd
 function global:__zoxide_hook {
     $result = __zoxide_pwd
@@ -80,7 +81,7 @@ function global:__zoxide_hook {
     }
 }
 
-# Initialize hook.
+# Initialize hook
 $global:__zoxide_hooked = (Get-Variable __zoxide_hooked -ErrorAction SilentlyContinue -ValueOnly)
 if ($global:__zoxide_hooked -ne 1) {
     $global:__zoxide_hooked = 1
@@ -134,7 +135,7 @@ function global:__zoxide_zi {
 
 # =============================================================================
 #
-# Commands for zoxide. Disable these using --no-cmd.
+# Commands for zoxide. Disable these using --no-cmd
 #
 
 Set-Alias -Name z -Value __zoxide_z -Option AllScope -Scope Global -Force
@@ -147,10 +148,8 @@ Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 #
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
-# =============================================================================
-#
-# Fzf
-#
+## Fzf
+
 $env:FZF_DEFAULT_OPTS=@"
 --preview 'bat {}'
 --bind ctrl-a:preview-top
@@ -163,3 +162,8 @@ $env:FZF_DEFAULT_OPTS=@"
 --bind ctrl-k:preview-up
 --bind ctrl-g:toggle-preview
 "@
+
+## _
+# Local Variables:
+# outline-regexp: "##+"
+# End:

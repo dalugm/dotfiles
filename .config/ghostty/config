@@ -21,16 +21,25 @@ keybind = global:ctrl+backquote=toggle_quick_terminal
 
 keybind = ctrl+a>r=reload_config
 
+# Ghostty uses [fixterms](https://www.leonerd.org.uk/hacks/fixterms/) by
+# default, not the "legacy encoding"
+
+# Make `C-[` equal to Esc
+keybind = ctrl+left_bracket=text:\x1b
+
 # Log
 keybind = ctrl+a>shift+l=write_scrollback_file:paste
 
-# Window
+### Window
+
 keybind = ctrl+a>w=new_window
 
-# Tab
-keybind = ctrl+a>c=new_tab
+### Tab
+
 keybind = ctrl+a>ctrl+l=next_tab
 keybind = ctrl+a>ctrl+h=previous_tab
+
+keybind = ctrl+a>c=new_tab
 keybind = ctrl+a>n=prompt_surface_title
 
 keybind = ctrl+a>1=goto_tab:1
@@ -43,7 +52,8 @@ keybind = ctrl+a>7=goto_tab:7
 keybind = ctrl+a>8=goto_tab:8
 keybind = ctrl+a>9=goto_tab:9
 
-# Pane
+### Pane
+
 keybind = ctrl+a>h=goto_split:left
 keybind = ctrl+a>j=goto_split:down
 keybind = ctrl+a>k=goto_split:up
@@ -57,7 +67,13 @@ keybind = ctrl+a>z=toggle_split_zoom
 
 keybind = ctrl+a>x=close_surface
 
-# Shader.
-# This can be repeated multiple times to load multiple shaders.
-# The shaders will be run in the order they are specified.
+## Shader
+
+# # This can be repeated multiple times to load multiple shaders.
+# # The shaders will be run in the order they are specified.
 # custom-shader = ./shaders/bettercrt.glsl
+
+## _
+# Local Variables:
+# outline-regexp: "##+"
+# End:
