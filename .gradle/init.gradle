@@ -1,26 +1,9 @@
-def repoConfig = {
-    all { ArtifactRepository repo ->
-        if (repo instanceof MavenArtifactRepository) {
-            def url = repo.url.toString()
-            if (url.contains('repo1.maven.org')
-                || url.contains('repo.maven.apache.org')
-                || url.contains('jcenter.bintray.com')) {
-                println "gradle config: (${repo.name}: ${repo.url}) removed"
-                remove repo
-            }
-        }
-    }
-    // maven { url 'http://mirrors.cloud.tencent.com/nexus/repository/maven-public/' }
-    maven { url 'https://maven.aliyun.com/repository/public' }
-    maven { url 'https://maven.aliyun.com/repository/google' }
-    maven { url 'https://maven.aliyun.com/repository/gradle-plugin'}
-    maven { url 'https://maven.aliyun.com/repository/apache-snapshots' }
-}
-
 allprojects {
-    buildscript {
-        repositories repoConfig
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin/'}
+        maven { url 'https://maven.aliyun.com/repository/spring/'}
+        mavenLocal()
+        mavenCentral()
     }
-
-    repositories repoConfig
 }
