@@ -36,8 +36,11 @@ keybind = ctrl+a>w=new_window
 
 ### Tab
 
-keybind = ctrl+a>ctrl+l=next_tab
 keybind = ctrl+a>ctrl+h=previous_tab
+keybind = ctrl+a>ctrl+l=next_tab
+
+keybind = ctrl+a>shift+h=move_tab:-1
+keybind = ctrl+a>shift+l=move_tab:+1
 
 keybind = ctrl+a>c=new_tab
 keybind = ctrl+a>n=prompt_surface_title
