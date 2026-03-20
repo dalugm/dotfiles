@@ -1,10 +1,11 @@
 #!/usr/env/bin zsh
 
-# zsh-like default enhanced theme
+# zsh-like theme
 #   user@hostname ~ master % ...
 
-PROMPT='%F{green}%n%f@%F{blue}%m %f'
-PROMPT+='%F{yellow}%1~%f${vcs_info_msg_0_} %(?.%#.%F{red}%#%f) '
+PROMPT='%F{green}%n%f@%F{blue}%m%f %F{yellow}%1~%f'
+#PROMPT+='${vcs_info_msg_0_}'
+PROMPT+=' %(?.%#.%F{red}%#%f) '
 
 RPROMPT='%F{grey}%*%f'
 

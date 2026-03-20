@@ -1,0 +1,15 @@
+set windows-shell := ["pwsh", "-NoLogo", "-NoProfileLoadTime", "-Command"]
+
+# Information about the environment
+[unix]
+@info:
+  echo "Environment Informations"
+  echo "------------------------"
+  echo "    OS             : {{os()}}({{arch()}})"
+
+# Information about the environment
+[windows]
+@info:
+  echo Environment Informations
+  echo ------------------------
+  echo     OS             : {{os()}}({{arch()}})

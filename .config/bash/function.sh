@@ -52,6 +52,8 @@ git_update_all() {
          -execdir git --git-dir={}/.git --work-tree="${PWD}/{}" pull --rebase \;
 }
 
+## I use jujutsu sometimes, show git status in prompt is not a good idea
+
 # Print branch name and working tree status for prompt
 __git_prompt_info() {
     local git_branch=''

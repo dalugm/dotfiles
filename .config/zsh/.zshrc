@@ -113,25 +113,33 @@ bindkey '^r' history-incremental-search-backward
 
 autoload -Uz promptinit && promptinit
 
-# https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
-# https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
-autoload -Uz vcs_info
+#### Version control
+#
+## I use jujutsu sometimes, show git status in prompt is not a good idea
 
-# Executed before every command run in the terminal
-precmd() { vcs_info }
+# # https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+# # https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
+# autoload -Uz vcs_info
 
-setopt PROMPT_SUBST
+# # Executed before every command run in the terminal
+# precmd() { vcs_info }
 
-# # Keep track of what's going on in vcs_info
-# zstyle ':vcs_info:*+*:*' debug true
+# # # Keep track of what's going on in vcs_info
+# # zstyle ':vcs_info:*+*:*' debug true
 
-# %s => vc system
-# %b => current branch
-# %i => hash
+# # %s => vc system
+# # %b => current branch
+# # %i => hash
 
-zstyle ':vcs_info:git:*' formats '%F{cyan} %b%f'
+# # Format the vcs_info_msg_0_ variable
+# zstyle ':vcs_info:git:*' formats '%b'
 
-# zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+# # zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
+# # Set up the prompt
+# setopt PROMPT_SUBST
+# # # I'm using self-defined theme now...
+# # PROMPT='%~ %F{green}${vcs_info_msg_0_}%f $ '
 
 # # http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#vcs_005finfo-Hooks
 # # Append '?' to `unstaged (%u)` if there are any untracked files
@@ -142,6 +150,8 @@ zstyle ':vcs_info:git:*' formats '%F{cyan} %b%f'
 #         hook_com[unstaged]='?'
 #     fi
 # }
+
+#### Theme
 
 PROMPT_RANDOM_CANDIDATES=(
     bash

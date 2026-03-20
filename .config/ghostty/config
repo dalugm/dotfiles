@@ -15,9 +15,9 @@ font-family = "Fira Code"
 
 ## Keybind
 
-# To use quick terminal on macOS, check Privacy > Accessibility
-# permissions in the system settings to make it work
-keybind = global:ctrl+backquote=toggle_quick_terminal
+# # To use quick terminal on macOS, check Privacy > Accessibility
+# # permissions in the system settings to make it work
+# keybind = global:ctrl+backquote=toggle_quick_terminal
 
 keybind = ctrl+a>r=reload_config
 
@@ -25,10 +25,8 @@ keybind = ctrl+a>r=reload_config
 # default, not the "legacy encoding"
 
 # Make `C-[` equal to Esc
-keybind = ctrl+left_bracket=text:\x1b
-
-# Log
-keybind = ctrl+a>shift+l=write_scrollback_file:paste
+# https://ghostty.org/docs/config/keybind#action
+keybind = ctrl+left_bracket=esc:
 
 ### Window
 
@@ -43,7 +41,7 @@ keybind = ctrl+a>shift+h=move_tab:-1
 keybind = ctrl+a>shift+l=move_tab:+1
 
 keybind = ctrl+a>c=new_tab
-keybind = ctrl+a>n=prompt_surface_title
+keybind = ctrl+a>n=prompt_tab_title
 
 keybind = ctrl+a>1=goto_tab:1
 keybind = ctrl+a>2=goto_tab:2
@@ -65,6 +63,18 @@ keybind = ctrl+a>l=goto_split:right
 keybind = ctrl+a>shift+\=new_split:right
 keybind = ctrl+a>-=new_split:down
 keybind = ctrl+a>s=new_split:auto
+
+keybind = ctrl+shift+h=resize_split:left,10
+keybind = ctrl+shift+j=resize_split:down,10
+keybind = ctrl+shift+k=resize_split:up,10
+keybind = ctrl+shift+l=resize_split:right,10
+
+keybind = ctrl+arrow_left=resize_split:left,10
+keybind = ctrl+arrow_down=resize_split:down,10
+keybind = ctrl+arrow_up=resize_split:up,10
+keybind = ctrl+arrow_right=resize_split:right,10
+
+keybind = ctrl+a>equal=equalize_splits
 
 keybind = ctrl+a>z=toggle_split_zoom
 

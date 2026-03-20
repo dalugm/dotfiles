@@ -1,11 +1,12 @@
 #!/usr/env/bin bash
 
 # bash simple theme
-#   user@hostname: ~ [master]
+#   user@hostname: ~ master [01:02:03]
 #   $ ...
 
-PS1="[\t] \e[0;32m\u\e[m@\e[0;34m\h\e[m: \e[0;35m\w\e[m"
-PS1+="\$(__git_prompt_info ' [\e[0;36m' '\e[m]')"
+PS1="\e[0;32m\u\e[m@\e[0;34m\h\e[m: \e[0;35m\w\e[m"
+#PS1+="\$(__git_prompt_info ' \e[0;36m' '\e[m')"
+PS1+=" [\t]"
 PS1+=$'\n'
 PS1+="\\$ "
 
