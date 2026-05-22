@@ -1,46 +1,42 @@
 [[language]]
 name = "go"
-auto-format = false
+language-servers = ["gopls", "golangci-lint-lsp"]
+
+[language-server.golangci-lint-lsp]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-lsp.config]
+command = [
+  "golangci-lint",
+  "run",
+  "--output.json.path",
+  "stdout",
+  "--show-stats=false",
+  "--issues-exit-code=1",
+]
 
 [[language]]
 name = "javascript"
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-auto-format = false
+formatter = { command = "oxfmt", args = ["--stdin-filepath", "%{buffer_name}"] }
 
 [[language]]
 name = "jsx"
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-auto-format = false
-
-[[language]]
-name = "rust"
-auto-format = false
+formatter = { command = "oxfmt", args = ["--stdin-filepath", "%{buffer_name}"] }
 
 [[language]]
 name = "typescript"
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-auto-format = false
+formatter = { command = "oxfmt", args = ["--stdin-filepath", "%{buffer_name}"] }
 
 [[language]]
 name = "tsx"
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-auto-format = false
+formatter = { command = "oxfmt", args = ["--stdin-filepath", "%{buffer_name}"] }
 
 [[language]]
 name = "vue"
-formatter = { command = "prettier", args = ["--parser", "vue"] }
-auto-format = false
+formatter = { command = "oxfmt", args = ["--stdin-filepath", "%{buffer_name}"] }
 language-servers = ["vtsls", "vue-language-server"]
 
-[[language]]
-name = "zig"
-auto-format = false
-
 # Language servers.
-
-[language-server.vue-language-server]
-command = "vue-language-server"
-args = ["--stdio"]
 
 [language-server.vtsls]
 command = "vtsls"
@@ -53,3 +49,7 @@ vtsls.tsserver.globalPlugins = [
     "vue",
   ], configNamespace = "typescript" },
 ]
+
+[language-server.vue-language-server]
+command = "vue-language-server"
+args = ["--stdio"]
