@@ -13,6 +13,10 @@ font-family = "Maple Mono Normal CN"
 font-family = "JetBrains Mono"
 font-family = "Fira Code"
 
+font-size = 15
+
+macos-option-as-alt = true
+
 ## Keybind
 
 # # To use quick terminal on macOS, check Privacy > Accessibility
