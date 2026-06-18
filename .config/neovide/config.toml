@@ -9,7 +9,7 @@ normal = [
   "Sarasa Mono SC",
   "Unifont",
 ]
-size = 15
+size = 17
 
 fork = false
 frame = "full"
