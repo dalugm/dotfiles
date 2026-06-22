@@ -163,6 +163,59 @@ $env:FZF_DEFAULT_OPTS=@"
 --bind ctrl-g:toggle-preview
 "@
 
+## proxy
+
+function proxy_on {
+    param(
+        [int]$SocksPort = 10808,
+        [int]$HttpPort = 10809
+    )
+
+    $warn = 0
+
+    # Check SOCKS port (SOCKS uses TCP as well)
+    $socksListening = Get-NetTCPConnection -LocalPort $SocksPort -State Listen -ErrorAction SilentlyContinue
+    if (-not $socksListening) {
+        Write-Host "Warning: SOCKS port $SocksPort does not seem to have a listening service" -ForegroundColor Yellow
+        $warn = 1
+    }
+
+    # Check HTTP port
+    $httpListening = Get-NetTCPConnection -LocalPort $HttpPort -State Listen -ErrorAction SilentlyContinue
+    if (-not $httpListening) {
+        Write-Host "Warning: HTTP port $HttpPort does not seem to have a listening service" -ForegroundColor Yellow
+        $warn = 1
+    }
+
+    if ($warn -eq 1) {
+        Write-Host "Proxy may not work correctly. Please check your proxy service." -ForegroundColor Yellow
+    }
+
+    $env:HTTP_PROXY = "http://127.0.0.1:$HttpPort"
+    $env:HTTPS_PROXY = "http://127.0.0.1:$HttpPort"
+    $env:ALL_PROXY = "socks5://127.0.0.1:$SocksPort"
+    $env:NO_PROXY = "localhost,127.0.0.1,::1"
+
+    Write-Host "Proxy enabled (SOCKS: $SocksPort, HTTP: $HttpPort)" -ForegroundColor Green
+}
+
+function proxy_off {
+    Remove-Item -Path Env:HTTP_PROXY, Env:HTTPS_PROXY, Env:ALL_PROXY, Env:NO_PROXY -ErrorAction SilentlyContinue
+    Write-Host "Proxy disabled" -ForegroundColor Yellow
+}
+
+function proxy_status {
+    $http = if ($env:HTTP_PROXY) { $env:HTTP_PROXY } else { "<not set>" }
+    $https = if ($env:HTTPS_PROXY) { $env:HTTPS_PROXY } else { "<not set>" }
+    $all = if ($env:ALL_PROXY) { $env:ALL_PROXY } else { "<not set>" }
+    $no = if ($env:NO_PROXY) { $env:NO_PROXY } else { "<not set>" }
+
+    Write-Host "HTTP_PROXY  = $http"
+    Write-Host "HTTPS_PROXY = $https"
+    Write-Host "ALL_PROXY   = $all"
+    Write-Host "NO_PROXY    = $no"
+}
+
 ## _
 # Local Variables:
 # outline-regexp: "##+"

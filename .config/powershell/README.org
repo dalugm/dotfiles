@@ -1,0 +1,28 @@
+* Table of Contents                                            :TOC:noexport:
+- [[#install][Install]]
+- [[#windows][Windows]]
+  - [[#mise][Mise]]
+
+* Install
+
+On Windows, the PowerShell host profile is located at =$profile=,
+which value is
+=$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1=. For all
+hosts (like pwsh in vscode), the path is
+=$HOME\Documents\PowerShell\Microsoft.Profile.ps1=.
+
+For macOS/Linux, the profile is located at
+=~/.config/powershell/profile.ps1=.
+
+* Windows
+
+** Mise
+
+Add mise shims to system environment's path.
+
+#+begin_verbose
+$shimPath = "$env:USERPROFILE\AppData\Local\mise\shims"
+$currentPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+$newPath = $currentPath + ";" + $shimPath
+[Environment]::SetEnvironmentVariable('Path', $newPath, 'User')
+#+end_verbose
