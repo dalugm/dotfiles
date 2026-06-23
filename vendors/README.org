@@ -1,3 +1,12 @@
-* Packages
+* Vendors
 
-packages and configuration on different OS.
+Collection of simple tools I use.
+
+** Build
+
+*** shell
+
+#+begin_src shell
+  cp shell/*.sh build/ && cd build/
+  for file in $(ls); do mv $file ${file%.*}; done
+#+end_src

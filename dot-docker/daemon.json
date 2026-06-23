@@ -2,9 +2,9 @@
   "experimental": false,
   "registry-mirrors": [
     "https://docker.m.daocloud.io",
-    "https://docker.xuanyuan.me",
-    "https://hub.rat.dev",
     "https://docker.1panel.live",
-    "https://docker.1ms.run"
+    "https://docker.1ms.run",
+    "https://hub.rat.dev",
+    "https://docker.xuanyuan.me"
   ]
 }

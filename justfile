@@ -8,13 +8,13 @@ default:
 
 # Link dotfiles
 init:
-  stow . --no-folding --target={{home}}
+  stow --dotfiles --no-folding --target={{home}} .
   {{ if zshrc_exists == "false" { "ln -s " + home + "/.config/zsh/.zshrc " + home + "/.zshrc" } else { "" } }}
   {{ if bashrc_exists == "false" { "ln -s " + home + "/.config/bash/.bashrc " + home + "/.bashrc" } else { "" } }}
 
 # Clean dotfiles
 clean:
-  stow -D . --no-folding --target={{home}}
+  stow --dotfiles -D --no-folding --target={{home}} .
   {{ if zshrc_exists == "true" { "rm " + home + "/.zshrc" } else { "" } }}
   {{ if bashrc_exists == "true" { "rm " + home + "/.bashrc" } else { "" } }}
 

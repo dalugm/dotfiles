@@ -1,5 +1,5 @@
 default:
-	stow . --no-folding --target=${HOME}
+	stow --dotfiles --no-folding --target=${HOME} .
 	@if [[ ! -e ${HOME}/.zshrc ]]; then \
 		ln -s ${HOME}/.config/zsh/.zshrc ${HOME}/.zshrc; \
 	fi
@@ -8,7 +8,7 @@ default:
 	fi
 
 clean:
-	stow -D .
+	stow --dotfiles -D -t ${HOME} .
 	@if [[ -L ${HOME}/.zshrc ]]; then \
 		rm ${HOME}/.zshrc; \
 	fi
