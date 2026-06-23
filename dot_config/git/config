@@ -13,8 +13,6 @@
 	filemode = false
 [credential]
 	helper = store
-[push]
-	default = matching
 [pull]
 	rebase = true
 [fetch]
@@ -24,8 +22,6 @@
 [diff "lockb"]
 	textconv = bun
 	binary = true
-[http]
-	sslverify = false
 [alias]
 	# The acronym stands for "subtree add".
 	sba = "!f() { git subtree add --prefix $1 $2 master --squash; }; f"

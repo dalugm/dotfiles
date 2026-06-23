@@ -17,7 +17,7 @@ command_exists() {
 
 # Create new directories and then enters the last one
 mkd() {
-    mkdir -p "$@" && cd "$_" || exit 1
+    mkdir -p "$@" && cd "$_" || return 1
 }
 
 # Search for text within bash history
@@ -110,13 +110,13 @@ proxy_on() {
     local warn=0
 
     # Check SOCKS port
-    if ! ss -lnt | grep -q ":${socks_port} "; then
+    if ! lsof -i ":${socks_port}" -sTCP:LISTEN >/dev/null 2>&1; then
         echo "Warning: SOCKS port ${socks_port} does not seem to have a listening service"
         warn=1
     fi
 
     # Check HTTP port
-    if ! ss -lnt | grep -q ":${http_port} "; then
+    if ! lsof -i ":${http_port}" -sTCP:LISTEN >/dev/null 2>&1; then
         echo "Warning: HTTP port ${http_port} does not seem to have a listening service"
         warn=1
     fi

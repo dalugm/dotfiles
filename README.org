@@ -1,5 +1,190 @@
+#+TITLE: Dotfiles
+#+PROPERTY: header-args :eval never
+
 * Table of Contents                                            :TOC:noexport:
+- [[#overview][Overview]]
+- [[#quick-start][Quick Start]]
+- [[#day-to-day][Day-to-day]]
+  - [[#common-workflows][Common Workflows]]
+  - [[#just-recipe-reference][Just Recipe Reference]]
+- [[#directory-structure][Directory Structure]]
+- [[#key-conventions][Key Conventions]]
+  - [[#chezmoi-naming-rules][chezmoi Naming Rules]]
+  - [[#adding-a-new-language-config][Adding a New Language Config]]
+  - [[#machine-specific-overrides][Machine-Specific Overrides]]
+- [[#windows-notes][Windows Notes]]
 - [[#acknowledgments][Acknowledgments]]
+
+* Overview
+
+Dotfiles managed by [[https://www.chezmoi.io/][chezmoi]] and [[https://github.com/casey/just][just]]. Cross-platform (macOS / Linux /
+Windows).
+
+* Quick Start
+
+On a new machine:
+
+#+begin_src bash-ts
+# Install chezmoi first, then clone and apply
+brew install chezmoi      # macOS
+# pacman -S chezmoi       # Arch
+# scoop install chezmoi   # Windows
+# winget install chezmoi  # Windows
+
+chezmoi init --apply dalugm
+#+end_src
+
+* Day-to-day
+
+All commands are run from inside =~/dotfiles=.
+
+** Common Workflows
+
+*** Edit a config and apply it
+
+Push to remote after applying the changes to your local machine:
+
+#+begin_src bash-ts
+# Option A: edit the source file directly, then apply
+nvim dot_config/zsh/dot_zshrc
+just apply
+
+# Option B: chezmoi opens the source file for you,
+# and automatically applies on exit
+just edit ~/.zshrc
+
+# Option C: edit the real file, then sync back to source
+nvim ~/.zshrc
+just apply      # notices ~/.zshrc was modified,
+                # merges changes back to source, then applies
+#+end_src
+
+After making changes, push to share across machines:
+
+#+begin_src bash-ts
+git add -A && git commit -m "Update …" && git push
+#+end_src
+
+*** Pull changes from another machine
+
+#+begin_src bash-ts
+just update
+# Equivalent to: chezmoi update -v
+# (git pull + chezmoi apply in one command)
+#+end_src
+
+*** Add a brand-new config file
+
+#+begin_src bash-ts
+# 1. Create the file in your home directory (or edit an existing one)
+nvim ~/.config/newapp/config.toml
+
+# 2. Track it with chezmoi
+just add ~/.config/newapp/config.toml
+
+# 3. Commit and push
+git add -A && git commit -m "Add newapp config" && git push
+#+end_src
+
+*** Check what would change (dry run)
+
+#+begin_src bash
+just diff       # Show detailed diff of pending changes
+just status     # Summarize added/modified files
+#+end_src
+
+** Just Recipe Reference
+
+| Command                     | Purpose                              |
+|-----------------------------+--------------------------------------|
+| =just=                    | List all recipes                     |
+| =just apply=              | Apply source changes to ~/           |
+| =just diff=               | Preview pending changes in detail    |
+| =just status=             | Summarize pending changes            |
+| =just edit ~/.file=       | Open source file in $EDITOR + apply  |
+| =just add ~/.file=        | Track a new file from ~/             |
+| =just update=             | Git pull + apply (sync from remote)  |
+| =just cd=                 | Launch shell in source dir           |
+| =just forget ~/.file=     | Stop managing a file                 |
+| =just re-add=             | Re-add all tracked files from ~/     |
+
+* Directory Structure
+
+#+begin_example
+dotfiles/
+├── dot_config/            # -> ~/.config/
+│   ├── zsh/               #   Zsh configs
+│   │   ├── dot_zshrc      #     Main config (sourced via ~/.zshrc symlink)
+│   │   ├── langs/*.zsh    #     Language-specific configs
+│   │   ├── tools.zsh      #     CLI tools (mise, fzf, zoxide…)
+│   │   ├── alias.zsh      #     Shell aliases
+│   │   ├── function.zsh   #     Shell functions
+│   │   └── completion.zsh #    Completion settings
+│   ├── bash/              #   Bash configs (parallel to zsh/)
+│   ├── git/config         #   Git global config
+│   ├── tmux/tmux.conf     #   tmux config
+│   ├── helix/             #   Helix editor config
+│   └── …                  #   Other app configs
+├── dot_zshenv             # -> ~/.zshenv (XDG vars, PATH)
+├── dot_bunfig.toml        # -> ~/.bunfig.toml
+├── dot_editorconfig       # -> ~/.editorconfig
+├── dot_globalrc           # -> ~/.globalrc (GNU Global)
+├── dot_ideavimrc          # -> ~/.ideavimrc
+├── dot_npmrc              # -> ~/.npmrc
+├── symlink_dot_zshrc      # -> ~/.zshrc -> .config/zsh/.zshrc
+├── symlink_dot_bashrc     # -> ~/.bashrc -> .config/bash/.bashrc
+├── justfile               # Just recipes (not managed by chezmoi)
+├── nix-darwin/            # Nix-Darwin config
+├── nixos/                 # NixOS config
+├── vendors/               # Shared tool configs (eslint, prettier…)
+└── .chezmoiignore         # Files excluded from chezmoi
+#+end_example
+
+* Key Conventions
+
+** chezmoi Naming Rules
+
+| Source                     | Target                               |
+|----------------------------+--------------------------------------|
+| =dot_zshrc=                | =~/.zshrc=                           |
+| =dot_config/zsh/alias.zsh= | =~/.config/zsh/alias.zsh=            |
+| =dot_config/zsh/dot_zshrc= | =~/.config/zsh/.zshrc=               |
+| =symlink_dot_zshrc=        | =~/.zshrc= -> =~/.config/zsh/.zshrc= |
+
+- =dot_= → leading dot in target path
+- =dot_config/= → =~/.config/=
+- =symlink_= → creates a symlink
+- Files starting with ==.== are ignored by chezmoi (use =dot_= prefix inside subdirectories)
+
+** Adding a New Language Config
+
+#+begin_src bash-ts
+echo 'export MY_VAR=value' > ~/dotfiles/dot_config/zsh/langs/mylang.zsh
+cp ~/dotfiles/dot_config/zsh/langs/mylang.zsh ~/dotfiles/dot_config/bash/langs/mylang.sh
+chezmoi apply
+#+end_src
+
+No need to edit =.zshrc= — =for f in langs/*.zsh(N)= auto-loads
+everything.
+
+** Machine-Specific Overrides
+
+Create =.zshrc.local= or =.bashrc.local= in =~/.config/zsh/= (or
+=~/.config/bash/=):
+
+#+begin_src bash
+# ~/.config/zsh/.zshrc.local
+export GIT_AUTHOR_NAME="My Name"
+export GIT_AUTHOR_EMAIL="my.email@work.com"
+#+end_src
+
+These files are sourced at the end of =.zshrc= / =.bashrc= but NOT
+managed by chezmoi.
+
+* Windows Notes
+
+Windows-specific files (e.g. PowerShell profile) are excluded from
+chezmoi, manage them manually.
 
 * Acknowledgments
 

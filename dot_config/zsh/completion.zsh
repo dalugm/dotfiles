@@ -1,41 +1,45 @@
-# expand path like
-# /v/c/p/p => /var/cache/pacman/pkg
+# Enable path expansion, e.g. /v/c/p/p => /var/cache/pacman/pkg
 setopt complete_in_word
 
-# treat the following chars as word
+# Treat the following chars as word boundaries
 WORDCHARS='*?[]~=/&;!#$%^(){}<>'
 
 setopt AUTO_LIST
 
-# do NOT auto select the first completion entry
+# Do NOT auto select the first completion entry
 unsetopt MENU_COMPLETE
 
-# show completion menu on successive tab press
+# Show completion menu on successive tab press
 setopt AUTO_MENU
 
-# handle with the up/lowcase
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+# Case-insensitive completion from the start,
+# then allow substring matching on subsequent attempts
+zstyle ':completion:*' matcher-list \
+    'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' \
+    'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
+    'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
+    'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
-# Show completion menu if 2 or more items to select and enable arrow key
+# Show completion menu if 2 or more items, enable arrow key navigation
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*' select-prompt '%SSelect:  lines: %L  matches: %M  [%p]'
 
-# add new file to completion automatically
+# Auto-add new executables to completion hash
 zstyle ':completion:*' rehash true
 
-# complete . and .. special directories
+# Complete . and .. special directories
 zstyle ':completion:*' special-dirs true
 
-# colorful complete list
+# Colorful completion list
 export ZLSCOLORS=$LS_COLORS
 zmodload zsh/complist
 
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
-# enable zsh completion
+# Enable zsh completion system
 autoload -Uz compinit && compinit
 
-# automatically load bash completion functions
+# Load bash completion functions for compatibility
 autoload -U +X bashcompinit && bashcompinit
