@@ -1,0 +1,7 @@
+LICENSE
+README.org
+justfile
+nix-darwin
+nixos
+vendors
+.gitignore

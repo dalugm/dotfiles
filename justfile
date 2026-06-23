@@ -1,22 +1,43 @@
-home          := home_directory()
-zshrc_exists  := path_exists(home / '.zshrc')
-bashrc_exists := path_exists(home / '.bashrc')
-
 # List available recipes
 default:
   @just --list
 
-# Link dotfiles
+# Initialize chezmoi and apply dotfiles
 init:
-  stow --dotfiles --no-folding --target={{home}} .
-  {{ if zshrc_exists == "false" { "ln -s " + home + "/.config/zsh/.zshrc " + home + "/.zshrc" } else { "" } }}
-  {{ if bashrc_exists == "false" { "ln -s " + home + "/.config/bash/.bashrc " + home + "/.bashrc" } else { "" } }}
+  chezmoi init --apply
 
-# Clean dotfiles
-clean:
-  stow --dotfiles -D --no-folding --target={{home}} .
-  {{ if zshrc_exists == "true" { "rm " + home + "/.zshrc" } else { "" } }}
-  {{ if bashrc_exists == "true" { "rm " + home + "/.bashrc" } else { "" } }}
+# Apply dotfiles
+apply:
+  chezmoi apply -v
 
-# Relink dotfiles
-restow: clean init
+# Edit a file with chezmoi
+edit target:
+  chezmoi edit {{target}}
+
+# Add a file to chezmoi
+add target:
+  chezmoi add {{target}}
+
+# Show diff between source and target
+diff:
+  chezmoi diff
+
+# Show status
+status:
+  chezmoi status
+
+# Update dotfiles from remote
+update:
+  chezmoi update -v
+
+# Enter chezmoi source directory
+cd:
+  chezmoi cd
+
+# Remove a file from chezmoi management
+forget target:
+  chezmoi forget {{target}}
+
+# Re-add all managed files
+re-add:
+  chezmoi re-add
