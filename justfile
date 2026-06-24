@@ -4,7 +4,7 @@ default:
 
 # Initialize chezmoi and apply dotfiles
 init:
-  chezmoi init --apply
+  chezmoi init --source {{justfile_directory()}} --apply
 
 # Apply dotfiles
 apply:

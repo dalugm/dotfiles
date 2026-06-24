@@ -17,21 +17,32 @@
 
 * Overview
 
-Dotfiles managed by [[https://www.chezmoi.io/][chezmoi]] and [[https://github.com/casey/just][just]]. Cross-platform (macOS / Linux /
-Windows).
+Dotfiles managed by [[https://www.chezmoi.io/][chezmoi]] and [[https://github.com/casey/just][just]].
 
 * Quick Start
 
 On a new machine:
 
 #+begin_src bash-ts
-# Install chezmoi first, then clone and apply
-brew install chezmoi      # macOS
+## Install chezmoi first, then clone and apply
+# brew install chezmoi    # macOS
 # pacman -S chezmoi       # Arch
-# scoop install chezmoi   # Windows
 # winget install chezmoi  # Windows
 
 chezmoi init --apply dalugm
+#+end_src
+
+If you have already cloned this repo, run from the repo directory:
+
+#+begin_src bash-ts
+just init
+#+end_src
+
+Or manually:
+
+#+begin_src bash-ts
+chezmoi init --source ~/dotfiles
+chezmoi apply
 #+end_src
 
 * Day-to-day
@@ -95,18 +106,18 @@ just status     # Summarize added/modified files
 
 ** Just Recipe Reference
 
-| Command                     | Purpose                              |
-|-----------------------------+--------------------------------------|
-| =just=                    | List all recipes                     |
-| =just apply=              | Apply source changes to ~/           |
-| =just diff=               | Preview pending changes in detail    |
-| =just status=             | Summarize pending changes            |
-| =just edit ~/.file=       | Open source file in $EDITOR + apply  |
-| =just add ~/.file=        | Track a new file from ~/             |
-| =just update=             | Git pull + apply (sync from remote)  |
-| =just cd=                 | Launch shell in source dir           |
-| =just forget ~/.file=     | Stop managing a file                 |
-| =just re-add=             | Re-add all tracked files from ~/     |
+| Command               | Purpose                             |
+|-----------------------+-------------------------------------|
+| =just=                | List all recipes                    |
+| =just apply=          | Apply source changes to ~/          |
+| =just diff=           | Preview pending changes in detail   |
+| =just status=         | Summarize pending changes           |
+| =just edit ~/.file=   | Open source file in $EDITOR + apply |
+| =just add ~/.file=    | Track a new file from ~/            |
+| =just update=         | Git pull + apply (sync from remote) |
+| =just cd=             | Launch shell in source dir          |
+| =just forget ~/.file= | Stop managing a file                |
+| =just re-add=         | Re-add all tracked files from ~/    |
 
 * Directory Structure
 
@@ -172,7 +183,7 @@ everything.
 Create =.zshrc.local= or =.bashrc.local= in =~/.config/zsh/= (or
 =~/.config/bash/=):
 
-#+begin_src bash
+#+begin_src bash-ts
 # ~/.config/zsh/.zshrc.local
 export GIT_AUTHOR_NAME="My Name"
 export GIT_AUTHOR_EMAIL="my.email@work.com"
