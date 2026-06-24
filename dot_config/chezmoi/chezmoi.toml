@@ -1,0 +1,4 @@
+sourceDir = "~/dotfiles"
+
+[edit]
+command = "nvim"
