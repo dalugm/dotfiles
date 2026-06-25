@@ -4,4 +4,3 @@ justfile
 nix-darwin
 nixos
 vendors
-.gitignore

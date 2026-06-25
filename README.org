@@ -24,10 +24,10 @@ Dotfiles managed by [[https://www.chezmoi.io/][chezmoi]] and [[https://github.co
 On a new machine:
 
 #+begin_src bash-ts
-## Install chezmoi first, then clone and apply
-# brew install chezmoi    # macOS
-# pacman -S chezmoi       # Arch
-# winget install chezmoi  # Windows
+# Install chezmoi first, then clone and apply
+brew install chezmoi            # macOS
+pacman -S chezmoi               # Arch
+winget install chezmoi          # Windows
 
 chezmoi init --apply dalugm
 #+end_src
@@ -41,8 +41,7 @@ just init
 Or manually:
 
 #+begin_src bash-ts
-chezmoi init --source ~/dotfiles
-chezmoi apply
+chezmoi init --source ~/dotfiles --apply
 #+end_src
 
 * Day-to-day
@@ -65,9 +64,9 @@ just apply
 just edit ~/.zshrc
 
 # Option C: edit the real file, then sync back to source
-nvim ~/.zshrc
-just apply      # notices ~/.zshrc was modified,
-                # merges changes back to source, then applies
+vim ~/.zshrc
+just re-add                     # sync changes from ~/ back to source
+just apply                      # confirm everything matches
 #+end_src
 
 After making changes, push to share across machines:
@@ -99,9 +98,9 @@ git add -A && git commit -m "Add newapp config" && git push
 
 *** Check what would change (dry run)
 
-#+begin_src bash
-just diff       # Show detailed diff of pending changes
-just status     # Summarize added/modified files
+#+begin_src bash-ts
+just diff                      # Show detailed diff of pending changes
+just status                    # Summarize added/modified files
 #+end_src
 
 ** Just Recipe Reference

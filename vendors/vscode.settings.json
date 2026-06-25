@@ -1,6 +1,6 @@
 {
-  "editor.fontFamily": "'Maple Mono CN', 'Maple Mono Normal CN', 'JetBrains Mono', 'Fira Code', 'LXGW WenKai Mono', 'Sarasa Mono SC', monospace",
-  "editor.fontSize": 15,
+  "editor.fontFamily": "'Maple Mono CN', 'Maple Mono Normal CN', 'JetBrains Mono', 'Fira Code', 'Monaspace Neon', 'LXGW WenKai Mono', 'Sarasa Mono SC', monospace",
+  "editor.fontSize": 17,
   // Vim
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
@@ -377,10 +377,16 @@
   "window.autoDetectColorScheme": true,
   "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
   "[vue]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "todo-tree.general.tags": [
     "BUG",

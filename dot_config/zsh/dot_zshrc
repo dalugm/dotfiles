@@ -2,7 +2,7 @@
 [[ -z "$PS1" ]] && return
 
 # Path to zsh configs, distributed into smaller files
-export ZDOTDIR="$HOME/.config/zsh"
+export ZSH="$HOME/.config/zsh"
 
 ### Environment
 
@@ -46,10 +46,10 @@ bindkey '^r' history-incremental-search-backward
 
 ### Source modules
 
-[[ -f "$ZDOTDIR"/function.zsh ]] && . "$ZDOTDIR/function.zsh"
-[[ -f "$ZDOTDIR"/alias.zsh ]] && . "$ZDOTDIR/alias.zsh"
-[[ -f "$ZDOTDIR"/completion.zsh ]] && . "$ZDOTDIR/completion.zsh"
-[[ -f "$ZDOTDIR"/plugins/colorman.sh ]] && . "$ZDOTDIR/plugins/colorman.sh"
+[[ -f "$ZSH"/function.zsh ]] && . "$ZSH/function.zsh"
+[[ -f "$ZSH"/alias.zsh ]] && . "$ZSH/alias.zsh"
+[[ -f "$ZSH"/completion.zsh ]] && . "$ZSH/completion.zsh"
+[[ -f "$ZSH"/plugins/colorman.sh ]] && . "$ZSH/plugins/colorman.sh"
 
 ### Prompt
 
@@ -57,15 +57,15 @@ autoload -Uz promptinit && promptinit
 autoload -U colors && colors      # ls colors
 
 PROMPT_RANDOM_CANDIDATES=(bash simple zsh)
-[[ -f "$ZDOTDIR"/random-theme.zsh ]] && . "$ZDOTDIR"/random-theme.zsh
+[[ -f "$ZSH"/random-theme.zsh ]] && . "$ZSH"/random-theme.zsh
 
 ### Tools
 
-[[ -f "$ZDOTDIR"/tools.zsh ]] && . "$ZDOTDIR"/tools.zsh
+[[ -f "$ZSH"/tools.zsh ]] && . "$ZSH"/tools.zsh
 
 ### Languages
 
-for f in "$ZDOTDIR"/langs/*.zsh(N); do
+for f in "$ZSH"/langs/*.zsh(N); do
     . "$f"
 done
 
@@ -80,4 +80,4 @@ fi
 ### Local overrides
 
 # Machine-specific config, not tracked by chezmoi
-[[ -f "$ZDOTDIR"/.zshrc.local ]] && . "$ZDOTDIR"/.zshrc.local
+[[ -f "$ZSH"/.zshrc.local ]] && . "$ZSH"/.zshrc.local
