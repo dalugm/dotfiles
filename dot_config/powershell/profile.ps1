@@ -1,3 +1,5 @@
+$env:SHELL = "pwsh.exe"
+
 Set-PSReadLineOption -EditMode Emacs
 
 function Get-FileSize {

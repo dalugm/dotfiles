@@ -1,0 +1,16 @@
+# Colima template — applied when creating new instances
+# https://github.com/abiosoft/colima/blob/main/docs/CONFIG.md
+
+arch: aarch64
+memory: 4
+
+vmType: vz
+mountType: virtiofs
+
+docker:
+  registry-mirrors:
+    - https://docker.m.daocloud.io
+    - https://docker.1panel.live
+    - https://docker.1ms.run
+    - https://hub.rat.dev
+    - https://docker.xuanyuan.me
