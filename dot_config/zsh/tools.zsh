@@ -26,10 +26,10 @@ fi
 
 if [[ -d "$HOME/Library/pnpm" ]]; then
     export PNPM_HOME="$HOME/Library/pnpm"
-    add_path "$PNPM_HOME"
+    add_path "$PNPM_HOME/bin"
 elif [[ -d "$HOME/.local/share/pnpm" ]]; then
     export PNPM_HOME="$HOME/.local/share/pnpm"
-    add_path "$PNPM_HOME"
+    add_path "$PNPM_HOME/bin"
 fi
 
 if command_exists brew; then
