@@ -2,7 +2,9 @@
 # https://github.com/abiosoft/colima/blob/main/docs/CONFIG.md
 
 arch: aarch64
+cpu: 2
 memory: 4
+disk: 200
 
 vmType: vz
 mountType: virtiofs
@@ -10,7 +12,8 @@ mountType: virtiofs
 docker:
   registry-mirrors:
     - https://docker.m.daocloud.io
-    - https://docker.1panel.live
     - https://docker.1ms.run
-    - https://hub.rat.dev
-    - https://docker.xuanyuan.me
+    - https://docker.nju.edu.cn
+  log-opts:
+    max-size: "10m"
+    max-file: "3"

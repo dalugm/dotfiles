@@ -4,3 +4,10 @@ justfile
 nix-darwin
 nixos
 vendors
+
+dot_docker/daemon.json
+
+{{- if ne .chezmoi.os "linux" }}
+dot_config/containers/registries.conf
+dot_config/docker/daemon.json
+{{- end }}
